@@ -64,7 +64,7 @@
     some hacky rules to make things look okay
     in .container-fluid, although the design
     is a bit broken...
-*/ 
+*/
 #info-tab > .row:first-child {
     margin: 0;
 }

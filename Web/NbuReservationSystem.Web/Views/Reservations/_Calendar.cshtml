@@ -1,0 +1,20 @@
+﻿@model NbuReservationSystem.Web.ViewModels.Reservations.MonthlyReservationsViewModel
+
+<div id="calendar-wrapper">
+    <div class="container-fluid">
+
+        @Html.Partial("_CalendarControls", Model)
+
+        <div class="row">
+            <div class="col-md-28" id="calendar-container">
+                @Html.Partial("_CalendarHeader")
+                @Html.Partial("_WeeksInMonth", Model.Weeks)
+            </div>
+
+            <div class="col-md-7">
+                <div id="info-tab">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

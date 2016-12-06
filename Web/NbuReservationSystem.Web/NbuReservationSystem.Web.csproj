@@ -318,6 +318,7 @@
     <Content Include="Views\Reservations\New.cshtml" />
     <Content Include="Views\Reservations\_WeeksInMonth.cshtml" />
     <Content Include="Views\Reservations\_CalendarControls.cshtml" />
+    <Content Include="Views\Reservations\_Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />

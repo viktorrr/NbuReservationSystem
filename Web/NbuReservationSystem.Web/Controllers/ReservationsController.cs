@@ -16,36 +16,36 @@
         }
 
         [HttpGet]
-        public ActionResult Monthly()
+        public ActionResult Monthly(int? year, int? month)
         {
-            var now = DateTime.UtcNow;
+            var isInputValid = year.HasValue && month.HasValue;
+
+            if (month >= 13 || month <= 0)
+            {
+                // TODO: log this!
+                isInputValid = false;
+            }
+
+            var now = isInputValid ? new DateTime(year.Value, month.Value, 1) : DateTime.UtcNow;
             var reservations = this.reservationsService.GetReservations(now.Year, now.Month);
 
             return this.View(reservations);
         }
 
         [HttpGet]
-        public ActionResult ByMonth(int? year, int? month)
+        public ActionResult ByMonth(int year, int month)
         {
-            if (!year.HasValue || !month.HasValue)
+            // TODO: add an "is ajax" filter
+            if (!this.Request.IsAjaxRequest())
             {
-                return this.RedirectToAction("Monthly");
-            }
-
-            if (month >= 13 || month <= 0)
-            {
-                // TODO: log this!
+                this.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 return this.Content("Nope.");
             }
 
-
-
-            // TODO: it utc needed?
-            // var now = new DateTime(year.Value, month.Value, 1).ToUniversalTime().AddHours(2);
-            var now = new DateTime(year.Value, month.Value, 1);
+            var now = new DateTime(year, month, 1);
             var reservations = this.reservationsService.GetReservations(now.Year, now.Month);
 
-            return this.View("Monthly", reservations);
+            return this.PartialView("_Calendar", reservations);
         }
 
         [HttpGet]
@@ -54,7 +54,6 @@
             if (!this.Request.IsAjaxRequest())
             {
                 this.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                // TODO: log this
                 return this.Content("Nope.");
             }
 
