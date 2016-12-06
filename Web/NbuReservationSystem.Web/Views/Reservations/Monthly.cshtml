@@ -1,0 +1,117 @@
+﻿@using NbuReservationSystem.Web.Extensions
+@model NbuReservationSystem.Web.ViewModels.Reservations.MonthlyReservationsViewModel
+
+@{
+    ViewBag.Title = "Reservations";
+    //Layout = "_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-28">
+            <h1>
+                <a href="@Url.Action("ByMonth", "Reservations", Html.CreatePreviousMonthRoutValues(Model))" class="btn btn-default">
+                    &nbsp;
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </a>
+                @Html.FormatLocalizedMonth(Model)
+                <a href="@Url.Action("ByMonth", "Reservations", Html.CreateNextMonthRoutValues(Model))" class="btn btn-default">
+                    &nbsp;
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </a>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-28">
+            @*TODO: halls dropdown!*@
+            <h2>Зала в библитеката</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-21">
+            @Html.Partial("_CalendarHeader")
+            @foreach (var week in Model.Weeks)
+            {
+                <div class="row">
+                    <div class="col-md-28">
+                        <div class="row">
+                            @foreach (var day in week.Days)
+                            {
+                                <div class="col-md-4">
+                                    <div class="panel panel-default panel-day">
+                                        <div class="panel-body">
+                                            <p class="text-right day">
+                                                @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations", new { id = day.Day.DayTabUrl() },
+                                                new AjaxOptions
+                                                {
+                                                    InsertionMode = InsertionMode.Replace,
+                                                    UpdateTargetId = "day-tab",
+                                                    OnSuccess = "OnAjaxRequestSuccess",
+                                                    OnFailure = "OnAjaxRequestFailure"
+                                                })
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (day.Reservations.Count <= i)
+                                        {
+                                            break;
+                                        }
+
+                                        <div class="panel panel-default simple-border">
+                                            <div class="panel-body">
+                                                <p class="reservation-title-container">
+                                                    <span>@Html.FormatEventStart(day.Reservations[i].BeginsOn)</span>
+                                                    <span class="reservation-title">@day.Reservations[i].Title</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    }
+                                    @*TODO: this is a really ugly fix! Fix it!!!*@
+                                    @for (int i = day.Reservations.Count; i < 5; i++)
+                                    {
+                                        <div class="panel panel-default simple-border">
+                                            <div class="panel-body">
+                                                <p>&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-md-7">
+            <div id="day-tab">
+            </div>
+        </div>
+    </div>
+
+    @section scripts
+{
+        <script type="text/javascript">
+        function OnAjaxRequestSuccess() {
+            var browserWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var bootstrapSmallGrid = 768;
+            if (browserWidth <= bootstrapSmallGrid) {
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            }
+        }
+
+        function OnAjaxRequestFailure(request, error) {
+            // TODO: notify the user!
+            console.log("DayTab request failed:" + error);
+        }
+        </script>
+    }
+</div>

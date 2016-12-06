@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - NbuReservationSystem</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <nav id="home-nav" class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapser"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("NbuReservationSystem", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapser">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("Reservations", "Monthly", "Reservations", new { area = string.Empty }, null)</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+
+    @RenderBody()
+
+    <div class="container">
+        <hr />
+        <footer>
+            <p class="text-center">Copyright &copy; @DateTime.UtcNow.Year - Всички права запазени</p>
+        </footer>
+        <hr />
+    </div>
+
+    @section scripts {
+        <script>
+            $('.carousel').carousel({
+                interval: 1500
+            });
+        </script>
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

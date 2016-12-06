@@ -1,0 +1,135 @@
+﻿.col-md-4 {
+    padding: 0px;
+}
+
+.panel,
+.panel-heading {
+    -ms-border-radius: 0;
+    border-radius: 0;
+}
+
+.panel-body {
+    padding: 0;
+    /*border: 0px;*/
+}
+
+.panel {
+    margin-bottom: 0;
+}
+
+.panel-day {
+    border: none;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.weekdays {
+    background-color: #F8F8F8;
+}
+
+.day {
+    margin: 0;
+    font-size: 20px;
+    color: grey;
+    /*border-right: 1px solid white;*/
+    border-right: 0;
+}
+
+.reservation-title-container {
+    padding: 4px 0;
+    /*trim long text*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0px;
+    /*make things look beautiful*/
+    background-color: #C1E9FE;
+    border: 0px;
+    border: 1px solid white;
+}
+
+.reservation-title {
+    font-weight: bold;
+}
+
+.simple-border {
+    border: 1px solid white;
+}
+
+#day-tab {
+    padding: 0;
+    margin: 0;
+}
+
+/*
+    some hacky rules to make things look okay
+    in .container-fluid, although the design
+    is a bit broken...
+*/ 
+#day-tab > .row:first-child {
+    margin: 0;
+}
+
+#day-tab .col-md-28 {
+    padding: 0;
+}
+
+#day-tab .panel-body .row {
+    margin: 5px 0 0 5px;
+}
+
+#day-tab .col-md-7 {
+    padding-right: 0;
+}
+
+#day-tab .alert-danger,
+#day-tab .btn {
+    margin: 10px;
+}
+
+nav {
+    margin-bottom: 0;
+}
+
+.carousel-inner{
+  width:100%;
+  max-height: 500px !important;
+}
+
+header.carousel {
+    height: 50%;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+    height: 100%;
+}
+
+header.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#home-nav {
+    margin: 0;
+}
+
+#carouser-container {
+    padding: 0;
+}
+
+#home-calendar {
+    width: 75%;
+}
+
+#project-overview p {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+.green-ok {
+    color: greenyellow;
+}

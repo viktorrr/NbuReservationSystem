@@ -1,0 +1,55 @@
+﻿@using NbuReservationSystem.Web.Extensions
+@model NbuReservationSystem.Web.ViewModels.Reservations.DayViewModel
+<div id="info-tab">
+    <div class="row">
+        <div class="col-md-28">
+            <div class="panel panel-day weekdays">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Model.Day.ToShortDateString() - @Html.FormatDailyResevations(Model)</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.Reservations.Any())
+    {
+        <div class="row">
+            <div class="col-md-28 text-center">
+                <div class="alert alert-danger" role="alert">
+                    <p>@Resources.Labels.NoReservations</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    @foreach (var reservation in Model.Reservations)
+    {
+        <div class="row">
+            <div class="col-md-28">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p>@Html.FormatEventDuration(reservation.BeginsOn, reservation.EndsOn)</p>
+                        </div>
+                        <div class="col-md-21">
+                            <p>@reservation.Title</p>
+                            <p>@reservation.Description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-28 center-block">
+            @*<a class="btn btn-default center-block" href="" role="button">@Resources.Labels.NewReservation</a>*@
+            @Html.ActionLink(
+           Resources.Labels.NewReservation, "New", null, new
+           {
+               @class = "btn btn-default center-block",
+               id = "add-new-reservation"
+           })
+        </div>
+    </div>
+</div>
