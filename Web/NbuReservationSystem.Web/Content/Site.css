@@ -55,7 +55,7 @@
     border: 1px solid white;
 }
 
-#day-tab {
+#info-tab {
     padding: 0;
     margin: 0;
 }
@@ -65,24 +65,24 @@
     in .container-fluid, although the design
     is a bit broken...
 */ 
-#day-tab > .row:first-child {
+#info-tab > .row:first-child {
     margin: 0;
 }
 
-#day-tab .col-md-28 {
+#info-tab .col-md-28 {
     padding: 0;
 }
 
-#day-tab .panel-body .row {
+#info-tab .panel-body .row {
     margin: 5px 0 0 5px;
 }
 
-#day-tab .col-md-7 {
+#info-tab .col-md-7 {
     padding-right: 0;
 }
 
-#day-tab .alert-danger,
-#day-tab .btn {
+#info-tab .alert-danger,
+#info-tab .btn {
     margin: 10px;
 }
 

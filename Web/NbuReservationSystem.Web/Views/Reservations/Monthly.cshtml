@@ -45,14 +45,15 @@
                                     <div class="panel panel-default panel-day">
                                         <div class="panel-body">
                                             <p class="text-right day">
-                                                @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations", new { id = day.Day.DayTabUrl() },
-                                                new AjaxOptions
-                                                {
-                                                    InsertionMode = InsertionMode.Replace,
-                                                    UpdateTargetId = "day-tab",
-                                                    OnSuccess = "OnAjaxRequestSuccess",
-                                                    OnFailure = "OnAjaxRequestFailure"
-                                                })
+                                                @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations",
+                                                    new { id = day.Day.DayTabUrl() },
+                                                    new AjaxOptions
+                                                    {
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        UpdateTargetId = "info-tab",
+                                                        OnSuccess = "OnAjaxRequestSuccess",
+                                                        OnFailure = "OnAjaxRequestFailure"
+                                                    })
                                             </p>
                                         </div>
                                     </div>
@@ -91,26 +92,25 @@
         </div>
 
         <div class="col-md-7">
-            <div id="day-tab">
+            <div id="info-tab">
             </div>
         </div>
     </div>
 
-    @section scripts
-{
+    @section scripts {
         <script type="text/javascript">
-        function OnAjaxRequestSuccess() {
-            var browserWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-            var bootstrapSmallGrid = 768;
-            if (browserWidth <= bootstrapSmallGrid) {
-                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            function OnAjaxRequestSuccess() {
+                var browserWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+                var bootstrapSmallGrid = 768;
+                if (browserWidth <= bootstrapSmallGrid) {
+                    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                }
             }
-        }
 
-        function OnAjaxRequestFailure(request, error) {
-            // TODO: notify the user!
-            console.log("DayTab request failed:" + error);
-        }
+            function OnAjaxRequestFailure(request, error) {
+                // TODO: notify the user!
+                console.log("DayTab request failed:" + error);
+            }
         </script>
     }
 </div>
