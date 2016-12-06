@@ -4,8 +4,14 @@
     <div class="row">
         <div class="col-md-28">
             <div class="panel panel-day weekdays">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Model.Day.ToShortDateString() - @Html.FormatDailyResevations(Model)</h3>
+                <div class="panel-heading" id="day-tab-title-container">
+                    <a href="#close-tab" id="close-tab">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <span class="panel-title">
+                        @Model.Day.ToShortDateString() - @Html.FormatDailyResevations(Model)
+
+                    </span>
                 </div>
             </div>
         </div>
@@ -43,13 +49,13 @@
 
     <div class="row">
         <div class="col-md-28 center-block">
-            @*<a class="btn btn-default center-block" href="" role="button">@Resources.Labels.NewReservation</a>*@
             @Html.ActionLink(
-           Resources.Labels.NewReservation, "New", null, new
-           {
-               @class = "btn btn-default center-block",
-               id = "add-new-reservation"
-           })
+                Resources.Labels.NewReservation, "New", null, new
+                {
+                    @class = "btn btn-default center-block",
+                    id = "add-new-reservation"
+                }
+            )
         </div>
     </div>
 </div>

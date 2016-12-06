@@ -133,3 +133,12 @@ header.carousel .fill {
 .green-ok {
     color: greenyellow;
 }
+
+#day-tab-title-container {
+    /*dont ask where 7.4 comes from*/
+    padding: 7.4px 15px;
+}
+
+#close-tab {
+    text-decoration: none;
+}
