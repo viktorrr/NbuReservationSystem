@@ -2,7 +2,7 @@
 @model  IList<NbuReservationSystem.Web.ViewModels.Reservations.WeekViewModel>
 
 @foreach (var week in Model)
-            {
+{
     <div class="row">
         <div class="col-md-28">
             <div class="row">
@@ -13,14 +13,14 @@
                             <div class="panel-body">
                                 <p class="text-right day">
                                     @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations",
-                                                    new { id = day.Day.DayTabUrl() },
-                                                    new AjaxOptions
-                                                    {
-                                                        InsertionMode = InsertionMode.Replace,
-                                                        UpdateTargetId = "info-tab",
-                                                        OnSuccess = "OnAjaxRequestSuccess",
-                                                        OnFailure = "OnAjaxRequestFailure"
-                                                    })
+                                        new { id = day.Day.DayTabUrl() },
+                                        new AjaxOptions
+                                        {
+                                            InsertionMode = InsertionMode.Replace,
+                                            UpdateTargetId = "info-tab",
+                                            OnSuccess = "OnAjaxRequestSuccess",
+                                            OnFailure = "OnAjaxRequestFailure"
+                                        })
                                 </p>
                             </div>
                         </div>
@@ -55,4 +55,35 @@
             </div>
         </div>
     </div>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        function OnAjaxRequestSuccess() {
+            // calculate the browser's width
+            var browserWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var bootstrapSmallGrid = 768;
+
+            // and scroll down only if we're in mobile mode
+            if (browserWidth <= bootstrapSmallGrid) {
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            }
+
+
+            // resize the calendar
+            var container = $('#calendar-container').removeClass('col-md-28').addClass('col-md-21');
+
+            $('#close-tab').click(function () {
+                // clear the tab..
+                $('#info-tab').empty();
+                // ..and return the previous dimensions
+                container.removeClass('col-md-21').addClass('col-md-28');
+            });
+        }
+
+        function OnAjaxRequestFailure(request, error) {
+            // TODO: notify the user!
+            console.log("DayTab request failed:" + error);
+        }
+    </script>
 }
