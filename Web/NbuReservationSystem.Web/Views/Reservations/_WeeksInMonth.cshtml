@@ -1,0 +1,58 @@
+﻿@using NbuReservationSystem.Web.Extensions
+@model  IList<NbuReservationSystem.Web.ViewModels.Reservations.WeekViewModel>
+
+@foreach (var week in Model)
+            {
+    <div class="row">
+        <div class="col-md-28">
+            <div class="row">
+                @foreach (var day in week.Days)
+                {
+                    <div class="col-md-4">
+                        <div class="panel panel-default panel-day">
+                            <div class="panel-body">
+                                <p class="text-right day">
+                                    @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations",
+                                                    new { id = day.Day.DayTabUrl() },
+                                                    new AjaxOptions
+                                                    {
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        UpdateTargetId = "info-tab",
+                                                        OnSuccess = "OnAjaxRequestSuccess",
+                                                        OnFailure = "OnAjaxRequestFailure"
+                                                    })
+                                </p>
+                            </div>
+                        </div>
+
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            if (day.Reservations.Count <= i)
+                            {
+                                break;
+                            }
+
+                            <div class="panel panel-default simple-border">
+                                <div class="panel-body">
+                                    <p class="reservation-title-container">
+                                        <span>@Html.FormatEventStart(day.Reservations[i].BeginsOn)</span>
+                                        <span class="reservation-title">@day.Reservations[i].Title</span>
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                        @*TODO: this is a really ugly fix! Fix it!!!*@
+                        @for (int i = day.Reservations.Count; i < 5; i++)
+                        {
+                            <div class="panel panel-default simple-border">
+                                <div class="panel-body">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
