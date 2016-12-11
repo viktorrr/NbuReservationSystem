@@ -43,11 +43,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
+    <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
       <Project>{edfe3c57-ef5b-4636-9ecc-d0baca6b6379}</Project>
       <Name>NbuReservationSystem.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\NbuReservationSystem.Data.Models\NbuReservationSystem.Data.Models.csproj">
+    <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Models\NbuReservationSystem.Data.Models.csproj">
       <Project>{048df115-fad9-4bd4-9ba0-d99dfd32a2b2}</Project>
       <Name>NbuReservationSystem.Data.Models</Name>
     </ProjectReference>

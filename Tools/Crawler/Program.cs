@@ -22,7 +22,7 @@
         private static void GoogleCalendarCrawler()
         {
             // TODO: this needs to be an argument
-            var html = File.ReadAllText(@"D:\Workspace\NbuReservationSystem\Source\Tools\Crawler\collective-hall.html");
+            var html = File.ReadAllText(@"..\..\collective-hall.html");
             var parser = new HtmlParser();
             var document = parser.Parse(html);
 

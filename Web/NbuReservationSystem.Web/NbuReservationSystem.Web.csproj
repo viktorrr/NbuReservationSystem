@@ -263,6 +263,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\nbu-rs - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\nbu-rs - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\bootstrap-28\bootstrap.js" />
     <Content Include="Scripts\bootstrap-28\bootstrap.min.js" />
@@ -350,7 +352,7 @@
       <Project>{701F322F-AA01-4DDC-90B6-6935981C1E73}</Project>
       <Name>NbuReservationSystem.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NbuReservationSystem.Web.Models\NbuReservationSystem.Web.ViewModels.csproj">
+    <ProjectReference Include="..\NbuReservationSystem.Web.ViewModels\NbuReservationSystem.Web.ViewModels.csproj">
       <Project>{812a10fd-47d8-4b59-88b3-ec3665bd89fe}</Project>
       <Name>NbuReservationSystem.Web.ViewModels</Name>
     </ProjectReference>

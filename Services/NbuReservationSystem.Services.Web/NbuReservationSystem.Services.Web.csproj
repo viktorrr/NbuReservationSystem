@@ -63,7 +63,7 @@
       <Project>{048DF115-FAD9-4BD4-9BA0-D99DFD32A2B2}</Project>
       <Name>NbuReservationSystem.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NbuReservationSystem.Web.Models\NbuReservationSystem.Web.ViewModels.csproj">
+    <ProjectReference Include="..\..\Web\NbuReservationSystem.Web.ViewModels\NbuReservationSystem.Web.ViewModels.csproj">
       <Project>{812a10fd-47d8-4b59-88b3-ec3665bd89fe}</Project>
       <Name>NbuReservationSystem.Web.ViewModels</Name>
     </ProjectReference>
