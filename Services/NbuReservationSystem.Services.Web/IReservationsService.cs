@@ -2,7 +2,7 @@
 {
     using System;
 
-    using NbuReservationSystem.Web.ViewModels.Reservations;
+    using NbuReservationSystem.Web.Models.Responses.Reservations;
 
     public interface IReservationsService
     {

@@ -7,7 +7,8 @@
     using Data;
 
     using NbuReservationSystem.Data.Models;
-    using NbuReservationSystem.Web.ViewModels.Reservations;
+    using NbuReservationSystem.Web.Models.Responses.Reservations;
+    using NbuReservationSystem.Web.Models.Util;
 
     public class ReservationsService : IReservationsService
     {

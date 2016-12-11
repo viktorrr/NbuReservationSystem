@@ -7,8 +7,8 @@
     <ProjectGuid>{812A10FD-47D8-4B59-88B3-EC3665BD89FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NbuReservationSystem.Web.ViewModels</RootNamespace>
-    <AssemblyName>NbuReservationSystem.Web.ViewModels</AssemblyName>
+    <RootNamespace>NbuReservationSystem.Web.Models</RootNamespace>
+    <AssemblyName>NbuReservationSystem.Web.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,12 +36,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reservations\DayViewModel.cs" />
-    <Compile Include="Reservations\Month.cs" />
-    <Compile Include="Reservations\MonthlyReservationsViewModel.cs" />
-    <Compile Include="Reservations\WeekViewModel.cs" />
+    <Compile Include="Responses\Reservations\DayViewModel.cs" />
+    <Compile Include="Util\Month.cs" />
+    <Compile Include="Responses\Reservations\MonthlyReservationsViewModel.cs" />
+    <Compile Include="Util\WeekViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Requests\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
       <Project>{edfe3c57-ef5b-4636-9ecc-d0baca6b6379}</Project>

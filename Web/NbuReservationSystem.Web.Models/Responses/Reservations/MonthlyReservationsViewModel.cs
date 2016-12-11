@@ -1,6 +1,8 @@
-﻿namespace NbuReservationSystem.Web.ViewModels.Reservations
+﻿namespace NbuReservationSystem.Web.Models.Responses.Reservations
 {
     using System.Collections.Generic;
+
+    using Util;
 
     public class MonthlyReservationsViewModel
     {

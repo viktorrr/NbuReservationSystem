@@ -5,7 +5,8 @@
     using System.Text;
     using System.Web.Mvc;
 
-    using ViewModels.Reservations;
+    using NbuReservationSystem.Web.Models.Responses.Reservations;
+    using NbuReservationSystem.Web.Models.Util;
 
     public static class HtmlHelperExtensions
     {

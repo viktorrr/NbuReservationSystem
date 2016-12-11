@@ -1,9 +1,9 @@
-﻿namespace NbuReservationSystem.Web.ViewModels.Reservations
+﻿namespace NbuReservationSystem.Web.Models.Responses.Reservations
 {
     using System;
     using System.Collections.Generic;
 
-    using Data.Models;
+    using NbuReservationSystem.Data.Models;
 
     public class DayViewModel
     {

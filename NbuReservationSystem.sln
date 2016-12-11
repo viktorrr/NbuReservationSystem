@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NbuReservationSystem.Web.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NbuReservationSystem.Common", "NbuReservationSystem.Common\NbuReservationSystem.Common.csproj", "{701F322F-AA01-4DDC-90B6-6935981C1E73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NbuReservationSystem.Web.ViewModels", "Web\NbuReservationSystem.Web.ViewModels\NbuReservationSystem.Web.ViewModels.csproj", "{812A10FD-47D8-4B59-88B3-EC3665BD89FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NbuReservationSystem.Web.Models", "Web\NbuReservationSystem.Web.Models\NbuReservationSystem.Web.Models.csproj", "{812A10FD-47D8-4B59-88B3-EC3665BD89FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
