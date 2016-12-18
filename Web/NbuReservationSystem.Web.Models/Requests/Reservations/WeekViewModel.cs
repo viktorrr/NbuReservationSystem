@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using NbuReservationSystem.Web.Models.Responses.Reservations;
+    using Responses.Reservations;
 
     public class WeekViewModel
     {

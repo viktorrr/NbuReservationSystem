@@ -1,4 +1,4 @@
-﻿namespace NbuReservationSystem.Web.Models.Util
+﻿namespace NbuReservationSystem.Web.Models.Enums
 {
     public enum Month
     {

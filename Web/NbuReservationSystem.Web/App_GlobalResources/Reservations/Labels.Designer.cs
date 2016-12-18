@@ -61,11 +61,110 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Възложител.
+        /// </summary>
+        internal static string Assignor {
+            get {
+                return ResourceManager.GetString("Assignor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начален час.
+        /// </summary>
+        internal static string BeginsOn {
+            get {
+                return ResourceManager.GetString("BeginsOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изчисти.
+        /// </summary>
+        internal static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Описание.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Е-майл.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to До.
+        /// </summary>
+        internal static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Краен час.
+        /// </summary>
+        internal static string EndsOn {
+            get {
+                return ResourceManager.GetString("EndsOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нужна ли е мултимедийна / озвучителна техника?.
+        /// </summary>
+        internal static string IsEquipmentRequired {
+            get {
+                return ResourceManager.GetString("IsEquipmentRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to резервации.
         /// </summary>
         internal static string MultipleReservations {
             get {
                 return ResourceManager.GetString("MultipleReservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Никога.
+        /// </summary>
+        internal static string Never {
+            get {
+                return ResourceManager.GetString("Never", resourceCulture);
             }
         }
         
@@ -88,11 +187,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Телефон.
+        /// </summary>
+        internal static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лице за контакт.
+        /// </summary>
+        internal static string PointOfContact {
+            get {
+                return ResourceManager.GetString("PointOfContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повтаряемост.
+        /// </summary>
+        internal static string RepetitionPolicy {
+            get {
+                return ResourceManager.GetString("RepetitionPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to След брой повторения.
+        /// </summary>
+        internal static string RepetitionsCounts {
+            get {
+                return ResourceManager.GetString("RepetitionsCounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to През колко седмици.
+        /// </summary>
+        internal static string RepetitionWindow {
+            get {
+                return ResourceManager.GetString("RepetitionWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Детайли за резервацията.
+        /// </summary>
+        internal static string ReservationDetails {
+            get {
+                return ResourceManager.GetString("ReservationDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запази.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to резервация.
         /// </summary>
         internal static string SingleReservation {
             get {
                 return ResourceManager.GetString("SingleReservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наименование на събитието.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

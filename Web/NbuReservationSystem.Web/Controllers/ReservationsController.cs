@@ -4,6 +4,8 @@
     using System.Net;
     using System.Web.Mvc;
 
+    using NbuReservationSystem.Web.Models.Requests.Reservations;
+
     using Services.Web;
 
     public class ReservationsController : Controller
@@ -35,7 +37,6 @@
         [HttpGet]
         public ActionResult ByMonth(int year, int month)
         {
-            // TODO: add an "is ajax" filter
             if (!this.Request.IsAjaxRequest())
             {
                 this.Response.StatusCode = (int)HttpStatusCode.Forbidden;
@@ -62,10 +63,28 @@
             return this.PartialView("_DayTab", reservations);
         }
 
-        [HttpPost]
-        public ActionResult New()
+        [HttpGet]
+        public ActionResult New(int? year, int? month, int? day)
         {
             // TODO: implement me!
+            // TODO: validate that the given date is > now
+            // TODO: create a model, which has the given dates and return the view
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult New(AddReservationViewModel viewModel)
+        {
+            // TODO: implement me!
+            // TODO: validate that the date is > now
+            // TODO: validate that the check boxes are exactly 7
+            // TODO: validate that the hall is free for the given date
+            // TODO: generate reservations based on the repetition policy
+            // TODO: generate unique token!
+            // TODO: save the user's IP
+            // TODO: send an email
+            // TODO: redirect to /calendar with success message -> mail + content
             return this.View();
         }
     }

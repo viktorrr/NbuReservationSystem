@@ -2,15 +2,22 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Web.Mvc;
 
-    using NbuReservationSystem.Web.Models.Responses.Reservations;
-    using NbuReservationSystem.Web.Models.Util;
+    using Models.Enums;
+    using Models.Requests.Reservations;
+    using Models.Responses.Reservations;
 
     public static class HtmlHelperExtensions
     {
+        // TODO: most of these functions / dictionaries
+        // should live somewhere else!
+
         private static readonly Dictionary<Month, Func<string>> MonthResources;
+
+        private static readonly Dictionary<Day, Func<string>> DayResources;
 
         static HtmlHelperExtensions()
         {
@@ -28,6 +35,17 @@
                 [Month.October] = () => Resources.Months.October,
                 [Month.November] = () => Resources.Months.November,
                 [Month.December] = () => Resources.Months.December,
+            };
+
+            DayResources = new Dictionary<Day, Func<string>>
+            {
+                [Day.Monday] = () => Resources.Weekdays.Monday,
+                [Day.Tuesday] = () => Resources.Weekdays.Tuesday,
+                [Day.Wednesday] = () => Resources.Weekdays.Wednesday,
+                [Day.Thursday] = () => Resources.Weekdays.Thursday,
+                [Day.Friday] = () => Resources.Weekdays.Friday,
+                [Day.Saturday] = () => Resources.Weekdays.Saturday,
+                [Day.Sunday] = () => Resources.Weekdays.Sunday,
             };
         }
 
@@ -50,6 +68,11 @@
         public static string FormatLocalizedMonth(this HtmlHelper helper, MonthlyReservationsViewModel model)
         {
             return $"{MonthResources[(Month)model.Month]()}, {model.Year}";
+        }
+
+        public static string FormatLocalizedDay(this HtmlHelper helper, object day)
+        {
+            return $"{DayResources[(Day)day]()}";
         }
 
         public static string FormatDailyResevations(this HtmlHelper helper, DayViewModel model)
@@ -106,6 +129,16 @@
             }
 
             return new { year, month };
+        }
+
+        public static SelectList CreateDaysSelectList(this HtmlHelper helper, AddReservationViewModel viewModel)
+        {
+            var enumValues = Enum.GetValues(typeof(Day))
+                .Cast<Day>()
+                .Select(e => new { Value = e.ToString(), Text = e.ToString() })
+                .ToList();
+
+            return new SelectList(enumValues, "Value", "Text", string.Empty);
         }
     }
 }

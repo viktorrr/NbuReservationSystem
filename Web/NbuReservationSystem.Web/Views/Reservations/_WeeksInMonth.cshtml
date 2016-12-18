@@ -8,10 +8,10 @@
             <div class="row">
                 @foreach (var day in week.Days)
                 {
-                    <div class="col-md-4">
+                    <div class="col-md-4 day-container">
                         <div class="panel panel-default panel-day">
                             <div class="panel-body">
-                                <p class="text-right day">
+                                <p class="text-right day-number">
                                     @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations",
                                         new { id = day.Day.DayTabUrl() },
                                         new AjaxOptions

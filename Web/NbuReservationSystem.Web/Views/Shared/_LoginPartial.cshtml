@@ -1,4 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@*TODO: this page also needs localization!*@
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

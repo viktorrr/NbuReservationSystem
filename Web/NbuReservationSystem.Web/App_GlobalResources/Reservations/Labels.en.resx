@@ -117,8 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Assignor" xml:space="preserve">
+    <value>Assignor</value>
+  </data>
+  <data name="BeginsOn" xml:space="preserve">
+    <value>Start hour</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="EndsOn" xml:space="preserve">
+    <value>End hour</value>
+  </data>
+  <data name="IsEquipmentRequired" xml:space="preserve">
+    <value>Is multimedia / audio equipment required?</value>
+  </data>
   <data name="MultipleReservations" xml:space="preserve">
     <value>reservations</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
   </data>
   <data name="NewReservation" xml:space="preserve">
     <value>New reservation</value>
@@ -126,7 +159,31 @@
   <data name="NoReservations" xml:space="preserve">
     <value>There are no reservations.</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="PointOfContact" xml:space="preserve">
+    <value>Point of contact</value>
+  </data>
+  <data name="RepetitionPolicy" xml:space="preserve">
+    <value>Repetition policy</value>
+  </data>
+  <data name="RepetitionsCounts" xml:space="preserve">
+    <value>After specific amount of repetitions</value>
+  </data>
+  <data name="RepetitionWindow" xml:space="preserve">
+    <value>Repeat every X weeks</value>
+  </data>
+  <data name="ReservationDetails" xml:space="preserve">
+    <value>Reservation Details</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="SingleReservation" xml:space="preserve">
     <value>reservation</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Event title</value>
   </data>
 </root>

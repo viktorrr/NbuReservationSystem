@@ -32,18 +32,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\Reservations\AddReservationViewModel.cs" />
+    <Compile Include="Requests\Reservations\OrganizerViewModel.cs" />
     <Compile Include="Responses\Reservations\DayViewModel.cs" />
-    <Compile Include="Util\Month.cs" />
+    <Compile Include="Enums\CancellationType.cs" />
+    <Compile Include="Enums\Day.cs" />
+    <Compile Include="Enums\Month.cs" />
     <Compile Include="Responses\Reservations\MonthlyReservationsViewModel.cs" />
-    <Compile Include="Util\WeekViewModel.cs" />
+    <Compile Include="Requests\Reservations\RepetitionPolicy.cs" />
+    <Compile Include="Requests\Reservations\WeekViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
       <Project>{edfe3c57-ef5b-4636-9ecc-d0baca6b6379}</Project>
