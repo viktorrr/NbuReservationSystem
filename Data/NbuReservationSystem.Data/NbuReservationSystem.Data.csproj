@@ -57,6 +57,10 @@
     <Compile Include="Migrations\201612031838520_Iniitial.Designer.cs">
       <DependentUpon>201612031838520_Iniitial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612192111223_AddedUniqueIndexes.cs" />
+    <Compile Include="Migrations\201612192111223_AddedUniqueIndexes.Designer.cs">
+      <DependentUpon>201612192111223_AddedUniqueIndexes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612031838520_Iniitial.resx">
       <DependentUpon>201612031838520_Iniitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612192111223_AddedUniqueIndexes.resx">
+      <DependentUpon>201612192111223_AddedUniqueIndexes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
