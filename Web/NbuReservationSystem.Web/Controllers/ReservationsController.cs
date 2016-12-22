@@ -4,9 +4,9 @@
     using System.Net;
     using System.Web.Mvc;
 
+    using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
 
-    using Services.Web;
 
     public class ReservationsController : Controller
     {
