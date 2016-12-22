@@ -2,18 +2,20 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using NbuReservationSystem.Web.Models.LocalizationResources.Reservations;
+
     public class OrganizerViewModel
     {
-        [Required]
-        [StringLength(30)]
+        [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
+        [StringLength(30, ErrorMessageResourceName = "TooLongInput", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
+        [RegularExpression(@"^((\+359-?)|0)?[0-9]{9}$", ErrorMessageResourceName = "InvalidePhoneNumber", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
+        [EmailAddress(ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string Email { get; set; }
     }
 }
