@@ -4,9 +4,14 @@
     using System.ComponentModel.DataAnnotations;
     using NbuReservationSystem.Web.Models.LocalizationResources.Reservations;
 
-    public class AddReservationViewModel
+    public class ReservationViewModel
     {
-        // TODO: validation messages!
+        private DateTime date;
+
+        public ReservationViewModel()
+        {
+            this.RepetitionPolicy = new RepetitionPolicy();
+        }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string Title { get; set; }
@@ -15,13 +20,17 @@
         public string Description { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
-        public DateTime Date { get; set; }
+        public DateTime Date
+        {
+            get { return this.date.Date; }
+            set { this.date = value; }
+        }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
-        public TimeSpan BeginsOn { get; set; }
+        public TimeSpan StartHour { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
-        public TimeSpan EndsOn { get; set; }
+        public TimeSpan EndHour { get; set; }
 
         public bool IsEquipmentRequired { get; set; }
 

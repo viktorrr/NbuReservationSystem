@@ -1,7 +1,7 @@
 ﻿@using NbuReservationSystem.Web.Extensions
 @using NbuReservationSystem.Web.Models.Enums
 @using Labels = Resources.Labels
-@model NbuReservationSystem.Web.Models.Requests.Reservations.AddReservationViewModel
+@model NbuReservationSystem.Web.Models.Requests.Reservations.ReservationViewModel
 @{
     ViewBag.Title = "title";
 }
@@ -12,6 +12,8 @@
         <div class="row text-center">
             <h1>@Labels.NewReservation</h1>
         </div>
+
+        @Html.ValidationSummary(true);
 
         @using (Html.BeginForm("New", "Reservations", FormMethod.Post, new { id = "new-reservation-form" }))
         {
@@ -63,16 +65,16 @@
 
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(x => x.BeginsOn, Labels.BeginsOn, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.StartHour, Labels.BeginsOn, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         <div class='input-group date' id="new-reservation-begins-on">
-                            @Html.TextBoxFor(x => x.BeginsOn, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.StartHour, new { @class = "form-control" })
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-time"></span>
                             </span>
                         </div>
                         <p>
-                            @Html.ValidationMessageFor(x => x.BeginsOn)
+                            @Html.ValidationMessageFor(x => x.StartHour)
                         </p>
                     </div>
                 </div>
@@ -80,16 +82,16 @@
 
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(x => x.EndsOn, Labels.EndsOn, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.EndHour, Labels.EndsOn, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         <div class='input-group date' id="new-reservation-ends-on">
-                            @Html.TextBoxFor(x => x.EndsOn, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.EndHour, new { @class = "form-control" })
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-time"></span>
                             </span>
                         </div>
                         <p>
-                            @Html.ValidationMessageFor(x => x.EndsOn)
+                            @Html.ValidationMessageFor(x => x.EndHour)
                         </p>
                     </div>
                 </div>
@@ -199,7 +201,7 @@
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.ExactRepetitionCount, new { @class = "control-label col-md-1" })
                         @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, Labels.RepetitionsCounts, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
-                            @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control", type = "number", step = 1 })
+                            @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control", type = "number", step = 1, min = 0 })
                         </div>
                     </div>
                 </div>

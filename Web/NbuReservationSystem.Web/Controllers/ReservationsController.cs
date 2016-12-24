@@ -5,6 +5,7 @@
     using System.Web.Mvc;
 
     using NbuReservationSystem.Services.Web;
+    using NbuReservationSystem.Web.App_GlobalResources.Reservations;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
 
 
@@ -74,7 +75,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(AddReservationViewModel viewModel)
+        public ViewResult New(AddReservationViewModel model)
         {
             // TODO: implement me!
             // TODO: validate that the date is > now
@@ -85,7 +86,46 @@
             // TODO: save the user's IP
             // TODO: send an email
             // TODO: redirect to /calendar with success message -> mail + content
-            return this.View();
+
+            if (this.ModelState.IsValid)
+            {
+                var now = DateTime.UtcNow.AddHours(2);
+
+                // make sure the selected date is not in the past
+                if (model.Date.Date < now.Date)
+                {
+                    this.ModelState.AddModelError("Date", ErrorMessages.DateExpired);
+                }
+                else
+                {
+                    // we know the event date is today or in the future -> check the hours
+                    var beginsOnDate = model.Date
+                        .AddHours(model.StartHour.Hours)
+                        .AddMinutes(model.StartHour.Hours);
+
+                    if (beginsOnDate <= now)
+                    {
+                        // starting hour is in the past
+                        this.ModelState.AddModelError("StartHour", ErrorMessages.BadHours);
+                    }
+                    else
+                    {
+                        // starting hour is in the future ->
+                        // check if the event doesn't end before it starts..
+                        if (model.StartHour >= model.EndHour)
+                        {
+                            this.ModelState.AddModelError("EndHour", ErrorMessages.BadHours);
+                        }
+                    }
+                }
+
+                if (model.RepetitionPolicy.RepetitionDays.Count != 7)
+                {
+                    return this.View(model);
+                }
+            }
+
+            return this.View(model);
         }
     }
 }
