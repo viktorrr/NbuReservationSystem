@@ -11,7 +11,7 @@
         public string Name { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
-        [RegularExpression(@"^((\+359-?)|0)?[0-9]{9}$", ErrorMessageResourceName = "InvalidePhoneNumber", ErrorMessageResourceType = typeof(ValidationMessages))]
+        [RegularExpression(@"^(\+359|0)[0-9]{9}$", ErrorMessageResourceName = "InvalidePhoneNumber", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
