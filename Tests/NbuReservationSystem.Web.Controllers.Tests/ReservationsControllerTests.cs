@@ -5,6 +5,7 @@
     using Moq;
 
     using NbuReservationSystem.Services.Web;
+    using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
 
     using Xunit;
@@ -75,6 +76,27 @@
 
             // assert
             AssertExtenstions.ModelErrorIsSet(view, () => model.EndHour);
+        }
+
+        [Fact]
+        public void RequestWithEndDateBeforeStartDateShouldResultInError()
+        {
+            // arrange
+            var startDate = DateTime.UtcNow.Date.AddDays(10);
+            var endDate = DateTime.UtcNow.Date.AddDays(5);
+
+            var model = new ReservationViewModel
+            {
+                Date = startDate,
+                RepetitionPolicy = { EndDate = endDate, CancellationType = CancellationType.OnDate }
+            };
+
+
+            // act
+            var view = this.controller.New(model);
+
+            // assert
+            AssertExtenstions.ModelErrorIsSet(view);
         }
     }
 }

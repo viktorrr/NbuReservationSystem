@@ -77,5 +77,14 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
                 return ResourceManager.GetString("DateExpired", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Крайната дата трябва да е след началната..
+        /// </summary>
+        public static string EndDateIsBeforeStartDate {
+            get {
+                return ResourceManager.GetString("EndDateIsBeforeStartDate", resourceCulture);
+            }
+        }
     }
 }

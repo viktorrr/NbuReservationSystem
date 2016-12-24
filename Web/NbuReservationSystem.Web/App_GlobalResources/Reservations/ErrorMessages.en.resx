@@ -123,4 +123,7 @@
   <data name="DateExpired" xml:space="preserve">
     <value>The date can not be in the past.</value>
   </data>
+  <data name="EndDateIsBeforeStartDate" xml:space="preserve">
+    <value>End date should be after start date.</value>
+  </data>
 </root>

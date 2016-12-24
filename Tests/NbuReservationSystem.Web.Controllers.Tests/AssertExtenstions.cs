@@ -8,10 +8,26 @@
 
     public static class AssertExtenstions
     {
+        /// <summary>
+        /// Validates that the given model has error set for the specific property.
+        /// </summary>
+        /// <typeparam name="T">type of the model</typeparam>
+        /// <param name="view">the action result of the controller method invocation</param>
+        /// <param name="property">property which has invalid value</param>
         public static void ModelErrorIsSet<T>(ViewResult view, Expression<Func<T>> property)
         {
             Assert.False(view.ViewData.ModelState.IsValid);
             Assert.NotNull(view.ViewData.ModelState[GetPropertyName(property)]);
+        }
+
+        /// <summary>
+        /// Validates that the view has "general" errors, not related to specific key.
+        /// </summary>
+        /// <param name="view">the action result of the controller method invocation</param>
+        public static void ModelErrorIsSet(ViewResult view)
+        {
+            Assert.False(view.ViewData.ModelState.IsValid);
+            Assert.NotNull(view.ViewData.ModelState[string.Empty]);
         }
 
         private static string GetPropertyName<T>(Expression<Func<T>> property)

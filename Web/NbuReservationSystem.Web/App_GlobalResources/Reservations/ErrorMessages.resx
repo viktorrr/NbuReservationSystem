@@ -123,4 +123,7 @@
   <data name="DateExpired" xml:space="preserve">
     <value>Датата на събитието не може да е в миналото.</value>
   </data>
+  <data name="EndDateIsBeforeStartDate" xml:space="preserve">
+    <value>Крайната дата трябва да е след началната.</value>
+  </data>
 </root>

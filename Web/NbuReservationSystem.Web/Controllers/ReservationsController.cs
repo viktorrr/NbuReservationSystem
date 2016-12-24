@@ -6,6 +6,7 @@
 
     using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.App_GlobalResources.Reservations;
+    using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
 
 
@@ -117,11 +118,19 @@
                             this.ModelState.AddModelError("EndHour", ErrorMessages.BadHours);
                         }
                     }
-                }
 
-                if (model.RepetitionPolicy.RepetitionDays.Count != 7)
-                {
-                    return this.View(model);
+                    if (model.RepetitionPolicy.CancellationType == CancellationType.OnDate)
+                    {
+                        if (model.RepetitionPolicy.EndDate.Date < model.Date)
+                        {
+                            this.ModelState.AddModelError(string.Empty, ErrorMessages.EndDateIsBeforeStartDate);
+                        }
+                    }
+
+                    if (model.RepetitionPolicy.RepetitionDays.Count != 7)
+                    {
+                        return this.View(model);
+                    }
                 }
             }
 
