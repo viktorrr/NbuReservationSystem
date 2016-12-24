@@ -131,7 +131,7 @@
             return new { year, month };
         }
 
-        public static SelectList CreateDaysSelectList(this HtmlHelper helper, AddReservationViewModel viewModel)
+        public static SelectList CreateDaysSelectList(this HtmlHelper helper, ReservationViewModel viewModel)
         {
             var enumValues = Enum.GetValues(typeof(Day))
                 .Cast<Day>()

@@ -75,7 +75,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ViewResult New(AddReservationViewModel model)
+        public ViewResult New(ReservationViewModel model)
         {
             // TODO: implement me!
             // TODO: validate that the date is > now

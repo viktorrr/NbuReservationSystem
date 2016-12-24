@@ -24,7 +24,7 @@
         public void RequestWithDateInThePastShouldResultInError()
         {
             // arrange
-            var model = new AddReservationViewModel
+            var model = new ReservationViewModel
             {
                 Date = new DateTime(1000, 1, 1)
             };
@@ -42,7 +42,7 @@
             // arrange
             var dateInThePast = DateTime.UtcNow.AddHours(-5);
             var startHour = new TimeSpan(dateInThePast.Hour, dateInThePast.Minute, dateInThePast.Second);
-            var model = new AddReservationViewModel
+            var model = new ReservationViewModel
             {
                 Date = DateTime.UtcNow,
                 StartHour = startHour
@@ -63,7 +63,7 @@
             var startHour = new TimeSpan(13, 30, 0);
             var endHour = new TimeSpan(5, 5, 5);
 
-            var model = new AddReservationViewModel
+            var model = new ReservationViewModel
             {
                 Date = dateInTheFuture,
                 StartHour = startHour,
