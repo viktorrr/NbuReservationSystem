@@ -13,7 +13,7 @@
             <h1>@Labels.NewReservation</h1>
         </div>
 
-        @Html.ValidationSummary(true);
+        @Html.ValidationSummary(true)
 
         @using (Html.BeginForm("New", "Reservations", FormMethod.Post, new { id = "new-reservation-form" }))
         {
@@ -211,7 +211,7 @@
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.OnDate, new { @class = "control-label col-md-1" })
                         @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
-                            <div class='input-group date cancel-dt'>
+                            <div class='input-group date' id="end-date">
                                 <input type='text' class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -234,29 +234,28 @@
 
         @section scripts {
             <script>
+
                 $(document).ready(function () {
-                    $('#new-reservation-date').datetimepicker({
+                    var calendarSettings = {
                         format: 'YYYY-MM-DD',
                         locale: 'bg',
-                        minDate: moment(moment().utc().add(2, 'h'))
-                    });
-
-                    $('#new-reservation-begins-on').datetimepicker({
+                        minDate: moment(moment().utc().add(2, 'h')),
+                        date: null
+                    };
+                    var timeSettings = {
                         format: 'HH:mm',
                         locale: 'bg'
-                    });
+                    };
 
-                    $('#new-reservation-ends-on').datetimepicker({
-                        format: 'HH:mm',
-                        locale: 'bg'
-                    });
+                    //  prepare the date pickers
+                    $('#new-reservation-date').datetimepicker(calendarSettings);
+                    $('#end-date').datetimepicker(calendarSettings);
 
-                    $('.cancel-dt').datetimepicker({
-                        format: 'YYYY-MM-DD',
-                        locale: 'bg',
-                        minDate: moment(moment().utc().add(2, 'h'))
-                    });
+                    // prepare the time pickers
+                    $('#new-reservation-begins-on').datetimepicker(timeSettings);
+                    $('#new-reservation-ends-on').datetimepicker(timeSettings);
 
+                    // show/hide the repetition policy on click
                     var isRepetitionPolicyHidden = false,
                         $container = $('#repetition-policy-container');
 
