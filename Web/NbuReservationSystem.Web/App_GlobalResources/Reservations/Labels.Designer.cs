@@ -216,9 +216,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to След брой повторения.
         /// </summary>
-        internal static string RepetitionsCounts {
+        internal static string RepetitionsCount {
             get {
-                return ResourceManager.GetString("RepetitionsCounts", resourceCulture);
+                return ResourceManager.GetString("RepetitionsCount", resourceCulture);
             }
         }
         

@@ -168,7 +168,7 @@
   <data name="RepetitionPolicy" xml:space="preserve">
     <value>Repetition policy</value>
   </data>
-  <data name="RepetitionsCounts" xml:space="preserve">
+  <data name="RepetitionsCount" xml:space="preserve">
     <value>After specific amount of repetitions</value>
   </data>
   <data name="RepetitionWindow" xml:space="preserve">

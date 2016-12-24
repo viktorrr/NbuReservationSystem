@@ -126,4 +126,7 @@
   <data name="EndDateIsBeforeStartDate" xml:space="preserve">
     <value>End date should be after start date.</value>
   </data>
+  <data name="PositiveNumberIsRequired" xml:space="preserve">
+    <value>Only positive integers are allowed.</value>
+  </data>
 </root>

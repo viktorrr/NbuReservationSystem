@@ -80,6 +80,15 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Позволени са само положителни числа..
+        /// </summary>
+        public static string PositiveNumberIsRequired {
+            get {
+                return ResourceManager.GetString("PositiveNumberIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Полето е задължително..
         /// </summary>
         public static string RequiredField {

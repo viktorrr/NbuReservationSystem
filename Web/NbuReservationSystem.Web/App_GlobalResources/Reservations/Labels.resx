@@ -168,7 +168,7 @@
   <data name="RepetitionPolicy" xml:space="preserve">
     <value>Повтаряемост</value>
   </data>
-  <data name="RepetitionsCounts" xml:space="preserve">
+  <data name="RepetitionsCount" xml:space="preserve">
     <value>След брой повторения</value>
   </data>
   <data name="RepetitionWindow" xml:space="preserve">

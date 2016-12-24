@@ -1,4 +1,6 @@
-﻿@using NbuReservationSystem.Web.Extensions
+﻿@using System.Web.Mvc.Html
+@using NbuReservationSystem.Web.App_GlobalResources.Reservations
+@using NbuReservationSystem.Web.Extensions
 @using NbuReservationSystem.Web.Models.Enums
 @using Labels = Resources.Labels
 @model NbuReservationSystem.Web.Models.Requests.Reservations.ReservationViewModel
@@ -169,7 +171,8 @@
                     <div class="form-group">
                         @Html.LabelFor(x => x.RepetitionPolicy.RepetitionWindow, Labels.RepetitionWindow, new { @class = "control-label col-md-4" })
                         <div class="col-md-24">
-                            @Html.TextBoxFor(x => x.RepetitionPolicy.RepetitionWindow, new { @class = "form-control", type = "number", min = 0, step = 1 })
+                            @Html.TextBoxFor(x => x.RepetitionPolicy.RepetitionWindow, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.RepetitionPolicy.RepetitionWindow, ErrorMessages.PositiveNumberIsRequired)
                         </div>
                     </div>
                 </div>
@@ -199,9 +202,10 @@
                 <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.ExactRepetitionCount, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, Labels.RepetitionsCounts, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, Labels.RepetitionsCount, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
-                            @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control", type = "number", step = 1, min = 0 })
+                            @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.RepetitionPolicy.Repetitions, ErrorMessages.PositiveNumberIsRequired)
                         </div>
                     </div>
                 </div>
@@ -209,7 +213,7 @@
                 <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.OnDate, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3"})
                         <div class="col-md-24">
                             <div class='input-group date' id="end-date">
                                 <input type='text' class="form-control" />
@@ -234,7 +238,6 @@
 
         @section scripts {
             <script>
-
                 $(document).ready(function () {
                     var calendarSettings = {
                         format: 'YYYY-MM-DD',

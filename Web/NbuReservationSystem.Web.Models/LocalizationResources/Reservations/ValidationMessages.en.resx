@@ -123,6 +123,9 @@
   <data name="InvalidePhoneNumber" xml:space="preserve">
     <value>Invalid phone number - must be +359XXXXXXXXX or 10 digit number, starting with 0.</value>
   </data>
+  <data name="PositiveNumberIsRequired" xml:space="preserve">
+    <value>Only positive integers are allowed.</value>
+  </data>
   <data name="RequiredField" xml:space="preserve">
     <value>This field is required.</value>
   </data>

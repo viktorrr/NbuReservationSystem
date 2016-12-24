@@ -38,6 +38,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalizationResources\Reservations\DisplayNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DisplayNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LocalizationResources\Reservations\DisplayNames.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DisplayNames.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="LocalizationResources\Reservations\ValidationMessages.Designer.cs">
       <DependentUpon>ValidationMessages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -70,6 +80,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LocalizationResources\Reservations\DisplayNames.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayNames.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationResources\Reservations\DisplayNames.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="LocalizationResources\Reservations\ValidationMessages.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationMessages.en.Designer.cs</LastGenOutput>

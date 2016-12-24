@@ -191,15 +191,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Reservations\Labels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\Reservations\Labels.en.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Labels.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Reservations\Labels.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Reservations\Months.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -409,12 +409,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Reservations\Labels.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\Reservations\Labels.en.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Labels.en.designer.cs</LastGenOutput>
@@ -438,6 +432,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="App_GlobalResources\Reservations\Labels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Labels2.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Reservations\ErrorMessages.en.resx">

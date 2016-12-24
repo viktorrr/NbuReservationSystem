@@ -123,6 +123,9 @@
   <data name="InvalidePhoneNumber" xml:space="preserve">
     <value>Невалиден номер - трябва да бъде +359XXXXXXXXX или 10 цифрено число, започващо с 0.</value>
   </data>
+  <data name="PositiveNumberIsRequired" xml:space="preserve">
+    <value>Позволени са само положителни числа.</value>
+  </data>
   <data name="RequiredField" xml:space="preserve">
     <value>Полето е задължително.</value>
   </data>

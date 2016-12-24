@@ -86,5 +86,14 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
                 return ResourceManager.GetString("EndDateIsBeforeStartDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Позволени са само положителни числа..
+        /// </summary>
+        public static string PositiveNumberIsRequired {
+            get {
+                return ResourceManager.GetString("PositiveNumberIsRequired", resourceCulture);
+            }
+        }
     }
 }
