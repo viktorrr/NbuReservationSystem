@@ -9,7 +9,6 @@
     using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
 
-
     public class ReservationsController : Controller
     {
         private readonly IReservationsService reservationsService;
