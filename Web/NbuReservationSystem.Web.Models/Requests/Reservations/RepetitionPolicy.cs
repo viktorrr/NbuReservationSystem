@@ -6,8 +6,6 @@
 
     using Enums;
 
-    using NbuReservationSystem.Web.Models.LocalizationResources.Reservations;
-
     public class RepetitionPolicy
     {
         public RepetitionPolicy()

@@ -195,7 +195,7 @@
                 <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.Never, new { @class = "control-label col-md-1" })
-                        @Html.Label(Labels.Never, new { @class = "control-label col-md-1" })
+                        @Html.Label(Labels.Never, new { @class = "control-label col-md-3" })
                     </div>
                 </div>
 
@@ -273,6 +273,32 @@
 
                         isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
                     });
+
+                    // when the labels are clicked, mark the given checkbox
+                    $('#repetition-policy-container > div.row label.col-md-3')
+                        .toArray()
+                        .forEach(function(label) {
+                            var $label = $(label);
+
+                            $label.click(function (e) {
+                                $label.prev().prop('checked', true);
+                            });
+                        });
+
+                    // when then inputs are clicked, select the checkbox...
+                    // TODO: this is the most ugliest fix ever! fix it!!!
+                    $('#repetition-policy-container > div.row label.col-md-3')
+                        .parent()
+                        .find('.form-control')
+                        .toArray()
+                        .forEach(function (input) {
+                            var $input = $(input);
+
+                            $input.click(function() {
+                                $input.parent().parent().find('label').click();
+                                $input.parent().parent().parent().find('label').click();
+                            });
+                        });
                 });
             </script>
         }
