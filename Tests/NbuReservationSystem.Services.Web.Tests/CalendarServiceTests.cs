@@ -8,11 +8,11 @@
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Code readability")]
     [SuppressMessage("StyleCop.CSharp.OrderingRules", "*", Justification = "Code readability")]
-    public class CalendarProviderTests
+    public class CalendarServiceTests
     {
         private readonly ICalendarService service;
 
-        public CalendarProviderTests()
+        public CalendarServiceTests()
         {
             this.service = new CalendarService();
         }
