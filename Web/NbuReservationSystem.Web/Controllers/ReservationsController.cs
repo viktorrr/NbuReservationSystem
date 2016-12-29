@@ -78,8 +78,6 @@
         public ViewResult New(ReservationViewModel model)
         {
             // TODO: implement me!
-            // TODO: validate that the date is > now
-            // TODO: validate that the check boxes are exactly 7
             // TODO: validate that the hall is free for the given date
             // TODO: generate reservations based on the repetition policy
             // TODO: generate unique token!

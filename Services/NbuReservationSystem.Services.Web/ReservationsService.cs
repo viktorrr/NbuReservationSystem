@@ -7,6 +7,7 @@
     using Data;
 
     using NbuReservationSystem.Data.Models;
+    using NbuReservationSystem.Web.Models.Requests.Reservations;
     using NbuReservationSystem.Web.Models.Responses.Reservations;
     using NbuReservationSystem.Web.Models.Util;
 
@@ -19,6 +20,13 @@
         {
             this.reservationsDataService = reservationsDataService;
             this.calendarService = calendarService;
+        }
+
+        public void AddReservations(ReservationViewModel model)
+        {
+            // TODO: implement me
+            // TODO: calculate dates -> save a new entry to the db
+            // TODO: catch a System.Data.Entity.Infrastructure.DbUpdateException from EF -> notify the user the date is taken
         }
 
         public MonthlyReservationsViewModel GetReservations(int year, int month)

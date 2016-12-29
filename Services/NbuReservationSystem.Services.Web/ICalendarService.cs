@@ -1,6 +1,9 @@
 ﻿namespace NbuReservationSystem.Services.Web
 {
     using System;
+    using System.Collections.Generic;
+
+    using NbuReservationSystem.Web.Models.Requests.Reservations;
 
     /// <summary>
     /// The scheduler's default month view consists not only of the days in the current month,<para/>
@@ -14,5 +17,7 @@
         DateTime GetFirstDayOfMonthView(int year, int month);
 
         DateTime GetLastDayOfMonthView(int year, int month);
+
+        IEnumerable<DateTime> CalculateDates(ReservationViewModel model);
     }
 }

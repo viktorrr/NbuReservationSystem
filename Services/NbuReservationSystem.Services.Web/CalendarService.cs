@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
 
+    using NbuReservationSystem.Web.Models.Enums;
+    using NbuReservationSystem.Web.Models.Requests.Reservations;
+
     /// <summary>
     /// All results from this implementation return an UTC <see cref="DateTime"/> instances.
     /// <seealso cref="DateTime.KindUtc"/>
@@ -24,8 +27,8 @@
         /// every time, we can pre-cache this information.
         /// </summary>
         private static readonly Dictionary<DayOfWeek, int> DaysToRemove;
-
         private static readonly Dictionary<DayOfWeek, int> DaysToAdd;
+        private static readonly Dictionary<DayOfWeek, int> DayOfWeekToInt;
 
         static CalendarService()
         {
@@ -49,6 +52,17 @@
                 { DayOfWeek.Friday, 2 },
                 { DayOfWeek.Saturday, 1 },
                 { DayOfWeek.Sunday, 0 }
+            };
+
+            DayOfWeekToInt = new Dictionary<DayOfWeek, int>
+            {
+                { DayOfWeek.Monday, 0 },
+                { DayOfWeek.Tuesday, 1 },
+                { DayOfWeek.Wednesday, 2 },
+                { DayOfWeek.Thursday, 3 },
+                { DayOfWeek.Friday, 4 },
+                { DayOfWeek.Saturday, 5 },
+                { DayOfWeek.Sunday, 6 }
             };
         }
 
@@ -98,6 +112,92 @@
             result = new DateTime(result.Year, result.Month, result.Day, 23, 59, 59);
 
             return DateTime.SpecifyKind(result, DateTimeKind.Utc);
+        }
+
+        public IEnumerable<DateTime> CalculateDates(ReservationViewModel model)
+        {
+            var result = new List<DateTime> { model.Date };
+
+            if (model.RepetitionPolicy.CancellationType == null)
+            {
+                return result;
+            }
+
+            if (model.RepetitionPolicy.CancellationType == CancellationType.ExactRepetitionCount)
+            {
+                return CalculateForExactNumberOfRepetitions(model);
+            }
+
+            // TODO: implement the rest of the code...
+
+            return result;
+        }
+
+        private static IEnumerable<DateTime> CalculateForExactNumberOfRepetitions(ReservationViewModel model)
+        {
+            // step 1: find out in which day the given event should occur
+            // e.g monday and friday
+            var weekDaysToRepeat = new List<int>();
+
+            for (int i = 0; i < model.RepetitionPolicy.RepetitionDays.Count; i++)
+            {
+                if (model.RepetitionPolicy.RepetitionDays[i])
+                {
+                    weekDaysToRepeat.Add(i);
+                }
+            }
+
+            // step 2: calculate the "window" between 2 occurrences
+            // e.g: 2016-01-01 -> 2016-01-22 which occurs every 2 weeks
+            var daysToSkip = 7;
+            if (model.RepetitionPolicy.RepetitionWindow.HasValue)
+            {
+                // TODO: explain why + 1 is needed
+                var weeksWindow = model.RepetitionPolicy.RepetitionWindow.Value + 1;
+                daysToSkip = daysToSkip * weeksWindow;
+            }
+
+            // and now - calculate the days
+            var result = new LinkedList<DateTime>();
+
+            // add the explicitly specified start date
+            result.AddLast(model.Date);
+
+            // find out the first day of the week of the specified beginning date
+            // and add the days of the current week to the result
+            var startDate = GetMondayOfWeek(model.Date);
+            foreach (int weekDay in weekDaysToRepeat)
+            {
+                // check if the selected day is not in the past
+                // e.g: selected day is friday, repeating days are monday and friday ->
+                // monday is in the past -> add only friday
+                if (DayOfWeekToInt[model.Date.DayOfWeek] < weekDay)
+                {
+                    var dayToAdd = startDate.AddDays(weekDay);
+                    result.AddLast(dayToAdd);
+                }
+            }
+
+            // continue with the weeks in the future..
+            startDate = GetMondayOfWeek(model.Date).AddDays(daysToSkip);
+            for (int i = 0; i < model.RepetitionPolicy.Repetitions.Value - 1; i++)
+            {
+                foreach (var weekDay in weekDaysToRepeat)
+                {
+                    var dayToAdd = startDate.AddDays(weekDay);
+                    result.AddLast(dayToAdd);
+                }
+
+                startDate = startDate.AddDays(daysToSkip);
+            }
+
+            return result;
+        }
+
+        private static DateTime GetMondayOfWeek(DateTime date)
+        {
+            var daysToRemove = DayOfWeekToInt[date.DayOfWeek] * -1;
+            return date.AddDays(daysToRemove);
         }
     }
 }

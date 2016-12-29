@@ -11,6 +11,7 @@
         public RepetitionPolicy()
         {
             this.RepetitionDays = new List<bool>();
+            this.RepetitionWindow = 0;
         }
 
         [Range(0, int.MaxValue)]
