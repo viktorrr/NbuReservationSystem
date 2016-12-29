@@ -155,6 +155,62 @@
                     )
                     .Build()
             },
+            new object[]
+            {
+                Builder
+                    .StartDate(2017, 5, 26)
+                    .Repetitions(15)
+                    .RepetitionDays(Day.Friday)
+                    .ExpectedDates(
+                        new DateTime(2017, 5, 26),
+                        new DateTime(2017, 6, 2),
+                        new DateTime(2017, 6, 9),
+                        new DateTime(2017, 6, 16),
+                        new DateTime(2017, 6, 23),
+                        new DateTime(2017, 6, 30),
+                        new DateTime(2017, 7, 7),
+                        new DateTime(2017, 7, 14),
+                        new DateTime(2017, 7, 21),
+                        new DateTime(2017, 7, 28),
+                        new DateTime(2017, 8, 4),
+                        new DateTime(2017, 8, 11),
+                        new DateTime(2017, 8, 18),
+                        new DateTime(2017, 8, 25),
+                        new DateTime(2017, 9, 1)
+                    )
+                    .Build()
+            },
+            new object[]
+            {
+                Builder
+                    .StartDate(2017, 1, 10)
+                    .Repetitions(3)
+                    .Window(20)
+                    .RepetitionDays(Day.Tuesday)
+                    .ExpectedDates(
+                        new DateTime(2017, 1, 10),
+                        new DateTime(2017, 6, 6),
+                        new DateTime(2017, 10, 31)
+                    )
+                    .Build()
+            },
+            new object[]
+            {
+                Builder
+                    .StartDate(2017, 1, 19)
+                    .Repetitions(6)
+                    .Window(8)
+                    .RepetitionDays(Day.Thursday)
+                    .ExpectedDates(
+                        new DateTime(2017, 1, 19),
+                        new DateTime(2017, 3, 23),
+                        new DateTime(2017, 5, 25),
+                        new DateTime(2017, 7, 27),
+                        new DateTime(2017, 9, 28),
+                        new DateTime(2017, 11, 30)
+                    )
+                    .Build()
+            },
         };
 
         [Theory]
