@@ -1,5 +1,9 @@
 ﻿@using NbuReservationSystem.Web.Extensions
 @model NbuReservationSystem.Web.Models.Responses.Reservations.DayViewModel
+
+@{
+    var now = DateTime.Now.AddHours(2).Date;
+}
 <div>
     <div class="row">
         <div class="col-md-28">
@@ -47,15 +51,18 @@
         </div>
     }
 
-    <div class="row">
-        <div class="col-md-28 center-block">
-            @Html.ActionLink(
+    @if (now <= Model.Day)
+    {
+        <div class="row">
+            <div class="col-md-28 center-block">
+                @Html.ActionLink(
                 Resources.Labels.NewReservation, "New", null, new
                 {
                     @class = "btn btn-default center-block",
                     id = "add-new-reservation"
                 }
             )
+            </div>
         </div>
-    </div>
+    }
 </div>
