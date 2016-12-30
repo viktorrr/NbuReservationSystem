@@ -52,7 +52,7 @@
     <Compile Include="Requests\Reservations\ReservationViewModel.cs" />
     <Compile Include="Requests\Reservations\OrganizerViewModel.cs" />
     <Compile Include="Responses\Reservations\DayViewModel.cs" />
-    <Compile Include="Enums\CancellationType.cs" />
+    <Compile Include="Enums\RepetitionType.cs" />
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\Month.cs" />
     <Compile Include="Responses\Reservations\MonthlyReservationsViewModel.cs" />

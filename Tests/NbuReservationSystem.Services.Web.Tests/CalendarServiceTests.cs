@@ -8,6 +8,7 @@
     using NbuReservationSystem.Services.Web.Tests.Builders;
     using NbuReservationSystem.Services.Web.Tests.TestData;
     using NbuReservationSystem.Web.Models.Enums;
+    using NbuReservationSystem.Web.Models.Requests.Reservations;
 
     using Xunit;
 
@@ -215,8 +216,26 @@
 
         [Theory]
         [MemberData(nameof(CalculateDatesTestData))]
-        internal void TestCalculateDatesForSpecificAmountOfRepetitions(CalculateDatesTestData data)
+        public void TestCalculateDatesForSpecificAmountOfRepetitions(CalculateDatesTestData data)
         {
+            // arrange
+            data.Model.RepetitionPolicy.RepetitionType = RepetitionType.EndAfterExactNumberOfRepetitions;
+
+            // act
+            var result = this.service.CalculateDates(data.Model).ToList();
+
+            // assert
+            Assert.Equal(data.ExpectedDates, result.ToArray());
+        }
+
+        [Theory]
+        [MemberData(nameof(CalculateDatesTestData))]
+        public void TestCalculateDatesForSpecificEndDate(CalculateDatesTestData data)
+        {
+            // arrange
+            data.Model.RepetitionPolicy.RepetitionType = RepetitionType.EndOnSpecificDate;
+            data.Model.RepetitionPolicy.EndDate = data.ExpectedDates.Last();
+
             // act
             var result = this.service.CalculateDates(data.Model).ToList();
 

@@ -16,7 +16,7 @@
 
         // repetition policy
         private DateTime endDate;
-        private CancellationType cancellationType;
+        private RepetitionType repetitionType;
         private int window;
         private int repetitionsCount;
 
@@ -47,9 +47,9 @@
             return this;
         }
 
-        public CalculateDatesTestDataBuilder SetCancellationType(CancellationType type)
+        public CalculateDatesTestDataBuilder SetCancellationType(RepetitionType type)
         {
-            this.cancellationType = type;
+            this.repetitionType = type;
             return this;
         }
 
@@ -62,7 +62,6 @@
         public CalculateDatesTestDataBuilder Repetitions(int value)
         {
             this.repetitionsCount = value;
-            this.cancellationType = CancellationType.ExactRepetitionCount;
             return this;
         }
 
@@ -99,7 +98,7 @@
                 EndHour = this.endsOn,
                 RepetitionPolicy = new RepetitionPolicy
                 {
-                    CancellationType = this.cancellationType,
+                    RepetitionType = this.repetitionType,
                     EndDate = this.endDate,
                     RepetitionWindow = this.window,
                     Repetitions = this.repetitionsCount,

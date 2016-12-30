@@ -88,7 +88,7 @@
             var model = new ReservationViewModel
             {
                 Date = startDate,
-                RepetitionPolicy = { EndDate = endDate, CancellationType = CancellationType.OnDate }
+                RepetitionPolicy = { EndDate = endDate, RepetitionType = RepetitionType.EndOnSpecificDate }
             };
 
 

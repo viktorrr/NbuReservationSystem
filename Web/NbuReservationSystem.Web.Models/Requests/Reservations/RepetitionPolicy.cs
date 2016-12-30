@@ -24,6 +24,6 @@
 
         public DateTime EndDate { get; set; }
 
-        public CancellationType? CancellationType { get; set; }
+        public RepetitionType RepetitionType { get; set; }
     }
 }

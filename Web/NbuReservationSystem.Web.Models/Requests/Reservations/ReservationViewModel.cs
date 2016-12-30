@@ -2,6 +2,8 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
+    using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.LocalizationResources.Reservations;
 
     public class ReservationViewModel
@@ -10,7 +12,12 @@
 
         public ReservationViewModel()
         {
-            this.RepetitionPolicy = new RepetitionPolicy();
+            // by default assume this is a one-time only reservation
+            // if its not - the user will choose one of the other 3..
+            this.RepetitionPolicy = new RepetitionPolicy
+            {
+                RepetitionType = RepetitionType.OneTimeOnly
+            };
         }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]

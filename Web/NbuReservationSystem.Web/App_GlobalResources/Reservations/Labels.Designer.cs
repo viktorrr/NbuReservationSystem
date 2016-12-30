@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Завинаги.
+        /// </summary>
+        internal static string Forever {
+            get {
+                return ResourceManager.GetString("Forever", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нужна ли е мултимедийна / озвучителна техника?.
         /// </summary>
         internal static string IsEquipmentRequired {
@@ -160,15 +169,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Никога.
-        /// </summary>
-        internal static string Never {
-            get {
-                return ResourceManager.GetString("Never", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Нова резервация.
         /// </summary>
         internal static string NewReservation {
@@ -183,6 +183,15 @@ namespace Resources {
         internal static string NoReservations {
             get {
                 return ResourceManager.GetString("NoReservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Еднократно.
+        /// </summary>
+        internal static string OneTimeOnly {
+            get {
+                return ResourceManager.GetString("OneTimeOnly", resourceCulture);
             }
         }
         

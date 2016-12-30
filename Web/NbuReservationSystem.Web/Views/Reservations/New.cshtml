@@ -194,14 +194,21 @@
 
                 <div class="row">
                     <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.Never, new { @class = "control-label col-md-1" })
-                        @Html.Label(Labels.Never, new { @class = "control-label col-md-3" })
+                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.OneTimeOnly, new { @class = "control-label col-md-1" })
+                        @Html.Label(Labels.OneTimeOnly, new { @class = "control-label col-md-3" })
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.ExactRepetitionCount, new { @class = "control-label col-md-1" })
+                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.Forever, new { @class = "control-label col-md-1" })
+                        @Html.Label(Labels.Forever, new { @class = "control-label col-md-3" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndAfterExactNumberOfRepetitions, new { @class = "control-label col-md-1" })
                         @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, Labels.RepetitionsCount, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
                             @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control" })
@@ -212,7 +219,7 @@
 
                 <div class="row">
                     <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.CancellationType, CancellationType.OnDate, new { @class = "control-label col-md-1" })
+                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndOnSpecificDate, new { @class = "control-label col-md-1" })
                         @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3"})
                         <div class="col-md-24">
                             <div class='input-group date' id="end-date">
@@ -300,8 +307,10 @@
                             });
                         });
                 });
+
+                // by default - mark one-time-only
+                $('#RepetitionPolicy_RepetitionType').prop('checked', true);
             </script>
         }
-
     </div>
 </div>

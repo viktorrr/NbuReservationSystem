@@ -116,7 +116,7 @@
                         }
                     }
 
-                    if (model.RepetitionPolicy.CancellationType == CancellationType.OnDate)
+                    if (model.RepetitionPolicy.RepetitionType == RepetitionType.EndOnSpecificDate)
                     {
                         if (model.RepetitionPolicy.EndDate.Date < model.Date)
                         {
