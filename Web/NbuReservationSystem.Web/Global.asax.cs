@@ -7,11 +7,11 @@
     using System.Web.Optimization;
     using System.Web.Routing;
 
-    using Data;
-
     using Infrastructure.Mapping;
 
+    using NbuReservationSystem.Data;
     using NbuReservationSystem.Data.Migrations;
+    using NbuReservationSystem.Data.Models;
 
 #pragma warning disable SA1649 // File name must match first type name
     public class MvcApplication : HttpApplication
@@ -31,6 +31,7 @@
 
             var autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            autoMapperConfig.Execute(typeof(Reservation).Assembly);
         }
     }
 }

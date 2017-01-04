@@ -189,4 +189,10 @@
   <data name="OneTimeOnly" xml:space="preserve">
     <value>One-time-only</value>
   </data>
+  <data name="RequestSucceeded" xml:space="preserve">
+    <value>The request was processed successfully. </value>
+  </data>
+  <data name="RequestFailed" xml:space="preserve">
+    <value>An error occurred while the request was processed. Please make sure the hall is free.</value>
+  </data>
 </root>

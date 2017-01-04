@@ -126,6 +126,9 @@
   <data name="EndDateIsBeforeStartDate" xml:space="preserve">
     <value>End date should be after start date.</value>
   </data>
+  <data name="NoSelectedRepetitionDays" xml:space="preserve">
+    <value>No days to weekdays are selected.</value>
+  </data>
   <data name="PositiveNumberIsRequired" xml:space="preserve">
     <value>Only positive integers are allowed.</value>
   </data>

@@ -189,4 +189,10 @@
   <data name="OneTimeOnly" xml:space="preserve">
     <value>Еднократно</value>
   </data>
+  <data name="RequestFailed" xml:space="preserve">
+    <value>Възникна грешка при обработването на заявката. Провете дали залата е свободна.</value>
+  </data>
+  <data name="RequestSucceeded" xml:space="preserve">
+    <value>Заявката е обработена успешно.</value>
+  </data>
 </root>

@@ -88,6 +88,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не са избрани дни за повторение на събитието..
+        /// </summary>
+        public static string NoSelectedRepetitionDays {
+            get {
+                return ResourceManager.GetString("NoSelectedRepetitionDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Позволени са само положителни числа..
         /// </summary>
         public static string PositiveNumberIsRequired {

@@ -241,6 +241,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при обработването на заявката. Провете дали залата е свободна..
+        /// </summary>
+        internal static string RequestFailed {
+            get {
+                return ResourceManager.GetString("RequestFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявката е обработена успешно..
+        /// </summary>
+        internal static string RequestSucceeded {
+            get {
+                return ResourceManager.GetString("RequestSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Детайли за резервацията.
         /// </summary>
         internal static string ReservationDetails {

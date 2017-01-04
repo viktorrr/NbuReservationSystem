@@ -1,6 +1,7 @@
 ﻿namespace NbuReservationSystem.Web.Controllers
 {
     using System;
+    using System.Linq;
     using System.Net;
     using System.Web.Mvc;
 
@@ -60,7 +61,6 @@
             }
 
             var reservations = this.reservationsService.GetReservations(date);
-
             return this.PartialView("_DayTab", reservations);
         }
 
@@ -88,6 +88,7 @@
             if (this.ModelState.IsValid)
             {
                 var now = DateTime.UtcNow.AddHours(2);
+                var repetitionPolicy = model.RepetitionPolicy;
 
                 // make sure the selected date is not in the past
                 if (model.Date.Date < now.Date)
@@ -116,19 +117,43 @@
                         }
                     }
 
-                    if (model.RepetitionPolicy.RepetitionType == RepetitionType.EndOnSpecificDate)
+                    if (repetitionPolicy.RepetitionType == RepetitionType.EndOnSpecificDate)
                     {
-                        if (model.RepetitionPolicy.EndDate.Date < model.Date)
+                        if (!repetitionPolicy.EndDate.HasValue)
+                        {
+                            // TODO: show warning..?
+                            return this.View(model);
+                        }
+
+                        if (repetitionPolicy.EndDate.Value.Date < model.Date)
                         {
                             this.ModelState.AddModelError(string.Empty, ErrorMessages.EndDateIsBeforeStartDate);
                         }
                     }
 
-                    if (model.RepetitionPolicy.RepetitionDays.Count != 7)
+                    if (repetitionPolicy.RepetitionDays.Count != 7)
                     {
+                        // TODO: show warning..?
                         return this.View(model);
                     }
+
+                    if (repetitionPolicy.RepetitionType != RepetitionType.OneTimeOnly)
+                    {
+                        if (repetitionPolicy.RepetitionDays.All(x => x == false))
+                        {
+                            this.ModelState.AddModelError(string.Empty, ErrorMessages.NoSelectedRepetitionDays);
+                        }
+                    }
                 }
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                var ip = this.HttpContext.Request.UserHostAddress;
+                var reservations = this.reservationsService.AddReservations(model, ip);
+
+                // TODO: this isn't the best solution..
+                this.ViewBag.RequestSucceeded = reservations == -1;
             }
 
             return this.View(model);

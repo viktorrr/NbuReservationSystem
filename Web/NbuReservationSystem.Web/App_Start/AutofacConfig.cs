@@ -12,7 +12,6 @@
     using Data;
     using Data.Common;
 
-    using Services.Data;
     using Services.Web;
 
     public static class AutofacConfig
@@ -53,9 +52,6 @@
             builder.Register(x => new HttpCacheService())
                 .As<ICacheService>()
                 .InstancePerRequest();
-
-            var dataServicesAssembly = Assembly.GetAssembly(typeof(IReservationsDataService));
-            builder.RegisterAssemblyTypes(dataServicesAssembly).AsImplementedInterfaces().InstancePerRequest();
 
             var webServicesAssembly = Assembly.GetAssembly(typeof(ICalendarService));
             builder.RegisterAssemblyTypes(webServicesAssembly).AsImplementedInterfaces().InstancePerRequest();

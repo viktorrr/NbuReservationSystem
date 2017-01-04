@@ -1,5 +1,5 @@
 ﻿@using NbuReservationSystem.Web.Extensions
-@model  IList<NbuReservationSystem.Web.Models.Util.WeekViewModel>
+@model  IList<NbuReservationSystem.Web.Models.Requests.Reservations.WeekViewModel>
 
 @foreach (var week in Model)
 {
@@ -35,7 +35,7 @@
                             <div class="panel panel-default simple-border">
                                 <div class="panel-body">
                                     <p class="reservation-title-container">
-                                        <span>@Html.FormatEventStart(day.Reservations[i].BeginsOn)</span>
+                                        <span>@Html.FormatEventStart(day.Reservations[i].StartHour)</span>
                                         <span class="reservation-title">@day.Reservations[i].Title</span>
                                     </p>
                                 </div>

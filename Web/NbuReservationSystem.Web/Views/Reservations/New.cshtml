@@ -10,7 +10,20 @@
 
 <div class="container">
     <div class="row">
-        @*TODO: resources!*@
+        @{
+            if (this.ViewBag.RequestSucceeded != null)
+            {
+                if (this.ViewBag.RequestSucceeded)
+                {
+                    <p class="alert alert-danger" role="alert">@Labels.RequestFailed</p>
+                }
+                else
+                {
+                    <p class="alert alert-success" role="alert">@Labels.RequestSucceeded</p>
+                }
+            }
+        }
+
         <div class="row text-center">
             <h1>@Labels.NewReservation</h1>
         </div>
@@ -220,10 +233,10 @@
                 <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndOnSpecificDate, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3"})
+                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
                             <div class='input-group date' id="end-date">
-                                <input type='text' class="form-control" />
+                                @Html.TextBoxFor(x => x.RepetitionPolicy.EndDate, new { @class = "form-control" })
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -241,72 +254,74 @@
                     </div>
                 </div>
             </div>
-        }
+                            }
 
         @section scripts {
             <script>
-                $(document).ready(function () {
-                    var calendarSettings = {
-                        format: 'YYYY-MM-DD',
-                        locale: 'bg',
-                        minDate: moment(moment().utc().add(2, 'h')),
-                        date: null
-                    };
-                    var timeSettings = {
-                        format: 'HH:mm',
-                        locale: 'bg'
-                    };
+                $(document)
+                    .ready(function () {
+                        var calendarSettings = {
+                            format: 'YYYY-MM-DD',
+                            locale: 'bg',
+                            minDate: moment(moment().utc().add(2, 'h')),
+                            date: null
+                        };
+                        var timeSettings = {
+                            format: 'HH:mm',
+                            locale: 'bg'
+                        };
 
-                    //  prepare the date pickers
-                    $('#new-reservation-date').datetimepicker(calendarSettings);
-                    $('#end-date').datetimepicker(calendarSettings);
+                        //  prepare the date pickers
+                        $('#new-reservation-date').datetimepicker(calendarSettings);
+                        $('#end-date').datetimepicker(calendarSettings);
 
-                    // prepare the time pickers
-                    $('#new-reservation-begins-on').datetimepicker(timeSettings);
-                    $('#new-reservation-ends-on').datetimepicker(timeSettings);
+                        // prepare the time pickers
+                        $('#new-reservation-begins-on').datetimepicker(timeSettings);
+                        $('#new-reservation-ends-on').datetimepicker(timeSettings);
 
-                    // show/hide the repetition policy on click
-                    var isRepetitionPolicyHidden = false,
-                        $container = $('#repetition-policy-container');
+                        // show/hide the repetition policy on click
+                        var isRepetitionPolicyHidden = false,
+                            $container = $('#repetition-policy-container');
 
-                    $container.hide();
+                        $container.hide();
 
-                    $('#repetition-policy').click(function () {
-                        if (isRepetitionPolicyHidden) {
-                            $container.hide();
-                        } else {
-                            $container.fadeIn('slow');
-                        }
+                        $('#repetition-policy')
+                            .click(function () {
+                                if (isRepetitionPolicyHidden) {
+                                    $container.hide();
+                                } else {
+                                    $container.fadeIn('slow');
+                                }
 
-                        isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
+                                isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
+                            });
+
+                        // when the labels are clicked, mark the given checkbox
+                        $('#repetition-policy-container > div.row label.col-md-3')
+                            .toArray()
+                            .forEach(function (label) {
+                                var $label = $(label);
+
+                                $label.click(function () {
+                                    $label.prev().prop('checked', true);
+                                });
+                            });
+
+                        // when then inputs are clicked, select the checkbox...
+                        // TODO: this is the most ugliest fix ever! fix it!!!
+                        $('#repetition-policy-container > div.row label.col-md-3')
+                            .parent()
+                            .find('.form-control')
+                            .toArray()
+                            .forEach(function (input) {
+                                var $input = $(input);
+
+                                $input.click(function () {
+                                    $input.parent().parent().find('label').click();
+                                    $input.parent().parent().parent().find('label').click();
+                                });
+                            });
                     });
-
-                    // when the labels are clicked, mark the given checkbox
-                    $('#repetition-policy-container > div.row label.col-md-3')
-                        .toArray()
-                        .forEach(function(label) {
-                            var $label = $(label);
-
-                            $label.click(function (e) {
-                                $label.prev().prop('checked', true);
-                            });
-                        });
-
-                    // when then inputs are clicked, select the checkbox...
-                    // TODO: this is the most ugliest fix ever! fix it!!!
-                    $('#repetition-policy-container > div.row label.col-md-3')
-                        .parent()
-                        .find('.form-control')
-                        .toArray()
-                        .forEach(function (input) {
-                            var $input = $(input);
-
-                            $input.click(function() {
-                                $input.parent().parent().find('label').click();
-                                $input.parent().parent().parent().find('label').click();
-                            });
-                        });
-                });
 
                 // by default - mark one-time-only
                 $('#RepetitionPolicy_RepetitionType').prop('checked', true);

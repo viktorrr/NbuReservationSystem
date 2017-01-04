@@ -1,8 +1,8 @@
-﻿namespace NbuReservationSystem.Web.Models.Util
+﻿namespace NbuReservationSystem.Web.Models.Requests.Reservations
 {
     using System.Collections.Generic;
 
-    using Responses.Reservations;
+    using NbuReservationSystem.Web.Models.Responses.Reservations;
 
     public class WeekViewModel
     {

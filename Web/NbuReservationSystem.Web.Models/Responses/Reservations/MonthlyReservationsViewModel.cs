@@ -2,10 +2,17 @@
 {
     using System.Collections.Generic;
 
-    using Util;
+    using NbuReservationSystem.Web.Models.Requests.Reservations;
 
     public class MonthlyReservationsViewModel
     {
+        public MonthlyReservationsViewModel(IList<WeekViewModel> weeks, int year, int month)
+        {
+            this.Weeks = weeks;
+            this.Year = year;
+            this.Month = month;
+        }
+
         public IList<WeekViewModel> Weeks { get; set; }
 
         public int Year { get; set; }
