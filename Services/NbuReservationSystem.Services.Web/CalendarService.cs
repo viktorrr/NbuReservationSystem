@@ -148,6 +148,16 @@
                 CalculateForExactEndDate(model, startDate, daysToSkip, weekDaysToRepeat, result);
             }
 
+            if (model.RepetitionPolicy.RepetitionType == RepetitionType.Forever)
+            {
+                // so.. just generate reservations for the next
+                // 7 years... because 7 is a nice number?
+
+                var endDate = model.Date.AddYears(7);
+                model.RepetitionPolicy.EndDate = endDate;
+                CalculateForExactEndDate(model, startDate, daysToSkip, weekDaysToRepeat, result);
+            }
+
             return result;
         }
 
