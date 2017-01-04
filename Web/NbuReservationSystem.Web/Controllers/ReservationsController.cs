@@ -65,11 +65,8 @@
         }
 
         [HttpGet]
-        public ActionResult New(int? year, int? month, int? day)
+        public ActionResult New()
         {
-            // TODO: implement me!
-            // TODO: validate that the given date is > now
-            // TODO: create a model, which has the given dates and return the view
             return this.View();
         }
 
