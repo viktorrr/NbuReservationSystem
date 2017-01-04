@@ -8,7 +8,6 @@
     using NbuReservationSystem.Services.Web.Tests.Builders;
     using NbuReservationSystem.Services.Web.Tests.TestData;
     using NbuReservationSystem.Web.Models.Enums;
-    using NbuReservationSystem.Web.Models.Requests.Reservations;
 
     using Xunit;
 
@@ -209,6 +208,19 @@
                         new DateTime(2017, 7, 27),
                         new DateTime(2017, 9, 28),
                         new DateTime(2017, 11, 30)
+                    )
+                    .Build()
+            },
+            new object[]
+            {
+                Builder
+                    .StartDate(2017, 4, 4)
+                    .Repetitions(3)
+                    .RepetitionDays(Day.Monday)
+                    .ExpectedDates(
+                        new DateTime(2017, 4, 4),
+                        new DateTime(2017, 4, 10),
+                        new DateTime(2017, 4, 17)
                     )
                     .Build()
             },
