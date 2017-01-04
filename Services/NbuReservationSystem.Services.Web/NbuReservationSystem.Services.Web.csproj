@@ -42,17 +42,16 @@
     <Compile Include="HttpCacheService.cs" />
     <Compile Include="ICacheService.cs" />
     <Compile Include="ICalendarService.cs" />
+    <Compile Include="IRandomStringGenerator.cs" />
     <Compile Include="IReservationsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomStringGenerator.cs" />
     <Compile Include="ReservationsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
@@ -63,13 +62,13 @@
       <Project>{048DF115-FAD9-4BD4-9BA0-D99DFD32A2B2}</Project>
       <Name>NbuReservationSystem.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Web\NbuReservationSystem.Web.Infrastructure\NbuReservationSystem.Web.Infrastructure.csproj">
+      <Project>{6813DC53-5EEE-4507-8604-5301EE51A0D3}</Project>
+      <Name>NbuReservationSystem.Web.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Web\NbuReservationSystem.Web.Models\NbuReservationSystem.Web.Models.csproj">
       <Project>{812a10fd-47d8-4b59-88b3-ec3665bd89fe}</Project>
       <Name>NbuReservationSystem.Web.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NbuReservationSystem.Services.Data\NbuReservationSystem.Services.Data.csproj">
-      <Project>{90fe4c4d-122a-406d-8a40-79c561fb8184}</Project>
-      <Name>NbuReservationSystem.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
