@@ -105,10 +105,6 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\NbuReservationSystem.Services.Data\NbuReservationSystem.Services.Data.csproj">
-      <Project>{90FE4C4D-122A-406D-8A40-79C561FB8184}</Project>
-      <Name>NbuReservationSystem.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\NbuReservationSystem.Services.Web\NbuReservationSystem.Services.Web.csproj">
       <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
       <Name>NbuReservationSystem.Services.Web</Name>
