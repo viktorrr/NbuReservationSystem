@@ -14,8 +14,6 @@
     {
         public static void Main()
         {
-            // SendEmail();
-
             GoogleCalendarCrawler();
         }
 
@@ -28,6 +26,7 @@
 
             var days = document.QuerySelectorAll(".day");
             var dateTimeRegex = new Regex(@", \d{4}");
+            var lastKnownYear = -1;
 
             var db = new ApplicationDbContext();
 
@@ -45,15 +44,21 @@
                     if (dateTimeMatch.Success)
                     {
                         date = DateTime.Parse(dateString);
+                        lastKnownYear = date.Year;
                     }
                     else
                     {
-                        date = DateTime.Parse(dateString + ", " + DateTime.UtcNow.Year);
+                        date = DateTime.Parse(dateString + ", " + lastKnownYear);
                     }
 
                     for (int i = 1; i < children.Count; i++)
                     {
                         var eventTitle = children[i].QuerySelector(".event-title").TextContent;
+                        if (string.IsNullOrEmpty(eventTitle))
+                        {
+                            continue;
+                        }
+
                         var equipment = false;
                         if (eventTitle.Contains("+ техника"))
                         {
@@ -70,11 +75,20 @@
 
                         var reservation = new Reservation
                         {
-                            BeginsOn = beginsOn,
-                            EndsOn = endsOn,
+                            StartHour = beginsOn,
+                            EndHour = endsOn,
                             Date = date,
                             Title = eventTitle,
-                            IsEquipementRequired = equipment
+                            IsEquipementRequired = equipment,
+                            Assignor = "__system",
+                            Description = "<none>",
+                            Organiser = new Organiser
+                            {
+                                Name = "__system",
+                                PhoneNumber = "1234567890",
+                                Email = "nbureservationsystem@gmail.com",
+                                IP = "::1"
+                            }
                         };
                         db.Reservations.Add(reservation);
                         db.SaveChanges();
