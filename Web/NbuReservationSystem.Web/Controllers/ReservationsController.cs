@@ -64,15 +64,6 @@
             return this.PartialView("_DayTab", reservations);
         }
 
-        [HttpGet]
-        public ActionResult New(int? year, int? month, int? day)
-        {
-            // TODO: implement me!
-            // TODO: validate that the given date is > now
-            // TODO: create a model, which has the given dates and return the view
-            return this.View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ViewResult New(ReservationViewModel model)
