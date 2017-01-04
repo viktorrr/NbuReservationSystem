@@ -4,41 +4,102 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Data;
-
+    using NbuReservationSystem.Data.Common;
     using NbuReservationSystem.Data.Models;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
     using NbuReservationSystem.Web.Models.Responses.Reservations;
-    using NbuReservationSystem.Web.Models.Util;
 
     public class ReservationsService : IReservationsService
     {
-        private readonly IReservationsDataService reservationsDataService;
+        // services
         private readonly ICalendarService calendarService;
+        private readonly IRandomStringGenerator stringGenerator;
 
-        public ReservationsService(IReservationsDataService reservationsDataService, ICalendarService calendarService)
+        // data
+        private readonly IRepository<Reservation> reservations;
+        private readonly IRepository<Organiser> organizers;
+
+        public ReservationsService(
+            ICalendarService calendarService,
+            IRandomStringGenerator stringGenerator,
+            IRepository<Reservation> reservations,
+            IRepository<Organiser> organizers)
         {
-            this.reservationsDataService = reservationsDataService;
             this.calendarService = calendarService;
+            this.stringGenerator = stringGenerator;
+
+            this.reservations = reservations;
+            this.organizers = organizers;
         }
 
-        public void AddReservations(ReservationViewModel model)
+        public int AddReservations(ReservationViewModel model, string ip)
         {
-            // TODO: implement me
-            // TODO: calculate dates -> save a new entry to the db
-            // TODO: catch a System.Data.Entity.Infrastructure.DbUpdateException from EF -> notify the user the date is taken
+            var organiser = new Organiser
+            {
+                IP = ip,
+                PhoneNumber = model.Organizer.PhoneNumber,
+                Email = model.Organizer.Email,
+                Name = model.Organizer.Name
+            };
+
+            try
+            {
+                this.organizers.Add(organiser);
+                this.organizers.Save();
+
+                var reservationDates = this.calendarService.CalculateDates(model).ToList();
+
+                foreach (var reservationDate in reservationDates)
+                {
+                    var reservationToAdd = new Reservation
+                    {
+                        Title = model.Title,
+                        Assignor = model.Assignor,
+                        Date = reservationDate,
+                        StartHour = model.StartHour,
+                        EndHour = model.EndHour,
+                        Description = model.Description,
+                        Organiser = organiser,
+                        IsEquipementRequired = model.IsEquipmentRequired,
+                        Token = this.stringGenerator.Generate()
+                    };
+
+                    this.reservations.Add(reservationToAdd);
+                }
+
+                this.reservations.Save();
+                return reservationDates.Count;
+            }
+            catch (Exception e)
+            {
+                this.organizers.HardDelete(organiser);
+
+                // TODO: this isn't the best solution..
+                return -1;
+            }
         }
 
         public MonthlyReservationsViewModel GetReservations(int year, int month)
         {
             var now = new DateTime(year, month, 1).ToUniversalTime().AddHours(2);
 
-            var from = this.calendarService.GetFirstDayOfMonthView(now.Year, now.Month);
-            var to = this.calendarService.GetLastDayOfMonthView(now.Year, now.Month);
+            var startDay = this.calendarService.GetFirstDayOfMonthView(now.Year, now.Month);
+            var endDay = this.calendarService.GetLastDayOfMonthView(now.Year, now.Month);
 
-            var reservationsByDay = this.reservationsDataService.GetReservations(from, to);
-            var dayIndex = from;
+            var reservationsByDay = this.GetReservations(startDay, endDay);
+            var weeks = NewMethod(reservationsByDay, month, startDay);
 
+            return new MonthlyReservationsViewModel(weeks, year, month);
+        }
+
+        public DayViewModel GetReservations(DateTime date)
+        {
+            var selectedReservations = this.reservations.AllBy(x => x.Date == date).ToList();
+            return new DayViewModel { Day = date, Reservations = selectedReservations };
+        }
+
+        private static List<WeekViewModel> NewMethod(IReadOnlyDictionary<DateTime, IEnumerable<Reservation>> reservationsByDay, int month, DateTime currentDay)
+        {
             var weeks = new List<WeekViewModel>(5);
             for (int i = 0; i < 5; i++)
             {
@@ -47,38 +108,35 @@
                 for (int j = 0; j < 7; j++)
                 {
                     var reservations = new List<Reservation>();
-                    if (reservationsByDay.ContainsKey(dayIndex))
+                    if (reservationsByDay.ContainsKey(currentDay))
                     {
-                        reservations = reservationsByDay[dayIndex].ToList();
+                        reservations = reservationsByDay[currentDay].ToList();
                     }
 
-                    var day = new DayViewModel
+                    var dayModel = new DayViewModel
                     {
                         Reservations = reservations,
-                        Day = dayIndex
+                        Day = currentDay
                     };
 
-                    dayIndex = dayIndex.AddDays(1);
-                    days.Add(day);
+                    currentDay = currentDay.AddDays(1);
+                    days.Add(dayModel);
                 }
 
-                var week = new WeekViewModel { Days = days, Month = now.Month };
+                var week = new WeekViewModel { Days = days, Month = month };
                 weeks.Add(week);
             }
 
-            return new MonthlyReservationsViewModel
-            {
-                Weeks = weeks,
-                Year = year,
-                Month = month
-            };
+            return weeks;
         }
 
-        public DayViewModel GetReservations(DateTime date)
+        private Dictionary<DateTime, IEnumerable<Reservation>> GetReservations(DateTime from, DateTime to)
         {
-            var reservations = this.reservationsDataService.GetReservations(date).ToList();
-
-            return new DayViewModel { Day = date, Reservations = reservations };
+            return this.reservations.All()
+                .Where(x => x.Date >= from && x.Date <= to)
+                .OrderBy(x => x.Date)
+                .GroupBy(x => x.Date, (day, currentReservations) => new { day, currentReservations })
+                .ToDictionary(x => x.day, x => x.currentReservations);
         }
     }
 }
