@@ -50,16 +50,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201612031838520_Iniitial.cs" />
-    <Compile Include="Migrations\201612031838520_Iniitial.Designer.cs">
-      <DependentUpon>201612031838520_Iniitial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612192111223_AddedUniqueIndexes.cs" />
-    <Compile Include="Migrations\201612192111223_AddedUniqueIndexes.Designer.cs">
-      <DependentUpon>201612192111223_AddedUniqueIndexes.cs</DependentUpon>
+    <Compile Include="Migrations\201701031843401_InitialCreate.cs" />
+    <Compile Include="Migrations\201701031843401_InitialCreate.Designer.cs">
+      <DependentUpon>201701031843401_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,11 +85,8 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612031838520_Iniitial.resx">
-      <DependentUpon>201612031838520_Iniitial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612192111223_AddedUniqueIndexes.resx">
-      <DependentUpon>201612192111223_AddedUniqueIndexes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701031843401_InitialCreate.resx">
+      <DependentUpon>201701031843401_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

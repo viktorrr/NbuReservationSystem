@@ -3,7 +3,7 @@ namespace NbuReservationSystem.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Iniitial : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -12,15 +12,14 @@ namespace NbuReservationSystem.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Email = c.String(),
-                        PhoneNumber = c.String(),
-                        DeletedBy = c.String(),
+                        Name = c.String(nullable: false),
+                        Email = c.String(nullable: false),
+                        PhoneNumber = c.String(nullable: false),
+                        IP = c.String(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
                         DeletedOn = c.DateTime(),
-                        IP = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.IsDeleted);
@@ -31,22 +30,23 @@ namespace NbuReservationSystem.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false),
-                        BeginsOn = c.Time(nullable: false, precision: 7),
-                        EndsOn = c.Time(nullable: false, precision: 7),
-                        Title = c.String(),
+                        StartHour = c.Time(nullable: false, precision: 7),
+                        EndHour = c.Time(nullable: false, precision: 7),
+                        Title = c.String(nullable: false),
                         Token = c.String(),
-                        Description = c.String(),
+                        Description = c.String(nullable: false),
+                        Assignor = c.String(nullable: false),
                         IsEquipementRequired = c.Boolean(nullable: false),
                         OrganaiserId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
                         DeletedOn = c.DateTime(),
-                        IP = c.String(),
-                        Organiser_Id = c.Int(),
+                        Organiser_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Organisers", t => t.Organiser_Id)
+                .ForeignKey("dbo.Organisers", t => t.Organiser_Id, cascadeDelete: true)
+                .Index(t => new { t.Date, t.StartHour, t.EndHour }, unique: true, name: "IX_ReservationUniqueness")
                 .Index(t => t.IsDeleted)
                 .Index(t => t.Organiser_Id);
             
@@ -135,6 +135,7 @@ namespace NbuReservationSystem.Data.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Reservations", new[] { "Organiser_Id" });
             DropIndex("dbo.Reservations", new[] { "IsDeleted" });
+            DropIndex("dbo.Reservations", "IX_ReservationUniqueness");
             DropIndex("dbo.Organisers", new[] { "IsDeleted" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

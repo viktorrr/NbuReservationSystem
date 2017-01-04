@@ -1,6 +1,7 @@
 ﻿namespace NbuReservationSystem.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Common.Models;
 
@@ -11,14 +12,17 @@
             this.Reservations = new HashSet<Reservation>();
         }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
 
-        // TODO: Consider moving this to BaseModel!
-        public string DeletedBy { get; set; }
+        [Required]
+        public string IP { get; set; }
 
         public virtual ICollection<Reservation> Reservations { get; set; }
     }

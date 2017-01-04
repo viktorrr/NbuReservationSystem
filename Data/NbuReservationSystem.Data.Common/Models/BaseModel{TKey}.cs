@@ -17,8 +17,5 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
-
-        // ReSharper disable once InconsistentNaming
-        public string IP { get; set; }
     }
 }

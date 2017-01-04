@@ -2,8 +2,6 @@ namespace NbuReservationSystem.Data.Migrations
 {
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -42,27 +40,6 @@ namespace NbuReservationSystem.Data.Migrations
                 // Assign user to admin role
                 userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
             }
-        }
-
-        private static string GetUniqueKey(int maxSize)
-        {
-            var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$%^&*()_+[]|{};'<>?/.,".ToCharArray();
-            var data = new byte[1];
-
-            using (var crypto = new RNGCryptoServiceProvider())
-            {
-                crypto.GetNonZeroBytes(data);
-                data = new byte[maxSize];
-                crypto.GetNonZeroBytes(data);
-            }
-
-            var result = new StringBuilder(maxSize);
-            foreach (var b in data)
-            {
-                result.Append(chars[b % chars.Length]);
-            }
-
-            return result.ToString();
         }
     }
 }
