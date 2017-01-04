@@ -341,7 +341,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Reservations\Monthly.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\_CalendarHeader.cshtml" />
     <Content Include="Views\Reservations\_DayTab.cshtml" />
     <Content Include="Views\Reservations\New.cshtml" />

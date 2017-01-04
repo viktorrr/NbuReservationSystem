@@ -20,7 +20,7 @@
         }
 
         [HttpGet]
-        public ActionResult Monthly(int? year, int? month)
+        public ActionResult Index(int? year, int? month)
         {
             var isInputValid = year.HasValue && month.HasValue;
 
