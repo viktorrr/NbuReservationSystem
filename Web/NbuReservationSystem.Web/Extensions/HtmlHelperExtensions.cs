@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Web.Mvc;
 
     using Models.Enums;
@@ -12,11 +13,10 @@
 
     public static class HtmlHelperExtensions
     {
-        // TODO: most of these functions / dictionaries
-        // should live somewhere else!
+        // TODO: most of these functions / dictionaries should live somewhere else!
 
+        private static readonly string DefaultCulture = "bg";
         private static readonly Dictionary<Month, Func<string>> MonthResources;
-
         private static readonly Dictionary<Day, Func<string>> DayResources;
 
         static HtmlHelperExtensions()
@@ -139,6 +139,13 @@
                 .ToList();
 
             return new SelectList(enumValues, "Value", "Text", string.Empty);
+        }
+
+
+        public static string GetDataTablesCulture(this HtmlHelper helper)
+        {
+            var currentCulture = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+            return currentCulture == "en" ? currentCulture : DefaultCulture;
         }
     }
 }

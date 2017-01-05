@@ -1,6 +1,8 @@
 namespace NbuReservationSystem.Data.Migrations
 {
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     using Microsoft.AspNet.Identity;
@@ -9,6 +11,8 @@ namespace NbuReservationSystem.Data.Migrations
     using Models;
 
     using NbuReservationSystem.Common;
+
+    using Newtonsoft.Json;
 
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {

@@ -2,21 +2,49 @@
 {
     using System;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Net;
     using System.Web.Mvc;
 
+    using Models.Requests.Reservations;
+
+    using NbuReservationSystem.Common;
+    using NbuReservationSystem.Data.Common;
+    using NbuReservationSystem.Data.Models;
     using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.App_GlobalResources.Reservations;
+    using NbuReservationSystem.Web.Infrastructure.Mapping;
     using NbuReservationSystem.Web.Models.Enums;
-    using NbuReservationSystem.Web.Models.Requests.Reservations;
+    using NbuReservationSystem.Web.Models.Responses.Reservations;
 
     public class ReservationsController : Controller
     {
-        private readonly IReservationsService reservationsService;
+        private static readonly Expression<Func<Reservation, ReservationsAdministrationViewModel>> ModelExpression;
 
-        public ReservationsController(IReservationsService reservationsService)
+        private readonly IReservationsService reservationsService;
+        private readonly IRepository<Reservation> reservations;
+
+        static ReservationsController()
+        {
+            ModelExpression = reservation => new ReservationsAdministrationViewModel
+            {
+                Title = reservation.Title,
+                Date = reservation.Date,
+                StartHour = reservation.StartHour,
+                EndHour = reservation.EndHour,
+                Assignor = reservation.Assignor,
+                Email = reservation.Organiser.Email,
+                Equipment = reservation.IsEquipementRequired,
+                IP = reservation.Organiser.IP,
+                PhoneNumber = reservation.Organiser.PhoneNumber,
+                Organizer = reservation.Organiser.Name
+            };
+        }
+
+        public ReservationsController(IReservationsService reservationsService,  IRepository<Reservation> reservations)
         {
             this.reservationsService = reservationsService;
+            this.reservations = reservations;
         }
 
         [HttpGet]
@@ -33,6 +61,19 @@
             var now = isInputValid ? new DateTime(year.Value, month.Value, 1) : DateTime.UtcNow;
             var reservations = this.reservationsService.GetReservations(now.Year, now.Month);
 
+            return this.View(reservations);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public ActionResult Administration()
+        {
+            // TODO: this should NOT live here !!!
+
+            // R.I.P. server-side performance
+            var reservations = this.reservations.AllWithDeleted().Select(ModelExpression).ToList();
+
+            // R.I.P. client-side performance
             return this.View(reservations);
         }
 
@@ -77,8 +118,6 @@
             // TODO: implement me!
             // TODO: validate that the hall is free for the given date
             // TODO: generate reservations based on the repetition policy
-            // TODO: generate unique token!
-            // TODO: save the user's IP
             // TODO: send an email
             // TODO: redirect to /calendar with success message -> mail + content
 

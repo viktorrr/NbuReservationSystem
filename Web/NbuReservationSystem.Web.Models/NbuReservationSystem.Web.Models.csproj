@@ -58,6 +58,7 @@
     <Compile Include="Responses\Reservations\MonthlyReservationsViewModel.cs" />
     <Compile Include="Requests\Reservations\RepetitionPolicy.cs" />
     <Compile Include="Requests\Reservations\WeekViewModel.cs" />
+    <Compile Include="Responses\Reservations\ReservationsAdministrationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
