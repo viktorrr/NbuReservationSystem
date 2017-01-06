@@ -87,7 +87,7 @@
             var endDay = this.calendarService.GetLastDayOfMonthView(now.Year, now.Month);
 
             var reservationsByDay = this.GetReservations(startDay, endDay);
-            var weeks = NewMethod(reservationsByDay, month, startDay);
+            var weeks = CreateWeeklyReservations(reservationsByDay, month, startDay);
 
             return new MonthlyReservationsViewModel(weeks, year, month);
         }
@@ -98,7 +98,8 @@
             return new DayViewModel { Day = date, Reservations = selectedReservations };
         }
 
-        private static List<WeekViewModel> NewMethod(IReadOnlyDictionary<DateTime, IEnumerable<Reservation>> reservationsByDay, int month, DateTime currentDay)
+        private static List<WeekViewModel> CreateWeeklyReservations(
+            IReadOnlyDictionary<DateTime, IEnumerable<Reservation>> reservationsByDay, int month, DateTime currentDay)
         {
             var weeks = new List<WeekViewModel>(5);
             for (int i = 0; i < 5; i++)
