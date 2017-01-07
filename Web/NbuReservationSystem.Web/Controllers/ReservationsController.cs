@@ -196,7 +196,7 @@
                 this.ViewBag.RequestSucceeded = reservations == -1;
             }
 
-            this.emailService.SendEmail(model, "token");
+            this.emailService.SendEmail(model, this.tokenGenerator.Generate());
             return this.View(model);
         }
     }
