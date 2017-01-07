@@ -11,6 +11,12 @@
 
     public class ReservationsService : IReservationsService
     {
+        // synchronization locker to make sure that
+        // adding reservations is a blocking operation
+        // this is a bit of performance killer, but it'll
+        // guarantee data consistency
+        private static readonly object Locker = new object();
+
         // services
         private readonly ICalendarService calendarService;
         private readonly IRandomStringGenerator stringGenerator;
@@ -34,48 +40,28 @@
 
         public int AddReservations(ReservationViewModel model, string ip)
         {
-            var organiser = new Organiser
+            lock (Locker)
             {
-                IP = ip,
-                PhoneNumber = model.Organizer.PhoneNumber,
-                Email = model.Organizer.Email,
-                Name = model.Organizer.Name
-            };
-
-            try
-            {
-                this.organizers.Add(organiser);
-                this.organizers.Save();
-
                 var reservationDates = this.calendarService.CalculateDates(model).ToList();
+                var datesAreFree = this.CheckIfAllDatesFree(reservationDates, model.StartHour, model.EndHour);
+
+                if (!datesAreFree)
+                {
+                    return -1;
+                }
+
+                var organiser = this.CreateOrganizer(model, ip);
+                var token = this.stringGenerator.Generate();
 
                 foreach (var reservationDate in reservationDates)
                 {
-                    var reservationToAdd = new Reservation
-                    {
-                        Title = model.Title,
-                        Assignor = model.Assignor,
-                        Date = reservationDate,
-                        StartHour = model.StartHour,
-                        EndHour = model.EndHour,
-                        Description = model.Description,
-                        Organiser = organiser,
-                        IsEquipementRequired = model.IsEquipmentRequired,
-                        Token = this.stringGenerator.Generate()
-                    };
-
-                    this.reservations.Add(reservationToAdd);
+                    var reservation = CreateReservation(model, organiser, reservationDate, token);
+                    this.reservations.Add(reservation);
                 }
 
                 this.reservations.Save();
-                return reservationDates.Count;
-            }
-            catch (Exception e)
-            {
-                this.organizers.HardDelete(organiser);
 
-                // TODO: this isn't the best solution..
-                return -1;
+                return reservationDates.Count;
             }
         }
 
@@ -96,6 +82,22 @@
         {
             var selectedReservations = this.reservations.AllBy(x => x.Date == date).ToList();
             return new DayViewModel { Day = date, Reservations = selectedReservations };
+        }
+
+        private static Reservation CreateReservation(ReservationViewModel model, Organiser organiser, DateTime date, string token)
+        {
+            return new Reservation
+            {
+                Title = model.Title,
+                Assignor = model.Assignor,
+                Date = date,
+                StartHour = model.StartHour,
+                EndHour = model.EndHour,
+                Description = model.Description,
+                Organiser = organiser,
+                IsEquipementRequired = model.IsEquipmentRequired,
+                Token = token
+            };
         }
 
         private static List<WeekViewModel> CreateWeeklyReservations(
@@ -129,6 +131,31 @@
             }
 
             return weeks;
+        }
+
+        private Organiser CreateOrganizer(ReservationViewModel model, string ip)
+        {
+            var organizer = new Organiser
+            {
+                IP = ip,
+                PhoneNumber = model.Organizer.PhoneNumber,
+                Email = model.Organizer.Email,
+                Name = model.Organizer.Name
+            };
+
+            this.organizers.Add(organizer);
+            this.organizers.Save();
+
+            return organizer;
+        }
+
+        private bool CheckIfAllDatesFree(List<DateTime> dates, TimeSpan startHour, TimeSpan endHour)
+        {
+            // not sure if this is tbe best performance-wise solution, but..
+            return !this.reservations.All().Any(
+                r => r.Date == dates.FirstOrDefault(
+                    d => (d == r.Date) && startHour <= r.EndHour && endHour >= r.StartHour)
+            );
         }
 
         private Dictionary<DateTime, IEnumerable<Reservation>> GetReservations(DateTime from, DateTime to)

@@ -4,6 +4,8 @@
 
     using Moq;
 
+    using NbuReservationSystem.Data.Common;
+    using NbuReservationSystem.Data.Models;
     using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.Requests.Reservations;
@@ -13,12 +15,14 @@
     public class ReservationsControllerTests
     {
         private readonly IReservationsService reservationsService;
+        private readonly IRepository<Reservation> reservations;
         private readonly ReservationsController controller;
 
         public ReservationsControllerTests()
         {
             this.reservationsService = new Mock<IReservationsService>(MockBehavior.Strict).Object;
-            this.controller = new ReservationsController(this.reservationsService);
+            this.reservations = new Mock<IRepository<Reservation>>(MockBehavior.Strict).Object;
+            this.controller = new ReservationsController(this.reservationsService, this.reservations);
         }
 
         [Fact]
@@ -90,7 +94,6 @@
                 Date = startDate,
                 RepetitionPolicy = { EndDate = endDate, RepetitionType = RepetitionType.EndOnSpecificDate }
             };
-
 
             // act
             var view = this.controller.New(model);

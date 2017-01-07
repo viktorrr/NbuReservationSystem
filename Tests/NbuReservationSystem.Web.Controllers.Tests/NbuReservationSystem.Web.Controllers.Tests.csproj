@@ -105,6 +105,14 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Common\NbuReservationSystem.Data.Common.csproj">
+      <Project>{EDFE3C57-EF5B-4636-9ECC-D0BACA6B6379}</Project>
+      <Name>NbuReservationSystem.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\NbuReservationSystem.Data.Models\NbuReservationSystem.Data.Models.csproj">
+      <Project>{048DF115-FAD9-4BD4-9BA0-D99DFD32A2B2}</Project>
+      <Name>NbuReservationSystem.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\NbuReservationSystem.Services.Web\NbuReservationSystem.Services.Web.csproj">
       <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
       <Name>NbuReservationSystem.Services.Web</Name>
