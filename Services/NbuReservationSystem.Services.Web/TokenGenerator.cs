@@ -3,7 +3,7 @@
     using System.Security.Cryptography;
     using System.Text;
 
-    public class RandomStringGenerator : IRandomStringGenerator
+    public class TokenGenerator : ITokenGenerator
     {
         private const int RandomStringLength = 15; // 15 because reasons...
         private static readonly char[] Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$".ToCharArray();

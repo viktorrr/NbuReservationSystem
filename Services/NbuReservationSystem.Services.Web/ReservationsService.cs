@@ -19,7 +19,7 @@
 
         // services
         private readonly ICalendarService calendarService;
-        private readonly IRandomStringGenerator stringGenerator;
+        private readonly ITokenGenerator stringGenerator;
 
         // data
         private readonly IRepository<Reservation> reservations;
@@ -27,7 +27,7 @@
 
         public ReservationsService(
             ICalendarService calendarService,
-            IRandomStringGenerator stringGenerator,
+            ITokenGenerator stringGenerator,
             IRepository<Reservation> reservations,
             IRepository<Organiser> organizers)
         {

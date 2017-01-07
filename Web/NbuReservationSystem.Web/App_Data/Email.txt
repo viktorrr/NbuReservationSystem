@@ -1,0 +1,46 @@
+﻿Здравейте, г-н/г-жа {0},
+<br />
+<br />
+това е автоматично генерирано съобщение, генерирано от системата за резервации на Нов Български университет.
+<br />
+
+<h2>Детайли за резервацията</h2>
+
+<br />
+
+Заглавие: <b>{1}</b>
+<br />
+Дата: <b>{2}</b>
+<br />
+Начален час: <b>{3}</b>
+<br />
+Краен час: <b>{4}</b>
+<br />
+<br />
+
+Код за промяна/изтриване на резервацията/ите: <b>{5}</b>
+<br />
+
+<hr>
+
+Hello Mr/Ms {0},
+<br />
+<br />
+this message is generated automatically from New Bulgarian University's reservation system.
+<br />
+
+<h2>Reservation details</h2>
+
+<br />
+
+Title: <b>{1}</b>
+<br />
+Date: <b>{2}</b>
+<br />
+Start hour: <b>{3}</b>
+<br />
+End hour: <b>{4}</b>
+<br />
+<br />
+
+Token for reservation modification/removal: <b>{5}</b>

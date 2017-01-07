@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
   </ItemGroup>
@@ -42,6 +43,7 @@
     <Compile Include="HttpCacheService.cs" />
     <Compile Include="ICacheService.cs" />
     <Compile Include="ICalendarService.cs" />
+    <Compile Include="IEmailService.cs" />
     <Compile Include="IRandomStringGenerator.cs" />
     <Compile Include="IReservationsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

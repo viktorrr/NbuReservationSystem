@@ -1,6 +1,6 @@
 ﻿namespace NbuReservationSystem.Services.Web
 {
-    public interface IRandomStringGenerator
+    public interface ITokenGenerator
     {
         string Generate();
     }

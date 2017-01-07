@@ -13,7 +13,6 @@
     using NbuReservationSystem.Data.Models;
     using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.App_GlobalResources.Reservations;
-    using NbuReservationSystem.Web.Infrastructure.Mapping;
     using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.Responses.Reservations;
 
@@ -22,6 +21,8 @@
         private static readonly Expression<Func<Reservation, ReservationsAdministrationViewModel>> ModelExpression;
 
         private readonly IReservationsService reservationsService;
+        private readonly IEmailService emailService;
+        private readonly ITokenGenerator tokenGenerator;
         private readonly IRepository<Reservation> reservations;
 
         static ReservationsController()
@@ -41,9 +42,15 @@
             };
         }
 
-        public ReservationsController(IReservationsService reservationsService,  IRepository<Reservation> reservations)
+        public ReservationsController(
+            IReservationsService reservationsService,
+            IEmailService emailService,
+            ITokenGenerator tokenGenerator,
+            IRepository<Reservation> reservations)
         {
             this.reservationsService = reservationsService;
+            this.emailService = emailService;
+            this.tokenGenerator = tokenGenerator;
             this.reservations = reservations;
         }
 
@@ -115,10 +122,7 @@
         [ValidateAntiForgeryToken]
         public ViewResult New(ReservationViewModel model)
         {
-            // TODO: implement me!
             // TODO: validate that the hall is free for the given date
-            // TODO: generate reservations based on the repetition policy
-            // TODO: send an email
             // TODO: redirect to /calendar with success message -> mail + content
 
             if (this.ModelState.IsValid)
@@ -192,6 +196,7 @@
                 this.ViewBag.RequestSucceeded = reservations == -1;
             }
 
+            this.emailService.SendEmail(model, "token");
             return this.View(model);
         }
     }
