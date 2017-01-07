@@ -44,10 +44,10 @@
     <Compile Include="ICacheService.cs" />
     <Compile Include="ICalendarService.cs" />
     <Compile Include="IEmailService.cs" />
-    <Compile Include="IRandomStringGenerator.cs" />
+    <Compile Include="ITokenGenerator.cs" />
     <Compile Include="IReservationsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomStringGenerator.cs" />
+    <Compile Include="TokenGenerator.cs" />
     <Compile Include="ReservationsService.cs" />
   </ItemGroup>
   <ItemGroup>
