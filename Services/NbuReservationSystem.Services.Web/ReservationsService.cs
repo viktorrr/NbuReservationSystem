@@ -23,13 +23,13 @@
 
         // data
         private readonly IRepository<Reservation> reservations;
-        private readonly IRepository<Organiser> organizers;
+        private readonly IRepository<Organizer> organizers;
 
         public ReservationsService(
             ICalendarService calendarService,
             ITokenGenerator stringGenerator,
             IRepository<Reservation> reservations,
-            IRepository<Organiser> organizers)
+            IRepository<Organizer> organizers)
         {
             this.calendarService = calendarService;
             this.stringGenerator = stringGenerator;
@@ -84,7 +84,7 @@
             return new DayViewModel { Day = date, Reservations = selectedReservations };
         }
 
-        private static Reservation CreateReservation(ReservationViewModel model, Organiser organiser, DateTime date, string token)
+        private static Reservation CreateReservation(ReservationViewModel model, Organizer organizer, DateTime date, string token)
         {
             return new Reservation
             {
@@ -94,7 +94,7 @@
                 StartHour = model.StartHour,
                 EndHour = model.EndHour,
                 Description = model.Description,
-                Organiser = organiser,
+                Organizer = organizer,
                 IsEquipementRequired = model.IsEquipmentRequired,
                 Token = token
             };
@@ -133,9 +133,9 @@
             return weeks;
         }
 
-        private Organiser CreateOrganizer(ReservationViewModel model, string ip)
+        private Organizer CreateOrganizer(ReservationViewModel model, string ip)
         {
-            var organizer = new Organiser
+            var organizer = new Organizer
             {
                 IP = ip,
                 PhoneNumber = model.Organizer.PhoneNumber,

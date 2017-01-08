@@ -21,7 +21,7 @@
         {
         }
 
-        public IDbSet<Organiser> Organisers { get; set; }
+        public IDbSet<Organizer> Organizers { get; set; }
 
         public IDbSet<Reservation> Reservations { get; set; }
 

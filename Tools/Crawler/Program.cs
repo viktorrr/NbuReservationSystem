@@ -82,7 +82,7 @@
                             IsEquipementRequired = equipment,
                             Assignor = "__system",
                             Description = "<none>",
-                            Organiser = new Organiser
+                            Organizer = new Organizer
                             {
                                 Name = "__system",
                                 PhoneNumber = "1234567890",

@@ -32,10 +32,10 @@
         public bool IsEquipementRequired { get; set; }
 
         [Required]
-        public virtual int OrganaiserId { get; set; }
+        public virtual int OrganizerId { get; set; }
 
         [Required]
-        public virtual Organiser Organiser { get; set; }
+        public virtual Organizer Organizer { get; set; }
 
         public override string ToString()
         {

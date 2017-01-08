@@ -5,9 +5,9 @@
 
     using Common.Models;
 
-    public class Organiser : BaseModel<int>
+    public class Organizer : BaseModel<int>
     {
-        public Organiser()
+        public Organizer()
         {
             this.Reservations = new HashSet<Reservation>();
         }

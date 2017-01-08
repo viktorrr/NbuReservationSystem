@@ -34,11 +34,11 @@
                 StartHour = reservation.StartHour,
                 EndHour = reservation.EndHour,
                 Assignor = reservation.Assignor,
-                Email = reservation.Organiser.Email,
+                Email = reservation.Organizer.Email,
                 Equipment = reservation.IsEquipementRequired,
-                IP = reservation.Organiser.IP,
-                PhoneNumber = reservation.Organiser.PhoneNumber,
-                Organizer = reservation.Organiser.Name
+                IP = reservation.Organizer.IP,
+                PhoneNumber = reservation.Organizer.PhoneNumber,
+                Organizer = reservation.Organizer.Name
             };
         }
 

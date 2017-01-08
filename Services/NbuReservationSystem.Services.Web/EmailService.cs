@@ -31,6 +31,7 @@
 
         private static void Send(ReservationViewModel model, string token)
         {
+            return;
             try
             {
                 var msg = new MailMessage
