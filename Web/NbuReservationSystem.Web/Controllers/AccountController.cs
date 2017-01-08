@@ -91,61 +91,8 @@
                     return this.RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction(
-                        "SendCode",
-                        new { ReturnUrl = returnUrl, model.RememberMe });
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return this.View(model);
-            }
-        }
-
-        // GET: /Account/VerifyCode
-        [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
-        {
-            // Require that the user has already logged in via username/password or external login
-            if (!await this.SignInManager.HasBeenVerifiedAsync())
-            {
-                return this.View("Error");
-            }
-
-            return
-                this.View(
-                    new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
-        }
-
-        // POST: /Account/VerifyCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(model);
-            }
-
-            // The following code protects for brute force attacks against the two factor codes.
-            // If a user enters incorrect codes for a specified amount of time then the user account
-            // will be locked out for a specified amount of time.
-            // You can configure the account lockout settings in IdentityConfig
-            var result =
-                await
-                this.SignInManager.TwoFactorSignInAsync(
-                    model.Provider,
-                    model.Code,
-                    isPersistent: model.RememberMe,
-                    rememberBrowser: model.RememberBrowser);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return this.RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                default:
-                    this.ModelState.AddModelError(string.Empty, "Invalid code.");
                     return this.View(model);
             }
         }
@@ -184,19 +131,6 @@
 
             // If we got this far, something failed, redisplay form
             return this.View(model);
-        }
-
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
-            {
-                return this.View("Error");
-            }
-
-            var result = await this.UserManager.ConfirmEmailAsync(userId, code);
-            return this.View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
         // GET: /Account/ForgotPassword
@@ -294,46 +228,6 @@
                 this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        // GET: /Account/SendCode
-        [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
-        {
-            var userId = await this.SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
-            {
-                return this.View("Error");
-            }
-
-            var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId);
-            var factorOptions =
-                userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return
-                this.View(
-                    new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
-        }
-
-        // POST: /Account/SendCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendCode(SendCodeViewModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            // Generate the token and send it
-            if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
-            {
-                return this.View("Error");
-            }
-
-            return this.RedirectToAction(
-                "VerifyCode",
-                new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
-        }
-
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -352,8 +246,6 @@
                     return this.RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 default:
 
                     // If the user does not have an account, then prompt the user to create an account
