@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
+namespace NbuReservationSystem.Web.Models.LocalizationResources {
     using System;
     
     
@@ -39,8 +39,7 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.Models.LocalizationResources.Reservations.ValidationMess" +
-                            "ages", typeof(ValidationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.Models.LocalizationResources.ValidationMessages", typeof(ValidationMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -76,6 +75,24 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
         public static string InvalidePhoneNumber {
             get {
                 return ResourceManager.GetString("InvalidePhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Паролата трябва да е между 6 и 100 символа..
+        /// </summary>
+        public static string PasswordLength {
+            get {
+                return ResourceManager.GetString("PasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Двете пароли не съвпадат..
+        /// </summary>
+        public static string PasswordMissmatch {
+            get {
+                return ResourceManager.GetString("PasswordMissmatch", resourceCulture);
             }
         }
         

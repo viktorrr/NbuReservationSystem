@@ -10,38 +10,34 @@
 
 <div class="container">
     <div class="row">
-        @{
-            if (this.ViewBag.RequestSucceeded != null)
-            {
-                if (this.ViewBag.RequestSucceeded)
+        <div class="col-md-28">
+            @{
+                if (this.ViewBag.RequestSucceeded != null)
                 {
-                    <p class="alert alert-danger" role="alert">@Labels.RequestFailed</p>
-                }
-                else
-                {
-                    <p class="alert alert-success" role="alert">@Labels.RequestSucceeded</p>
+                    if (this.ViewBag.RequestSucceeded)
+                    {
+                        <p class="alert alert-danger" role="alert">@Labels.RequestFailed</p>
+                    }
+                    else
+                    {
+                        <p class="alert alert-success" role="alert">@Labels.RequestSucceeded</p>
+                    }
                 }
             }
-        }
 
-        <div class="row text-center">
-            <h1>@Labels.NewReservation</h1>
-        </div>
-
-        @Html.ValidationSummary(true)
-
-        @using (Html.BeginForm("New", "Reservations", FormMethod.Post, new { id = "new-reservation-form" }))
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="row">
-                <div class="col-md-28">
-                    <h3>@Labels.ReservationDetails</h3>
-                    <hr />
-                </div>
+            <div class="row text-center">
+                <h1>@Labels.NewReservation</h1>
             </div>
 
-            <div class="row">
+            @Html.ValidationSummary(true)
+
+            @using (Html.BeginForm("New", "Reservations", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <h3>@Labels.ReservationDetails</h3>
+                <hr />
+
                 <div class="form-group">
                     @Html.LabelFor(x => x.Title, Labels.Title, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -49,9 +45,7 @@
                         @Html.ValidationMessageFor(x => x.Title)
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Description, Labels.Description, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -59,9 +53,7 @@
                         @Html.ValidationMessageFor(x => x.Description)
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Date, Labels.Date, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -76,9 +68,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.StartHour, Labels.BeginsOn, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -93,9 +83,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.EndHour, Labels.EndsOn, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -110,9 +98,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Assignor, Labels.Assignor, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -120,9 +106,7 @@
                         @Html.ValidationMessageFor(x => x.Assignor)
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="col-md-28">
                     <div class="form-group">
                         <div class="checkbox">
@@ -133,16 +117,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-28">
-                    <h3>@Labels.PointOfContact</h3>
-                    <hr />
-                </div>
-            </div>
+                <h3>@Labels.PointOfContact</h3>
+                <hr />
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Organizer.Name, Labels.Name, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -150,9 +128,7 @@
                         @Html.ValidationMessageFor(x => x.Organizer.Name)
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Organizer.Email, Labels.Email, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -160,9 +136,7 @@
                         @Html.ValidationMessageFor(x => x.Organizer.Email)
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Organizer.PhoneNumber, Labels.PhoneNumber, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -170,17 +144,13 @@
                         @Html.ValidationMessageFor(x => x.Organizer.PhoneNumber)
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-28">
-                    <h3 id="repetition-policy">@Labels.RepetitionPolicy <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h3>
-                    <hr />
-                </div>
-            </div>
+                <h3 id="repetition-policy">
+                    @Labels.RepetitionPolicy <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                </h3>
+                <hr />
 
-            <div id="repetition-policy-container">
-                <div class="row">
+                <div id="repetition-policy-container">
                     <div class="form-group">
                         @Html.LabelFor(x => x.RepetitionPolicy.RepetitionWindow, Labels.RepetitionWindow, new { @class = "control-label col-md-4" })
                         <div class="col-md-24">
@@ -188,9 +158,7 @@
                             @Html.ValidationMessageFor(x => x.RepetitionPolicy.RepetitionWindow, ErrorMessages.PositiveNumberIsRequired)
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="form-group">
                         @{
                             var days = Enum.GetValues(typeof(Day));
@@ -203,23 +171,17 @@
                             }
                         }
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.OneTimeOnly, new { @class = "control-label col-md-1" })
                         @Html.Label(Labels.OneTimeOnly, new { @class = "control-label col-md-3" })
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.Forever, new { @class = "control-label col-md-1" })
                         @Html.Label(Labels.Forever, new { @class = "control-label col-md-3" })
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndAfterExactNumberOfRepetitions, new { @class = "control-label col-md-1" })
                         @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, Labels.RepetitionsCount, new { @class = "control-label col-md-3" })
@@ -228,9 +190,7 @@
                             @Html.ValidationMessageFor(x => x.RepetitionPolicy.Repetitions, ErrorMessages.PositiveNumberIsRequired)
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndOnSpecificDate, new { @class = "control-label col-md-1" })
                         @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3" })
@@ -244,88 +204,87 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
                         <input type="submit" value="@Labels.Save" class="btn btn-default" />
                         <input type="reset" value="@Labels.Clear" class="btn btn-default" />
                     </div>
                 </div>
-            </div>
                             }
+        </div>
 
-        @section scripts {
-            <script>
-                $(document)
-                    .ready(function () {
-                        var calendarSettings = {
-                            format: 'YYYY-MM-DD',
-                            locale: 'bg',
-                            minDate: moment(moment().utc().add(2, 'h')),
-                            date: null
-                        };
-                        var timeSettings = {
-                            format: 'HH:mm',
-                            locale: 'bg'
-                        };
-
-                        //  prepare the date pickers
-                        $('#new-reservation-date').datetimepicker(calendarSettings);
-                        $('#end-date').datetimepicker(calendarSettings);
-
-                        // prepare the time pickers
-                        $('#new-reservation-begins-on').datetimepicker(timeSettings);
-                        $('#new-reservation-ends-on').datetimepicker(timeSettings);
-
-                        // show/hide the repetition policy on click
-                        var isRepetitionPolicyHidden = false,
-                            $container = $('#repetition-policy-container');
-
-                        $container.hide();
-
-                        $('#repetition-policy')
-                            .click(function () {
-                                if (isRepetitionPolicyHidden) {
-                                    $container.hide();
-                                } else {
-                                    $container.fadeIn('slow');
-                                }
-
-                                isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
-                            });
-
-                        // when the labels are clicked, mark the given checkbox
-                        $('#repetition-policy-container > div.row label.col-md-3')
-                            .toArray()
-                            .forEach(function (label) {
-                                var $label = $(label);
-
-                                $label.click(function () {
-                                    $label.prev().prop('checked', true);
-                                });
-                            });
-
-                        // when then inputs are clicked, select the checkbox...
-                        // TODO: this is the most ugliest fix ever! fix it!!!
-                        $('#repetition-policy-container > div.row label.col-md-3')
-                            .parent()
-                            .find('.form-control')
-                            .toArray()
-                            .forEach(function (input) {
-                                var $input = $(input);
-
-                                $input.click(function () {
-                                    $input.parent().parent().find('label').click();
-                                    $input.parent().parent().parent().find('label').click();
-                                });
-                            });
-                    });
-
-                // by default - mark one-time-only
-                $('#RepetitionPolicy_RepetitionType').prop('checked', true);
-            </script>
-        }
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(document)
+            .ready(function () {
+                var calendarSettings = {
+                    format: 'YYYY-MM-DD',
+                    locale: 'bg',
+                    minDate: moment(moment().utc().add(2, 'h')),
+                    date: null
+                };
+                var timeSettings = {
+                    format: 'HH:mm',
+                    locale: 'bg'
+                };
+
+                //  prepare the date pickers
+                $('#new-reservation-date').datetimepicker(calendarSettings);
+                $('#end-date').datetimepicker(calendarSettings);
+
+                // prepare the time pickers
+                $('#new-reservation-begins-on').datetimepicker(timeSettings);
+                $('#new-reservation-ends-on').datetimepicker(timeSettings);
+
+                // show/hide the repetition policy on click
+                var isRepetitionPolicyHidden = false,
+                    $container = $('#repetition-policy-container');
+
+                $container.hide();
+
+                $('#repetition-policy')
+                    .click(function () {
+                        if (isRepetitionPolicyHidden) {
+                            $container.hide();
+                        } else {
+                            $container.fadeIn('slow');
+                        }
+
+                        isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
+                    });
+
+                // when the labels are clicked, mark the given checkbox
+                $('#repetition-policy-container > div.row label.col-md-3')
+                    .toArray()
+                    .forEach(function (label) {
+                        var $label = $(label);
+
+                        $label.click(function () {
+                            $label.prev().prop('checked', true);
+                        });
+                    });
+
+                // when then inputs are clicked, select the checkbox...
+                // TODO: this is the most ugliest fix ever! fix it!!!
+                $('#repetition-policy-container > div.row label.col-md-3')
+                    .parent()
+                    .find('.form-control')
+                    .toArray()
+                    .forEach(function (input) {
+                        var $input = $(input);
+
+                        $input.click(function () {
+                            $input.parent().parent().find('label').click();
+                            $input.parent().parent().parent().find('label').click();
+                        });
+                    });
+            });
+
+        // by default - mark one-time-only
+        $('#RepetitionPolicy_RepetitionType').prop('checked', true);
+    </script>
+}

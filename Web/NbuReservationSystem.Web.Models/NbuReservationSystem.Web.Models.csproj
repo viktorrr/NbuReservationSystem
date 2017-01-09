@@ -33,22 +33,37 @@
     <CodeAnalysisRuleSet>NbuReservationSystem.Web.Models.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocalizationResources\Reservations\ValidationMessages.Designer.cs">
+    <Compile Include="LocalizationResources\ValidationMessages.Designer.cs">
       <DependentUpon>ValidationMessages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="LocalizationResources\Reservations\ValidationMessages.en.Designer.cs">
+    <Compile Include="LocalizationResources\ValidationMessages.en.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationMessages.en.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Requests\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="Requests\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="Requests\Account\LoginViewModel.cs" />
+    <Compile Include="Requests\Account\RegisterViewModel.cs" />
+    <Compile Include="Requests\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="Requests\Manage\ChangePasswordViewModel.cs" />
+    <Compile Include="Requests\Manage\IndexViewModel.cs" />
+    <Compile Include="Requests\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Requests\Reservations\ReservationViewModel.cs" />
     <Compile Include="Requests\Reservations\OrganizerViewModel.cs" />
     <Compile Include="Responses\Reservations\DayViewModel.cs" />
@@ -75,18 +90,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LocalizationResources\Reservations\ValidationMessages.en.resx">
+    <EmbeddedResource Include="LocalizationResources\ValidationMessages.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationMessages.en.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="LocalizationResources\Reservations\ValidationMessages.resx">
+    <EmbeddedResource Include="LocalizationResources\ValidationMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationMessages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="NbuReservationSystem.Web.Models.ruleset" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

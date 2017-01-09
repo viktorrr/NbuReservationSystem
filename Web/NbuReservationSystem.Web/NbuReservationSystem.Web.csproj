@@ -181,6 +181,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Account\AccountLabels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountLabels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Account\AccountLabels.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountLabels.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Administration\AdministrationLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +200,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AdministrationLabels.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Buttons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Buttons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Buttons.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Buttons.en.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Reservations\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -264,7 +284,8 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Email.txt" />
+    <Content Include="App_Data\ForgottenPassword.txt" />
+    <Content Include="App_Data\NewReservation.txt" />
     <Content Include="App_Data\ToS.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -558,7 +579,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
@@ -568,7 +588,6 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
@@ -583,7 +602,6 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="ViewModels\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -662,6 +680,23 @@
     <Content Include="App_GlobalResources\Administration\AdministrationLabels.en.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AdministrationLabels.en.designer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="App_GlobalResources\Account\AccountLabels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountLabels.en.designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Account\AccountLabels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountLabels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="App_GlobalResources\Buttons.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Buttons.en.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Buttons.en.designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="App_GlobalResources\Reservations\ErrorMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

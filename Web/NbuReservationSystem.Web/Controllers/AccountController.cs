@@ -1,6 +1,5 @@
 ﻿namespace NbuReservationSystem.Web.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
@@ -10,14 +9,17 @@
     using Microsoft.Owin.Security;
 
     using NbuReservationSystem.Data.Models;
+    using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.ViewModels.Account;
 
     [Authorize]
     public class AccountController : BaseController
     {
         private ApplicationSignInManager signInManager;
-
         private ApplicationUserManager userManager;
+
+        // TODO: refactor MVC5's ugly boilerplate code to allow proper Autofac DI!!!
+        private IEmailService emailService = new EmailService();
 
         public AccountController()
         {
@@ -149,18 +151,16 @@
             if (this.ModelState.IsValid)
             {
                 var user = await this.UserManager.FindByNameAsync(model.Email);
-                if (user == null || !await this.UserManager.IsEmailConfirmedAsync(user.Id))
+                if (user == null)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
+                    // Don't reveal that the user does not exist
                     return this.View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                var code = await this.UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, this.Request.Url.Scheme);
+                this.emailService.SendForgottenPasswordEmail(user.Email, callbackUrl);
+                return this.RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
