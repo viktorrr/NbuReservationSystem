@@ -234,3 +234,17 @@ input[type="checkbox"].input-validation-error {
    padding-left: 0;
    padding-right: 0; 
 }
+
+#trust-carl {
+    font-size: 40px;
+}
+
+#bg-color-grey li {
+    font-size: 18px;
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+#bg-color-grey ul {
+    padding: 0;
+}
