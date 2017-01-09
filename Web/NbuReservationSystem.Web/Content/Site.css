@@ -55,7 +55,7 @@
     margin: 0;
 }
 
-/*
+    /*
     some hacky rules to make things look okay
     in .container-fluid, although the design
     is a bit broken...
@@ -85,9 +85,9 @@ nav {
     margin-bottom: 0;
 }
 
-.carousel-inner{
-  width:100%;
-  max-height: 500px !important;
+.carousel-inner {
+    width: 100%;
+    max-height: 500px !important;
 }
 
 header.carousel {
@@ -128,7 +128,8 @@ header.carousel .fill {
 }
 
 .green-ok {
-    color: greenyellow;
+    color: limegreen;
+    margin-right: 15px;
 }
 
 #day-tab-title-container {
@@ -192,4 +193,44 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+#bg-color-grey {
+    background-color: silver;
+    padding: 50px;
+    margin-top: 15px;
+}
+
+.content-boxes > span {
+    float: left;
+    color: #999;
+    width: 50px;
+    height: 50px;
+    padding: 11px;
+    font-size: 22px;
+    background: #eee;
+    line-height: 28px;
+    text-align: center;
+    margin-right: 15px;
+    display: inline-block;
+    border-radius: 33% !important;
+}
+
+.content-boxes > span:hover {
+    border-radius: 33% !important;
+    color: white;
+    background-color: skyblue;
+}
+
+.content-boxes p {
+    text-align: justify;
+}
+
+#title-container {
+    padding-bottom: 25px;
+}
+
+#grey-container {
+   padding-left: 0;
+   padding-right: 0; 
 }
