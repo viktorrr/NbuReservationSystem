@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
+namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ValidationMessages {
+    public class ButtonsLabels {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ValidationMessages() {
+        internal ButtonsLabels() {
         }
         
         /// <summary>
@@ -39,8 +39,7 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.Models.LocalizationResources.Reservations.ValidationMess" +
-                            "ages", typeof(ValidationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Labels.ButtonsLabels", typeof(ButtonsLabels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,47 +61,20 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources.Reservations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Въведеният е-майл е невалиден..
+        ///   Looks up a localized string similar to Изчисти.
         /// </summary>
-        public static string InvalidEmail {
+        public static string Clear {
             get {
-                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+                return ResourceManager.GetString("Clear", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Невалиден номер - трябва да бъде +359XXXXXXXXX или 10 цифрено число, започващо с 0..
+        ///   Looks up a localized string similar to Изпрати.
         /// </summary>
-        public static string InvalidePhoneNumber {
+        public static string Submit {
             get {
-                return ResourceManager.GetString("InvalidePhoneNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Позволени са само положителни числа..
-        /// </summary>
-        public static string PositiveNumberIsRequired {
-            get {
-                return ResourceManager.GetString("PositiveNumberIsRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Полето е задължително..
-        /// </summary>
-        public static string RequiredField {
-            get {
-                return ResourceManager.GetString("RequiredField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Броят допустим символи е не повече от {1}..
-        /// </summary>
-        public static string TooLongInput {
-            get {
-                return ResourceManager.GetString("TooLongInput", resourceCulture);
+                return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
     }

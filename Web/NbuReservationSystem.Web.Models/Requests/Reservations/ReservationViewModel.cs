@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using NbuReservationSystem.Web.Models.Enums;
-    using NbuReservationSystem.Web.Models.LocalizationResources.Reservations;
+    using NbuReservationSystem.Web.Models.LocalizationResources;
 
     public class ReservationViewModel
     {

@@ -4,6 +4,8 @@
 
     public interface IEmailService
     {
-        void SendEmail(ReservationViewModel model, string token);
+        void SendNewReservationEmail(ReservationViewModel model, string token);
+
+        void SendForgottenPasswordEmail(string receiver, string url);
     }
 }

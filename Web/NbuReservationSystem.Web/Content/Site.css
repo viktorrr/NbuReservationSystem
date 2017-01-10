@@ -149,15 +149,15 @@ header.carousel .fill {
     font-size: 14px;
 }
 
-#new-reservation-form {
+.custom-form {
     padding: 15px;
 }
 
-#new-reservation-form .row {
+.custom-form .row {
     margin: 20px 0;
 }
 
-#new-reservation-form textarea {
+.custom-form textarea {
     resize: vertical;
 }
 
@@ -193,6 +193,10 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
 }
 
 #bg-color-grey {
@@ -232,7 +236,7 @@ input[type="checkbox"].input-validation-error {
 
 #grey-container {
    padding-left: 0;
-   padding-right: 0; 
+   padding-right: 0;
 }
 
 #trust-carl {

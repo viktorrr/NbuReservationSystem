@@ -2,7 +2,6 @@
 {
     using System;
     using System.Configuration;
-    using System.Globalization;
     using System.IO;
     using System.Net;
     using System.Net.Mail;
@@ -15,34 +14,46 @@
     {
         private static readonly string Username;
         private static readonly string Password;
-        private static readonly string EmailTemplate;
+        private static readonly string NewReservationTemplate;
+        private static readonly string ForgottenPasswordTemplate;
 
         static EmailService()
         {
             Username = ConfigurationManager.AppSettings["Email"];
             Password = ConfigurationManager.AppSettings["Password"];
-            EmailTemplate = File.ReadAllText(HostingEnvironment.MapPath("~/App_Data/Email.txt"));
+            NewReservationTemplate = File.ReadAllText(HostingEnvironment.MapPath("~/App_Data/NewReservation.txt"));
+            ForgottenPasswordTemplate = File.ReadAllText(HostingEnvironment.MapPath("~/App_Data/ForgottenPassword.txt"));
         }
 
-        public void SendEmail(ReservationViewModel model, string token)
+        public void SendNewReservationEmail(ReservationViewModel model, string token)
         {
-            Task.Run(() => Send(model, token));
+            var subject = $"Нова резервация / New reservation - {FormatDate(model.Date)}";
+            var body = FormatNewReservationEmail(model, token);
+
+            Task.Run(() => Send(model.Organizer.Email, subject, body));
         }
 
-        private static void Send(ReservationViewModel model, string token)
+        public void SendForgottenPasswordEmail(string receiver, string url)
         {
-            return;
+            var subject = "Забравена парола / Forgotten password";
+            var body = FormatForgottenPasswordEmail(url);
+
+            Task.Run(() => Send(receiver, subject, body));
+        }
+
+        private static void Send(string receiver, string subject, string body)
+        {
             try
             {
                 var msg = new MailMessage
                 {
                     From = new MailAddress(Username),
                     IsBodyHtml = true,
-                    Subject = $"Нова резервация / New reservation - {FormatDate(model.Date)}",
-                    Body = FormatEmail(model, token)
+                    Subject = subject,
+                    Body = body
                 };
 
-                msg.To.Add(model.Organizer.Email);
+                msg.To.Add(receiver);
 
                 using (var client = new SmtpClient())
                 {
@@ -55,7 +66,7 @@
                     client.Credentials = new NetworkCredential(Username, Password);
                     client.Timeout = 20000;
 
-                    // TODO: complete disable of security is probably not the best idea..
+                    // workaround for NBU's mail server - who needs security anyway?
                     // ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
                     client.Send(msg);
@@ -67,12 +78,12 @@
             }
         }
 
-        private static string FormatEmail(ReservationViewModel model, string token)
+        private static string FormatNewReservationEmail(ReservationViewModel model, string token)
         {
             var date = FormatDate(model.Date);
 
             return string.Format(
-                EmailTemplate,
+                NewReservationTemplate,
                 model.Organizer.Name,
                 model.Title,
                 date,
@@ -80,6 +91,11 @@
                 model.EndHour,
                 token
             );
+        }
+
+        private static string FormatForgottenPasswordEmail(string url)
+        {
+            return string.Format(ForgottenPasswordTemplate, url);
         }
 
         private static string FormatDate(DateTime date)

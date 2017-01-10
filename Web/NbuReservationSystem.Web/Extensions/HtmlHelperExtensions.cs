@@ -79,10 +79,10 @@
         {
             if (model.Reservations.Count == 1)
             {
-                return $"{model.Reservations.Count} {Resources.Labels.SingleReservation}";
+                return $"{model.Reservations.Count} { Resources.ReservationsLabels.SingleReservation }";
             }
 
-            return $"{model.Reservations.Count} {Resources.Labels.MultipleReservations}";
+            return $"{model.Reservations.Count} { Resources.ReservationsLabels.MultipleReservations }";
         }
 
         public static int CalculateNextCalendarMonth(this HtmlHelper helper, int month)
@@ -140,7 +140,6 @@
 
             return new SelectList(enumValues, "Value", "Text", string.Empty);
         }
-
 
         public static string GetDataTablesCulture(this HtmlHelper helper)
         {

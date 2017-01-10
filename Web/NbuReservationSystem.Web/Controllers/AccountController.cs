@@ -1,6 +1,5 @@
 ﻿namespace NbuReservationSystem.Web.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
@@ -10,14 +9,18 @@
     using Microsoft.Owin.Security;
 
     using NbuReservationSystem.Data.Models;
-    using NbuReservationSystem.Web.ViewModels.Account;
+    using NbuReservationSystem.Services.Web;
+    using NbuReservationSystem.Web.App_GlobalResources.Labels;
+    using NbuReservationSystem.Web.Models.Requests.Account;
 
     [Authorize]
     public class AccountController : BaseController
     {
         private ApplicationSignInManager signInManager;
-
         private ApplicationUserManager userManager;
+
+        // TODO: refactor MVC5's ugly boilerplate code to allow proper Autofac DI!!!
+        private IEmailService emailService = new EmailService();
 
         public AccountController()
         {
@@ -92,7 +95,7 @@
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 default:
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    this.ModelState.AddModelError(string.Empty, AccountLabels.InvalidLoginInfo);
                     return this.View(model);
             }
         }
@@ -149,18 +152,16 @@
             if (this.ModelState.IsValid)
             {
                 var user = await this.UserManager.FindByNameAsync(model.Email);
-                if (user == null || !await this.UserManager.IsEmailConfirmedAsync(user.Id))
+                if (user == null)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
+                    // Don't reveal that the user does not exist
                     return this.View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                var code = await this.UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, this.Request.Url.Scheme);
+                this.emailService.SendForgottenPasswordEmail(user.Email, callbackUrl);
+                return this.RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -216,88 +217,6 @@
             return this.View();
         }
 
-        // POST: /Account/ExternalLogin
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
-        {
-            // Request a redirect to the external login provider
-            return new ChallengeResult(
-                provider,
-                this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
-        }
-
-        // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
-            {
-                return this.RedirectToAction("Login");
-            }
-
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await this.SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return this.RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                default:
-
-                    // If the user does not have an account, then prompt the user to create an account
-                    this.ViewBag.ReturnUrl = returnUrl;
-                    this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View(
-                        "ExternalLoginConfirmation",
-                        new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-            }
-        }
-
-        // POST: /Account/ExternalLoginConfirmation
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(
-            ExternalLoginConfirmationViewModel model,
-            string returnUrl)
-        {
-            if (this.User.Identity.IsAuthenticated)
-            {
-                return this.RedirectToAction("Index", "Manage");
-            }
-
-            if (this.ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return this.View("ExternalLoginFailure");
-                }
-
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await this.UserManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return this.RedirectToLocal(returnUrl);
-                    }
-                }
-
-                this.AddErrors(result);
-            }
-
-            this.ViewBag.ReturnUrl = returnUrl;
-            return this.View(model);
-        }
-
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -305,13 +224,6 @@
         {
             this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return this.RedirectToAction("Index", "Home");
-        }
-
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return this.View();
         }
 
         protected override void Dispose(bool disposing)
@@ -350,36 +262,6 @@
             }
 
             return this.RedirectToAction("Index", "Home");
-        }
-
-        internal class ChallengeResult : HttpUnauthorizedResult
-        {
-            // Used for XSRF protection when adding external logins
-            private const string XsrfKey = "XsrfId";
-
-            public ChallengeResult(string provider, string redirectUri, string userId = null)
-            {
-                this.LoginProvider = provider;
-                this.RedirectUri = redirectUri;
-                this.UserId = userId;
-            }
-
-            public string LoginProvider { get; set; }
-
-            public string RedirectUri { get; set; }
-
-            public string UserId { get; set; }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                var properties = new AuthenticationProperties { RedirectUri = this.RedirectUri };
-                if (this.UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = this.UserId;
-                }
-
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, this.LoginProvider);
-            }
         }
     }
 }
