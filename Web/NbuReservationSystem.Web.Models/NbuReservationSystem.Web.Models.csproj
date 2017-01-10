@@ -55,14 +55,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\Account\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="Requests\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Requests\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="Requests\Account\LoginViewModel.cs" />
     <Compile Include="Requests\Account\RegisterViewModel.cs" />
     <Compile Include="Requests\Account\ResetPasswordViewModel.cs" />
     <Compile Include="Requests\Manage\ChangePasswordViewModel.cs" />
-    <Compile Include="Requests\Manage\IndexViewModel.cs" />
     <Compile Include="Requests\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Requests\Reservations\ReservationViewModel.cs" />
     <Compile Include="Requests\Reservations\OrganizerViewModel.cs" />

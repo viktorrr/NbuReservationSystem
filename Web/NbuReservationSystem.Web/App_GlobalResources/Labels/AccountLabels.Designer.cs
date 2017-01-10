@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NbuReservationSystem.Web.App_GlobalResources.Account {
+namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Account {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Account.AccountLabels", typeof(AccountLabels).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Labels.AccountLabels", typeof(AccountLabels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Account {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Смяна на паролата.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
             }
         }
         
@@ -97,11 +106,29 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Account {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невалидна комбинация от име и парола..
+        /// </summary>
+        public static string InvalidLoginInfo {
+            get {
+                return ResourceManager.GetString("InvalidLoginInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нова парола.
         /// </summary>
         public static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Следваща стъпка...
+        /// </summary>
+        public static string NextStep {
+            get {
+                return ResourceManager.GetString("NextStep", resourceCulture);
             }
         }
         

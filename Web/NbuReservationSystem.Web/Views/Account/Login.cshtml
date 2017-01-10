@@ -1,6 +1,5 @@
-﻿@using NbuReservationSystem.Web.App_GlobalResources.Account
-@using NbuReservationSystem.Web.ViewModels.Account
-@model LoginViewModel
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+@model NbuReservationSystem.Web.Models.Requests.Account.LoginViewModel
 @{
     ViewBag.Title = AccountLabels.SystemLogin;
 }
@@ -40,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
+                            <input type="submit" value="@ButtonsLabels.Submit" class="btn btn-default" />
                             <hr/>
                             <p>@Html.ActionLink(AccountLabels.ForgottenPassword, "ForgotPassword")</p>
                         </div>

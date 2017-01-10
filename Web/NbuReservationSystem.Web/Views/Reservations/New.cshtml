@@ -2,7 +2,8 @@
 @using NbuReservationSystem.Web.App_GlobalResources.Reservations
 @using NbuReservationSystem.Web.Extensions
 @using NbuReservationSystem.Web.Models.Enums
-@using Labels = Resources.Labels
+@using Resources
+
 @model NbuReservationSystem.Web.Models.Requests.Reservations.ReservationViewModel
 @{
     ViewBag.Title = "title";
@@ -16,17 +17,17 @@
                 {
                     if (this.ViewBag.RequestSucceeded)
                     {
-                        <p class="alert alert-danger" role="alert">@Labels.RequestFailed</p>
+                        <p class="alert alert-danger" role="alert">@ReservationsLabels.RequestFailed</p>
                     }
                     else
                     {
-                        <p class="alert alert-success" role="alert">@Labels.RequestSucceeded</p>
+                        <p class="alert alert-success" role="alert">@ReservationsLabels.RequestSucceeded</p>
                     }
                 }
             }
 
             <div class="row text-center">
-                <h1>@Labels.NewReservation</h1>
+                <h1>@ReservationsLabels.NewReservation</h1>
             </div>
 
             @Html.ValidationSummary(true)
@@ -35,11 +36,11 @@
             {
                 @Html.AntiForgeryToken()
 
-                <h3>@Labels.ReservationDetails</h3>
+                <h3>@ReservationsLabels.ReservationDetails</h3>
                 <hr />
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Title, Labels.Title, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Title, ReservationsLabels.Title, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Title)
@@ -47,7 +48,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Description, Labels.Description, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Description, ReservationsLabels.Description, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Description)
@@ -55,7 +56,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Date, Labels.Date, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Date, ReservationsLabels.Date, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         <div class='input-group date' id="new-reservation-date">
                             @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
@@ -70,7 +71,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.StartHour, Labels.BeginsOn, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.StartHour, ReservationsLabels.BeginsOn, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         <div class='input-group date' id="new-reservation-begins-on">
                             @Html.TextBoxFor(x => x.StartHour, new { @class = "form-control" })
@@ -85,7 +86,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.EndHour, Labels.EndsOn, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.EndHour, ReservationsLabels.EndsOn, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         <div class='input-group date' id="new-reservation-ends-on">
                             @Html.TextBoxFor(x => x.EndHour, new { @class = "form-control" })
@@ -100,7 +101,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Assignor, Labels.Assignor, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Assignor, ReservationsLabels.Assignor, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         @Html.TextBoxFor(x => x.Assignor, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Assignor)
@@ -112,17 +113,17 @@
                         <div class="checkbox">
                             <label>
                                 @Html.CheckBoxFor(x => x.IsEquipmentRequired)
-                                @Html.LabelFor(x => x.IsEquipmentRequired, Labels.IsEquipmentRequired)
+                                @Html.LabelFor(x => x.IsEquipmentRequired, ReservationsLabels.IsEquipmentRequired)
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <h3>@Labels.PointOfContact</h3>
+                <h3>@ReservationsLabels.PointOfContact</h3>
                 <hr />
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Organizer.Name, Labels.Name, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Organizer.Name, ReservationsLabels.Name, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         @Html.TextBoxFor(x => x.Organizer.Name, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Organizer.Name)
@@ -130,7 +131,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Organizer.Email, Labels.Email, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Organizer.Email, ReservationsLabels.Email, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         @Html.TextBoxFor(x => x.Organizer.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Organizer.Email)
@@ -138,7 +139,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Organizer.PhoneNumber, Labels.PhoneNumber, new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(x => x.Organizer.PhoneNumber, ReservationsLabels.PhoneNumber, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
                         @Html.TextBoxFor(x => x.Organizer.PhoneNumber, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Organizer.PhoneNumber)
@@ -146,13 +147,13 @@
                 </div>
 
                 <h3 id="repetition-policy">
-                    @Labels.RepetitionPolicy <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                    @ReservationsLabels.RepetitionPolicy <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                 </h3>
                 <hr />
 
                 <div id="repetition-policy-container">
                     <div class="form-group">
-                        @Html.LabelFor(x => x.RepetitionPolicy.RepetitionWindow, Labels.RepetitionWindow, new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(x => x.RepetitionPolicy.RepetitionWindow, ReservationsLabels.RepetitionWindow, new { @class = "control-label col-md-4" })
                         <div class="col-md-24">
                             @Html.TextBoxFor(x => x.RepetitionPolicy.RepetitionWindow, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.RepetitionPolicy.RepetitionWindow, ErrorMessages.PositiveNumberIsRequired)
@@ -174,17 +175,17 @@
 
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.OneTimeOnly, new { @class = "control-label col-md-1" })
-                        @Html.Label(Labels.OneTimeOnly, new { @class = "control-label col-md-3" })
+                        @Html.Label(ReservationsLabels.OneTimeOnly, new { @class = "control-label col-md-3" })
                     </div>
 
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.Forever, new { @class = "control-label col-md-1" })
-                        @Html.Label(Labels.Forever, new { @class = "control-label col-md-3" })
+                        @Html.Label(ReservationsLabels.Forever, new { @class = "control-label col-md-3" })
                     </div>
 
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndAfterExactNumberOfRepetitions, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, Labels.RepetitionsCount, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, ReservationsLabels.RepetitionsCount, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
                             @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.RepetitionPolicy.Repetitions, ErrorMessages.PositiveNumberIsRequired)
@@ -193,7 +194,7 @@
 
                     <div class="form-group">
                         @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndOnSpecificDate, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, Labels.EndDate, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, ReservationsLabels.EndDate, new { @class = "control-label col-md-3" })
                         <div class="col-md-24">
                             <div class='input-group date' id="end-date">
                                 @Html.TextBoxFor(x => x.RepetitionPolicy.EndDate, new { @class = "form-control" })
@@ -207,8 +208,8 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="submit" value="@Labels.Save" class="btn btn-default" />
-                        <input type="reset" value="@Labels.Clear" class="btn btn-default" />
+                        <input type="submit" value="@ReservationsLabels.Save" class="btn btn-default" />
+                        <input type="reset" value="@ReservationsLabels.Clear" class="btn btn-default" />
                     </div>
                 </div>
                             }
@@ -257,7 +258,7 @@
                         isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
                     });
 
-                // when the labels are clicked, mark the given checkbox
+                // when the ReservationsLabels are clicked, mark the given checkbox
                 $('#repetition-policy-container > div.row label.col-md-3')
                     .toArray()
                     .forEach(function (label) {

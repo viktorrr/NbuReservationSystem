@@ -6,7 +6,7 @@
 
     public class ResetPasswordViewModel
     {
-        [EmailAddress]
+        [EmailAddress(ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(ValidationMessages))]
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string Email { get; set; }
 
@@ -17,7 +17,7 @@
 
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
-        [Compare("NewPassword", ErrorMessageResourceName = "PasswordMissmatch", ErrorMessageResourceType = typeof(ValidationMessages))]
+        [Compare("Password", ErrorMessageResourceName = "PasswordMissmatch", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

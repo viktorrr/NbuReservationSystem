@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
@@ -128,6 +131,15 @@
   </data>
   <data name="ForgottenPasswordMailSent" xml:space="preserve">
     <value>An email with password reset link was sent.</value>
+  </data>
+  <data name="InvalidLoginInfo" xml:space="preserve">
+    <value>Invalid combination of username and password.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Next step..</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
