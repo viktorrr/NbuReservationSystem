@@ -20,18 +20,21 @@
                     @Html.LabelFor(m => m.Email, AccountLabels.Email, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email)
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Password, AccountLabels.Password, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.ConfirmPassword, AccountLabels.ConfirmPassword, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
                     </div>
                 </div>
                 <div class="form-group">
