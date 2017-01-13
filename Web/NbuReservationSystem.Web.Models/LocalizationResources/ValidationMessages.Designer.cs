@@ -61,6 +61,15 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невалиден цвят..
+        /// </summary>
+        public static string InvalidColor {
+            get {
+                return ResourceManager.GetString("InvalidColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Въведеният е-майл е невалиден..
         /// </summary>
         public static string InvalidEmail {
@@ -111,6 +120,15 @@ namespace NbuReservationSystem.Web.Models.LocalizationResources {
         public static string RequiredField {
             get {
                 return ResourceManager.GetString("RequiredField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Полето трябва да е между {2} и {1} символа..
+        /// </summary>
+        public static string StringLength {
+            get {
+                return ResourceManager.GetString("StringLength", resourceCulture);
             }
         }
         

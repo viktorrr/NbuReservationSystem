@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
+namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Weekdays {
+    public class HallsLabels {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Weekdays() {
+        internal HallsLabels() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Reservations.Weekdays", typeof(Weekdays).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Labels.HallsLabels", typeof(HallsLabels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,47 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Петък.
+        ///   Looks up a localized string similar to Цвят.
         /// </summary>
-        public static string Friday {
+        public static string Color {
             get {
-                return ResourceManager.GetString("Friday", resourceCulture);
+                return ResourceManager.GetString("Color", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Понеделник.
+        ///   Looks up a localized string similar to Залата е добавена успешно!.
         /// </summary>
-        public static string Monday {
+        public static string HallAdded {
             get {
-                return ResourceManager.GetString("Monday", resourceCulture);
+                return ResourceManager.GetString("HallAdded", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Събота.
+        ///   Looks up a localized string similar to Име на залата.
         /// </summary>
-        public static string Saturday {
+        public static string HallName {
             get {
-                return ResourceManager.GetString("Saturday", resourceCulture);
+                return ResourceManager.GetString("HallName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Неделя.
+        ///   Looks up a localized string similar to Добавяне на нова зала.
         /// </summary>
-        public static string Sunday {
+        public static string NewHall {
             get {
-                return ResourceManager.GetString("Sunday", resourceCulture);
+                return ResourceManager.GetString("NewHall", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Четвъртък.
+        ///   Looks up a localized string similar to Успешно бяха добавени {0} от {1} записа от Google календара..
         /// </summary>
-        public static string Thursday {
+        public static string ProcessedGoogleCalendarEvenets {
             get {
-                return ResourceManager.GetString("Thursday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Вторник.
-        /// </summary>
-        public static string Tuesday {
-            get {
-                return ResourceManager.GetString("Tuesday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сряда.
-        /// </summary>
-        public static string Wednesday {
-            get {
-                return ResourceManager.GetString("Wednesday", resourceCulture);
+                return ResourceManager.GetString("ProcessedGoogleCalendarEvenets", resourceCulture);
             }
         }
     }

@@ -117,31 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidColor" xml:space="preserve">
-    <value>Невалиден цвят.</value>
+  <data name="Color" xml:space="preserve">
+    <value>Цвят</value>
   </data>
-  <data name="InvalidEmail" xml:space="preserve">
-    <value>Въведеният е-майл е невалиден.</value>
+  <data name="HallAdded" xml:space="preserve">
+    <value>Залата е добавена успешно!</value>
   </data>
-  <data name="InvalidePhoneNumber" xml:space="preserve">
-    <value>Невалиден номер - трябва да бъде +359XXXXXXXXX или 10 цифрено число, започващо с 0.</value>
+  <data name="HallName" xml:space="preserve">
+    <value>Име на залата</value>
   </data>
-  <data name="PasswordLength" xml:space="preserve">
-    <value>Паролата трябва да е между 6 и 100 символа.</value>
+  <data name="NewHall" xml:space="preserve">
+    <value>Добавяне на нова зала</value>
   </data>
-  <data name="PasswordMissmatch" xml:space="preserve">
-    <value>Двете пароли не съвпадат.</value>
-  </data>
-  <data name="PositiveNumberIsRequired" xml:space="preserve">
-    <value>Позволени са само положителни числа.</value>
-  </data>
-  <data name="RequiredField" xml:space="preserve">
-    <value>Полето е задължително.</value>
-  </data>
-  <data name="StringLength" xml:space="preserve">
-    <value>Полето трябва да е между {2} и {1} символа.</value>
-  </data>
-  <data name="TooLongInput" xml:space="preserve">
-    <value>Броят допустим символи е не повече от {1}.</value>
+  <data name="ProcessedGoogleCalendarEvenets" xml:space="preserve">
+    <value>Успешно бяха добавени {0} от {1} записа от Google календара.</value>
   </data>
 </root>

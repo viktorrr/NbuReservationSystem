@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201701081001054_RenamedOrganiserToOrganizer.Designer.cs">
       <DependentUpon>201701081001054_RenamedOrganiserToOrganizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701122114081_AddedHalls.cs" />
+    <Compile Include="Migrations\201701122114081_AddedHalls.Designer.cs">
+      <DependentUpon>201701122114081_AddedHalls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701081001054_RenamedOrganiserToOrganizer.resx">
       <DependentUpon>201701081001054_RenamedOrganiserToOrganizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701122114081_AddedHalls.resx">
+      <DependentUpon>201701122114081_AddedHalls.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

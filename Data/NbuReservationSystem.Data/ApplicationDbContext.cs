@@ -25,6 +25,8 @@
 
         public IDbSet<Reservation> Reservations { get; set; }
 
+        public IDbSet<Hall> Halls { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

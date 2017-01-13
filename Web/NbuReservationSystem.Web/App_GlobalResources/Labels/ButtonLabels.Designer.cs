@@ -22,14 +22,14 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ButtonsLabels {
+    public class ButtonLabels {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ButtonsLabels() {
+        internal ButtonLabels() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Labels.ButtonsLabels", typeof(ButtonsLabels).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NbuReservationSystem.Web.App_GlobalResources.Labels.ButtonLabels", typeof(ButtonLabels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

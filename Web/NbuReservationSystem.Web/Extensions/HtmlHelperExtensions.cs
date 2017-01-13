@@ -11,6 +11,9 @@
     using Models.Requests.Reservations;
     using Models.Responses.Reservations;
 
+    using NbuReservationSystem.Web.App_GlobalResources.Labels;
+    using NbuReservationSystem.Web.App_GlobalResources.Reservations;
+
     public static class HtmlHelperExtensions
     {
         // TODO: most of these functions / dictionaries should live somewhere else!
@@ -23,29 +26,29 @@
         {
             MonthResources = new Dictionary<Month, Func<string>>
             {
-                [Month.January] = () => Resources.Months.January,
-                [Month.February] = () => Resources.Months.February,
-                [Month.March] = () => Resources.Months.March,
-                [Month.April] = () => Resources.Months.April,
-                [Month.May] = () => Resources.Months.May,
-                [Month.July] = () => Resources.Months.July,
-                [Month.June] = () => Resources.Months.June,
-                [Month.August] = () => Resources.Months.August,
-                [Month.September] = () => Resources.Months.September,
-                [Month.October] = () => Resources.Months.October,
-                [Month.November] = () => Resources.Months.November,
-                [Month.December] = () => Resources.Months.December,
+                [Month.January] = () => Months.January,
+                [Month.February] = () => Months.February,
+                [Month.March] = () => Months.March,
+                [Month.April] = () => Months.April,
+                [Month.May] = () => Months.May,
+                [Month.July] = () => Months.July,
+                [Month.June] = () => Months.June,
+                [Month.August] = () => Months.August,
+                [Month.September] = () => Months.September,
+                [Month.October] = () => Months.October,
+                [Month.November] = () => Months.November,
+                [Month.December] = () => Months.December,
             };
 
             DayResources = new Dictionary<Day, Func<string>>
             {
-                [Day.Monday] = () => Resources.Weekdays.Monday,
-                [Day.Tuesday] = () => Resources.Weekdays.Tuesday,
-                [Day.Wednesday] = () => Resources.Weekdays.Wednesday,
-                [Day.Thursday] = () => Resources.Weekdays.Thursday,
-                [Day.Friday] = () => Resources.Weekdays.Friday,
-                [Day.Saturday] = () => Resources.Weekdays.Saturday,
-                [Day.Sunday] = () => Resources.Weekdays.Sunday,
+                [Day.Monday] = () => Weekdays.Monday,
+                [Day.Tuesday] = () => Weekdays.Tuesday,
+                [Day.Wednesday] = () => Weekdays.Wednesday,
+                [Day.Thursday] = () => Weekdays.Thursday,
+                [Day.Friday] = () => Weekdays.Friday,
+                [Day.Saturday] = () => Weekdays.Saturday,
+                [Day.Sunday] = () => Weekdays.Sunday,
             };
         }
 
@@ -79,10 +82,10 @@
         {
             if (model.Reservations.Count == 1)
             {
-                return $"{model.Reservations.Count} { Resources.ReservationsLabels.SingleReservation }";
+                return $"{model.Reservations.Count} { ReservationLabels.SingleReservation }";
             }
 
-            return $"{model.Reservations.Count} { Resources.ReservationsLabels.MultipleReservations }";
+            return $"{model.Reservations.Count} { ReservationLabels.MultipleReservations }";
         }
 
         public static int CalculateNextCalendarMonth(this HtmlHelper helper, int month)

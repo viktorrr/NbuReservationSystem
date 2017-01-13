@@ -1,0 +1,26 @@
+﻿@model NbuReservationSystem.Web.Models.Responses.Halls.NewHallSuccess
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-28">
+            <h2>@Resources.HallsLabels.HallAdded</h2>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-28">
+            <p class="alert alert-success" role="alert">
+                @Resources.HallsLabels.HallAdded
+                @if (Model.Added.HasValue)
+                {
+                    <hr />
+                    @(string.Format(Resources.HallsLabels.ProcessedGoogleCalendarEvenets, Model.Added.Value, Model.Total))
+                }
+            </p>
+        </div>
+    </div>
+</div>

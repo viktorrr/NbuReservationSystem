@@ -201,15 +201,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdministrationLabels.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Labels\ButtonsLabels.designer.cs">
+    <Compile Include="App_GlobalResources\Labels\ButtonLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ButtonsLabels.resx</DependentUpon>
+      <DependentUpon>ButtonLabels.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Labels\ButtonsLabels.en.designer.cs">
+    <Compile Include="App_GlobalResources\Labels\ButtonLabels.en.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ButtonsLabels.en.resx</DependentUpon>
+      <DependentUpon>ButtonLabels.en.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Home\IndexContent.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -221,6 +221,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IndexContent.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Labels\HallsLabels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HallsLabels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Labels\HallsLabels.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HallsLabels.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Reservations\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,15 +241,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Labels\Reservations.en.designer.cs">
+    <Compile Include="App_GlobalResources\Labels\ReservationLabels.en.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Reservations.en.resx</DependentUpon>
+      <DependentUpon>ReservationLabels.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Labels\ReservationsLabels.designer.cs">
+    <Compile Include="App_GlobalResources\Labels\ReservationLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReservationsLabels.resx</DependentUpon>
+      <DependentUpon>ReservationLabels.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Reservations\Months.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -272,6 +282,7 @@
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HallsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
@@ -823,6 +834,8 @@
     <Content Include="Views\Reservations\_CalendarControls.cshtml" />
     <Content Include="Views\Reservations\_Calendar.cshtml" />
     <Content Include="Views\Reservations\Administration.cshtml" />
+    <Content Include="Views\Halls\New.cshtml" />
+    <Content Include="Views\Halls\NewHallSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
@@ -867,45 +880,45 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Reservations\Weekdays.en.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Reservations\Weekdays.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Weekdays.en.designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Reservations\Weekdays.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Reservations\Weekdays.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Weekdays.Designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Labels\Reservations.en.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Reservations.en.designer.cs</LastGenOutput>
-    </Content>
+    <EmbeddedResource Include="App_GlobalResources\Labels\ReservationLabels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReservationLabels.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Reservations\Months.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Reservations\Months.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Months.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Reservations\Months.en.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Reservations\Months.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Months.en.designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Labels\AdministrationLabels.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Labels\AdministrationLabels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdministrationLabels.Designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Labels\AdministrationLabels.en.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Labels\AdministrationLabels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdministrationLabels.en.designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Labels\AccountLabels.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AccountLabels.en.designer.cs</LastGenOutput>
@@ -915,13 +928,13 @@
       <LastGenOutput>AccountLabels.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources\Labels\ButtonsLabels.resx">
+    <EmbeddedResource Include="App_GlobalResources\Labels\ButtonLabels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ButtonsLabels.designer.cs</LastGenOutput>
+      <LastGenOutput>ButtonLabels.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources\Labels\ButtonsLabels.en.resx">
+    <EmbeddedResource Include="App_GlobalResources\Labels\ButtonLabels.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ButtonsLabels.en.designer.cs</LastGenOutput>
+      <LastGenOutput>ButtonLabels.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Home\IndexContent.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -931,14 +944,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IndexContent.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Labels\HallsLabels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HallsLabels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Labels\HallsLabels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HallsLabels.en.designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Reservations\ErrorMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="App_GlobalResources\Labels\ReservationsLabels.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ReservationsLabels.designer.cs</LastGenOutput>
-    </Content>
+    <EmbeddedResource Include="App_GlobalResources\Labels\ReservationLabels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReservationLabels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Reservations\ErrorMessages.en.resx">

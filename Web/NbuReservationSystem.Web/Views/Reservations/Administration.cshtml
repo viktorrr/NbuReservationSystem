@@ -1,28 +1,29 @@
 ﻿@using System.Threading
+@using NbuReservationSystem.Web.App_GlobalResources.Labels
 @model List<NbuReservationSystem.Web.Models.Responses.Reservations.ReservationsAdministrationViewModel>
 
 @{
-    ViewBag.Title = Resources.AdministrationLabels.ReservationsAdministration;
+    ViewBag.Title = AdministrationLabels.ReservationsAdministration;
 }
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-28">
-            <h2 class="text-center">@Resources.AdministrationLabels.ReservationsAdministration</h2>
+            <h2 class="text-center">@AdministrationLabels.ReservationsAdministration</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered dt-responsive nowrap" id="Data">
                     <thead>
                     <tr>
-                        <th>@Resources.AdministrationLabels.Title</th>
-                        <th>@Resources.AdministrationLabels.Date</th>
-                        <th>@Resources.AdministrationLabels.StartHour</th>
-                        <th>@Resources.AdministrationLabels.EndHour</th>
-                        <th>@Resources.AdministrationLabels.Hall</th>
-                        <th>@Resources.AdministrationLabels.Equipment</th>
-                        <th>@Resources.AdministrationLabels.Assignor</th>
-                        <th>@Resources.AdministrationLabels.Organizer</th>
-                        <th>@Resources.AdministrationLabels.Email</th>
-                        <th>@Resources.AdministrationLabels.PhoneNumber</th>
+                        <th>@AdministrationLabels.Title</th>
+                        <th>@AdministrationLabels.Date</th>
+                        <th>@AdministrationLabels.StartHour</th>
+                        <th>@AdministrationLabels.EndHour</th>
+                        <th>@AdministrationLabels.Hall</th>
+                        <th>@AdministrationLabels.Equipment</th>
+                        <th>@AdministrationLabels.Assignor</th>
+                        <th>@AdministrationLabels.Organizer</th>
+                        <th>@AdministrationLabels.Email</th>
+                        <th>@AdministrationLabels.PhoneNumber</th>
                         <th>IP</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>

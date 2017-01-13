@@ -1,5 +1,5 @@
-﻿@using NbuReservationSystem.Web.Extensions
-@using Resources
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+@using NbuReservationSystem.Web.Extensions
 @model NbuReservationSystem.Web.Models.Responses.Reservations.DayViewModel
 
 @{
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-28 text-center">
                 <div class="alert alert-danger" role="alert">
-                    <p>@ReservationsLabels.NoReservations</p>
+                    <p>@ReservationLabels.NoReservations</p>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
     {
         <div class="row">
             <div class="col-md-28 center-block">
-                @Html.ActionLink(ReservationsLabels.NewReservation, "New", null, new
+                @Html.ActionLink(ReservationLabels.NewReservation, "New", null, new
                 {
                     @class = "btn btn-default center-block",
                     id = "add-new-reservation"
