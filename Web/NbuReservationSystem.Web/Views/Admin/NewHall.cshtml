@@ -56,7 +56,10 @@
 @section scripts {
     <script>
         $(function() {
-            $('#color-picker-container').colorpicker();
+            $('#color-picker-container').colorpicker({
+                format: 'hex',
+                horizontal: true
+            });
         });
     </script>
 }
