@@ -201,4 +201,7 @@
   <data name="SelectHall" xml:space="preserve">
     <value>Моля изберете зала...</value>
   </data>
+  <data name="NoHalls" xml:space="preserve">
+    <value>Няма добавени зали. Моля свържете се с администратора.</value>
+  </data>
 </root>

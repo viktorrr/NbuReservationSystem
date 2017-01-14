@@ -201,4 +201,7 @@
   <data name="SelectHall" xml:space="preserve">
     <value>Please select a hall...</value>
   </data>
+  <data name="NoHalls" xml:space="preserve">
+    <value>No halls are added. Please contact the administrator.</value>
+  </data>
 </root>

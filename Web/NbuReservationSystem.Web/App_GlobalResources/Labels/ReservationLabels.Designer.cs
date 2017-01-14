@@ -187,6 +187,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Няма добавени зали. Моля свържете се с администратора..
+        /// </summary>
+        public static string NoHalls {
+            get {
+                return ResourceManager.GetString("NoHalls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Няма направени резервации..
         /// </summary>
         public static string NoReservations {
