@@ -9,302 +9,317 @@
     ViewBag.Title = "title";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-28">
-            @{
-                if (this.ViewBag.RequestSucceeded != null)
-                {
-                    if (this.ViewBag.RequestSucceeded)
+@if (Model.HallNames.Count == 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-28">
+                <p class="alert alert-danger">@ReservationLabels.NoHalls</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-28">
+                @{
+                    if (this.ViewBag.RequestSucceeded != null)
                     {
-                        <p class="alert alert-danger" role="alert">@ReservationLabels.RequestFailed</p>
-                    }
-                    else
-                    {
-                        <p class="alert alert-success" role="alert">@ReservationLabels.RequestSucceeded</p>
+                        if (this.ViewBag.RequestSucceeded)
+                        {
+                            <p class="alert alert-danger" role="alert">@ReservationLabels.RequestFailed</p>
+                        }
+                        else
+                        {
+                            <p class="alert alert-success" role="alert">@ReservationLabels.RequestSucceeded</p>
+                        }
                     }
                 }
-            }
 
-            <div class="row text-center">
-                <h1>@ReservationLabels.NewReservation</h1>
-            </div>
-
-            @Html.ValidationSummary(true)
-
-            @using (Html.BeginForm("New", "Reservations", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-
-                <h3>@ReservationLabels.ReservationDetails</h3>
-                <hr />
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Title, ReservationLabels.Title, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Title)
-                    </div>
+                <div class="row text-center">
+                    <h1>@ReservationLabels.NewReservation</h1>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Description, ReservationLabels.Description, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Description)
-                    </div>
-                </div>
+                @Html.ValidationSummary(true)
 
-                <div class="form-group" id="bootstrap-select-container">
-                    <select class="selectpicker show-tick " id="halls-dropdown" name="HallName">
-                        @foreach (var hall in Model.HallNames)
-                        {
-                            <option>@hall</option>
-                        }
-                    </select>
-                    @Html.HiddenFor(x => x.HallName)
-                </div>
+                @using (Html.BeginForm("New", "Reservations", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Date, ReservationLabels.Date, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        <div class='input-group date' id="new-reservation-date">
-                            @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                        <p>
-                            @Html.ValidationMessageFor(x => x.Date)
-                        </p>
-                    </div>
-                </div>
+                    <h3>@ReservationLabels.ReservationDetails</h3>
+                    <hr />
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.StartHour, ReservationLabels.BeginsOn, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        <div class='input-group date' id="new-reservation-begins-on">
-                            @Html.TextBoxFor(x => x.StartHour, new { @class = "form-control" })
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-time"></span>
-                            </span>
-                        </div>
-                        <p>
-                            @Html.ValidationMessageFor(x => x.StartHour)
-                        </p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.EndHour, ReservationLabels.EndsOn, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        <div class='input-group date' id="new-reservation-ends-on">
-                            @Html.TextBoxFor(x => x.EndHour, new { @class = "form-control" })
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-time"></span>
-                            </span>
-                        </div>
-                        <p>
-                            @Html.ValidationMessageFor(x => x.EndHour)
-                        </p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Assignor, ReservationLabels.Assignor, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        @Html.TextBoxFor(x => x.Assignor, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Assignor)
-                    </div>
-                </div>
-
-                <div class="col-md-28">
                     <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                @Html.CheckBoxFor(x => x.IsEquipmentRequired)
-                                @Html.LabelFor(x => x.IsEquipmentRequired, ReservationLabels.IsEquipmentRequired)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>@ReservationLabels.PointOfContact</h3>
-                <hr />
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Organizer.Name, ReservationLabels.Name, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        @Html.TextBoxFor(x => x.Organizer.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Organizer.Name)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Organizer.Email, ReservationLabels.Email, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        @Html.TextBoxFor(x => x.Organizer.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Organizer.Email)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Organizer.PhoneNumber, ReservationLabels.PhoneNumber, new { @class = "control-label col-md-4" })
-                    <div class="col-md-24">
-                        @Html.TextBoxFor(x => x.Organizer.PhoneNumber, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Organizer.PhoneNumber)
-                    </div>
-                </div>
-
-                <h3 id="repetition-policy">
-                    @ReservationLabels.RepetitionPolicy <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-                </h3>
-                <hr />
-
-                <div id="repetition-policy-container">
-                    <div class="form-group">
-                        @Html.LabelFor(x => x.RepetitionPolicy.RepetitionWindow, ReservationLabels.RepetitionWindow, new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(x => x.Title, ReservationLabels.Title, new { @class = "control-label col-md-4" })
                         <div class="col-md-24">
-                            @Html.TextBoxFor(x => x.RepetitionPolicy.RepetitionWindow, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.RepetitionPolicy.RepetitionWindow, ErrorMessages.PositiveNumberIsRequired)
+                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Title)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @{
-                            var days = Enum.GetValues(typeof(Day));
-                            for (int i = 0; i < days.Length; i++)
+                        @Html.LabelFor(x => x.Description, ReservationLabels.Description, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Description)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="bootstrap-select-container">
+                        <select class="selectpicker show-tick " id="halls-dropdown" name="HallName">
+                            @foreach (var hall in Model.HallNames)
                             {
-                                <label class="col-xs-14 col-sm-7 col-md-4">
-                                    @Html.CheckBoxFor(x => Model.RepetitionPolicy.RepetitionDays[i])
-                                    @Html.LabelFor(x => x.RepetitionPolicy.RepetitionDays[i], Html.FormatLocalizedDay(days.GetValue(i)))
-                                </label>
+                                <option>@hall</option>
                             }
-                        }
+                        </select>
+                        @Html.HiddenFor(x => x.HallName)
                     </div>
 
                     <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.OneTimeOnly, new { @class = "control-label col-md-1" })
-                        @Html.Label(ReservationLabels.OneTimeOnly, new { @class = "control-label col-md-3" })
-                    </div>
-
-                    <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.Forever, new { @class = "control-label col-md-1" })
-                        @Html.Label(ReservationLabels.Forever, new { @class = "control-label col-md-3" })
-                    </div>
-
-                    <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndAfterExactNumberOfRepetitions, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, ReservationLabels.RepetitionsCount, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(x => x.Date, ReservationLabels.Date, new { @class = "control-label col-md-4" })
                         <div class="col-md-24">
-                            @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.RepetitionPolicy.Repetitions, ErrorMessages.PositiveNumberIsRequired)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndOnSpecificDate, new { @class = "control-label col-md-1" })
-                        @Html.LabelFor(x => x.RepetitionPolicy.EndDate, ReservationLabels.EndDate, new { @class = "control-label col-md-3" })
-                        <div class="col-md-24">
-                            <div class='input-group date' id="end-date">
-                                @Html.TextBoxFor(x => x.RepetitionPolicy.EndDate, new { @class = "form-control" })
+                            <div class='input-group date' id="new-reservation-date">
+                                @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
+                            <p>
+                                @Html.ValidationMessageFor(x => x.Date)
+                            </p>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input type="submit" value="@ReservationLabels.Save" class="btn btn-default" />
-                        <input type="reset" value="@ReservationLabels.Clear" class="btn btn-default" />
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.StartHour, ReservationLabels.BeginsOn, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            <div class='input-group date' id="new-reservation-begins-on">
+                                @Html.TextBoxFor(x => x.StartHour, new { @class = "form-control" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                            <p>
+                                @Html.ValidationMessageFor(x => x.StartHour)
+                            </p>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.EndHour, ReservationLabels.EndsOn, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            <div class='input-group date' id="new-reservation-ends-on">
+                                @Html.TextBoxFor(x => x.EndHour, new { @class = "form-control" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                            <p>
+                                @Html.ValidationMessageFor(x => x.EndHour)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Assignor, ReservationLabels.Assignor, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            @Html.TextBoxFor(x => x.Assignor, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Assignor)
+                        </div>
+                    </div>
+
+                    <div class="col-md-28">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(x => x.IsEquipmentRequired)
+                                    @Html.LabelFor(x => x.IsEquipmentRequired, ReservationLabels.IsEquipmentRequired)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>@ReservationLabels.PointOfContact</h3>
+                    <hr />
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Organizer.Name, ReservationLabels.Name, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            @Html.TextBoxFor(x => x.Organizer.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Organizer.Name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Organizer.Email, ReservationLabels.Email, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            @Html.TextBoxFor(x => x.Organizer.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Organizer.Email)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Organizer.PhoneNumber, ReservationLabels.PhoneNumber, new { @class = "control-label col-md-4" })
+                        <div class="col-md-24">
+                            @Html.TextBoxFor(x => x.Organizer.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Organizer.PhoneNumber)
+                        </div>
+                    </div>
+
+                    <h3 id="repetition-policy">
+                        @ReservationLabels.RepetitionPolicy <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                    </h3>
+                    <hr />
+
+                    <div id="repetition-policy-container">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RepetitionPolicy.RepetitionWindow, ReservationLabels.RepetitionWindow, new { @class = "control-label col-md-4" })
+                            <div class="col-md-24">
+                                @Html.TextBoxFor(x => x.RepetitionPolicy.RepetitionWindow, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.RepetitionPolicy.RepetitionWindow, ErrorMessages.PositiveNumberIsRequired)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @{
+                                var days = Enum.GetValues(typeof(Day));
+                                for (int i = 0; i < days.Length; i++)
+                                {
+                                    <label class="col-xs-14 col-sm-7 col-md-4">
+                                        @Html.CheckBoxFor(x => Model.RepetitionPolicy.RepetitionDays[i])
+                                        @Html.LabelFor(x => x.RepetitionPolicy.RepetitionDays[i], Html.FormatLocalizedDay(days.GetValue(i)))
+                                    </label>
+                                }
                             }
+                        </div>
+
+                        <div class="form-group">
+                            @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.OneTimeOnly, new { @class = "control-label col-md-1" })
+                            @Html.Label(ReservationLabels.OneTimeOnly, new { @class = "control-label col-md-3" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.Forever, new { @class = "control-label col-md-1" })
+                            @Html.Label(ReservationLabels.Forever, new { @class = "control-label col-md-3" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndAfterExactNumberOfRepetitions, new { @class = "control-label col-md-1" })
+                            @Html.LabelFor(x => x.RepetitionPolicy.Repetitions, ReservationLabels.RepetitionsCount, new { @class = "control-label col-md-3" })
+                            <div class="col-md-24">
+                                @Html.TextBoxFor(x => x.RepetitionPolicy.Repetitions, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.RepetitionPolicy.Repetitions, ErrorMessages.PositiveNumberIsRequired)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.RadioButtonFor(x => x.RepetitionPolicy.RepetitionType, RepetitionType.EndOnSpecificDate, new { @class = "control-label col-md-1" })
+                            @Html.LabelFor(x => x.RepetitionPolicy.EndDate, ReservationLabels.EndDate, new { @class = "control-label col-md-3" })
+                            <div class="col-md-24">
+                                <div class='input-group date' id="end-date">
+                                    @Html.TextBoxFor(x => x.RepetitionPolicy.EndDate, new { @class = "form-control" })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="@ReservationLabels.Save" class="btn btn-default" />
+                            <input type="reset" value="@ReservationLabels.Clear" class="btn btn-default" />
+                        </div>
+                    </div>
+                                }
+            </div>
+
         </div>
-
     </div>
-</div>
 
-@section scripts {
-    <script>
-        $(document)
-            .ready(function () {
-                var calendarSettings = {
-                    format: 'YYYY-MM-DD',
-                    locale: 'bg',
-                    minDate: moment(moment().utc().add(2, 'h')),
-                    date: null
-                };
-                var timeSettings = {
-                    format: 'HH:mm',
-                    locale: 'bg'
-                };
+    @section scripts {
+        <script>
+            $(document)
+                .ready(function () {
+                    var calendarSettings = {
+                        format: 'YYYY-MM-DD',
+                        locale: 'bg',
+                        minDate: moment(moment().utc().add(2, 'h')),
+                        date: null
+                    };
+                    var timeSettings = {
+                        format: 'HH:mm',
+                        locale: 'bg'
+                    };
 
-                //  prepare the date pickers
-                $('#new-reservation-date').datetimepicker(calendarSettings);
-                $('#end-date').datetimepicker(calendarSettings);
+                    //  prepare the date pickers
+                    $('#new-reservation-date').datetimepicker(calendarSettings);
+                    $('#end-date').datetimepicker(calendarSettings);
 
-                // prepare the time pickers
-                $('#new-reservation-begins-on').datetimepicker(timeSettings);
-                $('#new-reservation-ends-on').datetimepicker(timeSettings);
+                    // prepare the time pickers
+                    $('#new-reservation-begins-on').datetimepicker(timeSettings);
+                    $('#new-reservation-ends-on').datetimepicker(timeSettings);
 
-                // show/hide the repetition policy on click
-                var isRepetitionPolicyHidden = false,
-                    $container = $('#repetition-policy-container');
+                    // show/hide the repetition policy on click
+                    var isRepetitionPolicyHidden = false,
+                        $container = $('#repetition-policy-container');
 
-                $container.hide();
+                    $container.hide();
 
-                $('#repetition-policy')
-                    .click(function () {
-                        if (isRepetitionPolicyHidden) {
-                            $container.hide();
-                        } else {
-                            $container.fadeIn('slow');
-                        }
+                    $('#repetition-policy')
+                        .click(function () {
+                            if (isRepetitionPolicyHidden) {
+                                $container.hide();
+                            } else {
+                                $container.fadeIn('slow');
+                            }
 
-                        isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
-                    });
-
-                // when the ReservationLabels are clicked, mark the given checkbox
-                $('#repetition-policy-container > div.row label.col-md-3')
-                    .toArray()
-                    .forEach(function (label) {
-                        var $label = $(label);
-
-                        $label.click(function () {
-                            $label.prev().prop('checked', true);
+                            isRepetitionPolicyHidden = !isRepetitionPolicyHidden;
                         });
-                    });
 
-                // when then inputs are clicked, select the checkbox...
-                // TODO: this is the most ugliest fix ever! fix it!!!
-                $('#repetition-policy-container > div.row label.col-md-3')
-                    .parent()
-                    .find('.form-control')
-                    .toArray()
-                    .forEach(function (input) {
-                        var $input = $(input);
+                    // when the ReservationLabels are clicked, mark the given checkbox
+                    $('#repetition-policy-container > div.row label.col-md-3')
+                        .toArray()
+                        .forEach(function (label) {
+                            var $label = $(label);
 
-                        $input.click(function () {
-                            $input.parent().parent().find('label').click();
-                            $input.parent().parent().parent().find('label').click();
+                            $label.click(function () {
+                                $label.prev().prop('checked', true);
+                            });
                         });
-                    });
 
-                // by default - mark one-time-only
-                $('#RepetitionPolicy_RepetitionType').prop('checked', true);
+                    // when then inputs are clicked, select the checkbox...
+                    // TODO: this is the most ugliest fix ever! fix it!!!
+                    $('#repetition-policy-container > div.row label.col-md-3')
+                        .parent()
+                        .find('.form-control')
+                        .toArray()
+                        .forEach(function (input) {
+                            var $input = $(input);
 
-                $('#halls-dropdown li').on('click', function () {
-                    $('#HallName').val($(this).text());
-                });
+                            $input.click(function () {
+                                $input.parent().parent().find('label').click();
+                                $input.parent().parent().parent().find('label').click();
+                            });
+                        });
 
-                @if (!string.IsNullOrEmpty(Model.HallName))
+                    // by default - mark one-time-only
+                    $('#RepetitionPolicy_RepetitionType').prop('checked', true);
+
+                    $('#halls-dropdown li')
+                        .on('click',
+                            function () {
+                                $('#HallName').val($(this).text());
+                            });
+
+                    @if (!string.IsNullOrEmpty(Model.HallName))
                 {
                     @:$('#HallName').val("@Model.HallName");
-                }
-            });
-    </script>
+                                    }
+                });
+        </script>
+    }
 }
