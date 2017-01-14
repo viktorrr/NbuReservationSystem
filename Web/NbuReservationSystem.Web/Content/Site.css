@@ -256,3 +256,7 @@ input[type="checkbox"].input-validation-error {
 #bootstrap-select-container {
     margin: 15px auto;
 }
+
+.calendar-today {
+    border-bottom: 5px solid black;
+}

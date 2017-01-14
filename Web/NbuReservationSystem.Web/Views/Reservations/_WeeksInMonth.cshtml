@@ -1,5 +1,11 @@
 ﻿@using NbuReservationSystem.Web.Extensions
 @model  IList<NbuReservationSystem.Web.Models.Requests.Reservations.WeekViewModel>
+@{
+    var now = DateTime.UtcNow.AddHours(2).Day;
+    var defaultPanelClasses = "panel panel-default panel-day ";
+    var todayPanelClasses = defaultPanelClasses + "calendar-today";
+    var panelClasses = todayPanelClasses;
+}
 
 @foreach (var week in Model)
 {
@@ -9,7 +15,10 @@
                 @foreach (var day in week.Days)
                 {
                     <div class="col-md-4 day-container">
-                        <div class="panel panel-default panel-day">
+                        @{
+                            panelClasses = day.Day.Day == now ? todayPanelClasses : defaultPanelClasses;
+                        }
+                        <div class="@panelClasses">
                             <div class="panel-body">
                                 <p class="text-right day-number">
                                     @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations",
@@ -51,8 +60,8 @@
                             </div>
                         }
                     </div>
-                }
+                            }
             </div>
         </div>
     </div>
-}
+                            }
