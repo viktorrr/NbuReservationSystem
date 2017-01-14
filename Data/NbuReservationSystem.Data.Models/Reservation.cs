@@ -2,25 +2,24 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Models;
 
     public class Reservation : BaseModel<int>
     {
-
-        [Index("IX_ReservationUniqueness", 1, IsUnique = true)]
+        [Required]
         public DateTime Date { get; set; }
 
-        [Index("IX_ReservationUniqueness", 2, IsUnique = true)]
+        [Required]
         public TimeSpan StartHour { get; set; }
 
-        [Index("IX_ReservationUniqueness", 3, IsUnique = true)]
+        [Required]
         public TimeSpan EndHour { get; set; }
 
         [Required]
         public string Title { get; set; }
 
+        // TODO: required?
         public string Token { get; set; }
 
         [Required]
@@ -36,6 +35,12 @@
 
         [Required]
         public virtual Organizer Organizer { get; set; }
+
+        [Required]
+        public virtual int HallId { get; set; }
+
+        [Required]
+        public virtual Hall Hall { get; set; }
 
         public override string ToString()
         {

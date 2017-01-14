@@ -1,7 +1,9 @@
 ﻿namespace NbuReservationSystem.Web.Models.Requests.Reservations
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     using NbuReservationSystem.Web.Models.Enums;
     using NbuReservationSystem.Web.Models.LocalizationResources;
@@ -22,6 +24,11 @@
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string Title { get; set; }
+
+        [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
+        public string HallName { get; set; }
+
+        public IList<string> HallNames { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(ValidationMessages))]
         public string Description { get; set; }

@@ -58,17 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201701031843401_InitialCreate.cs" />
-    <Compile Include="Migrations\201701031843401_InitialCreate.Designer.cs">
-      <DependentUpon>201701031843401_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201701132220236_Initial.cs" />
+    <Compile Include="Migrations\201701132220236_Initial.Designer.cs">
+      <DependentUpon>201701132220236_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701081001054_RenamedOrganiserToOrganizer.cs" />
-    <Compile Include="Migrations\201701081001054_RenamedOrganiserToOrganizer.Designer.cs">
-      <DependentUpon>201701081001054_RenamedOrganiserToOrganizer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701122114081_AddedHalls.cs" />
-    <Compile Include="Migrations\201701122114081_AddedHalls.Designer.cs">
-      <DependentUpon>201701122114081_AddedHalls.cs</DependentUpon>
+    <Compile Include="Migrations\201701132237270_ReplacedOldIndexWithRequiredAttribute.cs" />
+    <Compile Include="Migrations\201701132237270_ReplacedOldIndexWithRequiredAttribute.Designer.cs">
+      <DependentUpon>201701132237270_ReplacedOldIndexWithRequiredAttribute.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,14 +93,11 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701031843401_InitialCreate.resx">
-      <DependentUpon>201701031843401_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701132220236_Initial.resx">
+      <DependentUpon>201701132220236_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701081001054_RenamedOrganiserToOrganizer.resx">
-      <DependentUpon>201701081001054_RenamedOrganiserToOrganizer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701122114081_AddedHalls.resx">
-      <DependentUpon>201701122114081_AddedHalls.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701132237270_ReplacedOldIndexWithRequiredAttribute.resx">
+      <DependentUpon>201701132237270_ReplacedOldIndexWithRequiredAttribute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

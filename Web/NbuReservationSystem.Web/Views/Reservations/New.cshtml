@@ -55,6 +55,16 @@
                     </div>
                 </div>
 
+                <div class="form-group" id="bootstrap-select-container">
+                    <select class="selectpicker show-tick " id="halls-dropdown" name="HallName">
+                        @foreach (var hall in Model.HallNames)
+                        {
+                            <option>@hall</option>
+                        }
+                    </select>
+                    @Html.HiddenFor(x => x.HallName)
+                </div>
+
                 <div class="form-group">
                     @Html.LabelFor(x => x.Date, ReservationLabels.Date, new { @class = "control-label col-md-4" })
                     <div class="col-md-24">
@@ -283,9 +293,13 @@
                             $input.parent().parent().parent().find('label').click();
                         });
                     });
-            });
 
-        // by default - mark one-time-only
-        $('#RepetitionPolicy_RepetitionType').prop('checked', true);
+                // by default - mark one-time-only
+                $('#RepetitionPolicy_RepetitionType').prop('checked', true);
+
+                $('#halls-dropdown li').on('click', function () {
+                    $('#HallName').val($(this).text());
+                });
+            });
     </script>
 }

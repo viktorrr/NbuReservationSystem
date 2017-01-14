@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     using Enums;
 
@@ -10,7 +11,7 @@
     {
         public RepetitionPolicy()
         {
-            this.RepetitionDays = new List<bool>();
+            this.RepetitionDays = Enumerable.Repeat(false, 7).ToList();
             this.RepetitionWindow = 0;
         }
 

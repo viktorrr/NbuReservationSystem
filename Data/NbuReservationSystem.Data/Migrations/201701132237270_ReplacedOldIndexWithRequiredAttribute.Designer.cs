@@ -7,13 +7,13 @@ namespace NbuReservationSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RenamedOrganiserToOrganizer : IMigrationMetadata
+    public sealed partial class ReplacedOldIndexWithRequiredAttribute : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RenamedOrganiserToOrganizer));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ReplacedOldIndexWithRequiredAttribute));
         
         string IMigrationMetadata.Id
         {
-            get { return "201701081001054_RenamedOrganiserToOrganizer"; }
+            get { return "201701132237270_ReplacedOldIndexWithRequiredAttribute"; }
         }
         
         string IMigrationMetadata.Source

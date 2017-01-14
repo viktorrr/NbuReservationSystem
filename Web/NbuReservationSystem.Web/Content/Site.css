@@ -252,3 +252,7 @@ input[type="checkbox"].input-validation-error {
 #bg-color-grey ul {
     padding: 0;
 }
+
+#bootstrap-select-container {
+    margin: 15px auto;
+}

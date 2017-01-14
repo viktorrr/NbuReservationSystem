@@ -3,19 +3,17 @@ namespace NbuReservationSystem.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Organisers",
+                "dbo.Halls",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Email = c.String(nullable: false),
-                        PhoneNumber = c.String(nullable: false),
-                        IP = c.String(nullable: false),
+                        Color = c.String(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
@@ -37,18 +35,37 @@ namespace NbuReservationSystem.Data.Migrations
                         Description = c.String(nullable: false),
                         Assignor = c.String(nullable: false),
                         IsEquipementRequired = c.Boolean(nullable: false),
-                        OrganaiserId = c.Int(nullable: false),
+                        OrganizerId = c.Int(nullable: false),
+                        HallId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
                         DeletedOn = c.DateTime(),
-                        Organiser_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Organisers", t => t.Organiser_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Halls", t => t.HallId, cascadeDelete: true)
+                .ForeignKey("dbo.Organizers", t => t.OrganizerId, cascadeDelete: true)
                 .Index(t => new { t.Date, t.StartHour, t.EndHour }, unique: true, name: "IX_ReservationUniqueness")
-                .Index(t => t.IsDeleted)
-                .Index(t => t.Organiser_Id);
+                .Index(t => t.OrganizerId)
+                .Index(t => t.HallId)
+                .Index(t => t.IsDeleted);
+            
+            CreateTable(
+                "dbo.Organizers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Email = c.String(nullable: false),
+                        PhoneNumber = c.String(nullable: false),
+                        IP = c.String(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(),
+                        IsDeleted = c.Boolean(nullable: false),
+                        DeletedOn = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.IsDeleted);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -126,24 +143,28 @@ namespace NbuReservationSystem.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Reservations", "Organiser_Id", "dbo.Organisers");
+            DropForeignKey("dbo.Reservations", "OrganizerId", "dbo.Organizers");
+            DropForeignKey("dbo.Reservations", "HallId", "dbo.Halls");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Reservations", new[] { "Organiser_Id" });
+            DropIndex("dbo.Organizers", new[] { "IsDeleted" });
             DropIndex("dbo.Reservations", new[] { "IsDeleted" });
+            DropIndex("dbo.Reservations", new[] { "HallId" });
+            DropIndex("dbo.Reservations", new[] { "OrganizerId" });
             DropIndex("dbo.Reservations", "IX_ReservationUniqueness");
-            DropIndex("dbo.Organisers", new[] { "IsDeleted" });
+            DropIndex("dbo.Halls", new[] { "IsDeleted" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Organizers");
             DropTable("dbo.Reservations");
-            DropTable("dbo.Organisers");
+            DropTable("dbo.Halls");
         }
     }
 }

@@ -4,7 +4,11 @@
 ####### Project-specific files
 
 Web/NbuReservationSystem.Web/Content/DataTables/
+Web/NbuReservationSystem.Web/Content/bootstrap-select*
+
 Web/NbuReservationSystem.Web/Scripts/DataTables/
+Web/NbuReservationSystem.Web/Scripts/bootstrap-select*
+Web/NbuReservationSystem.Web/Scripts/i18n/
 
 #######
 

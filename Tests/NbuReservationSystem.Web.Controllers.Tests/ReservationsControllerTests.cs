@@ -18,6 +18,7 @@
         private readonly IEmailService emailService;
         private readonly ITokenGenerator tokenGenerator;
         private readonly IRepository<Reservation> reservations;
+        private readonly IRepository<Hall> halls;
         private readonly ReservationsController controller;
 
         public ReservationsControllerTests()
@@ -26,8 +27,13 @@
             this.emailService = new Mock<IEmailService>(MockBehavior.Strict).Object;
             this.tokenGenerator = new Mock<ITokenGenerator>(MockBehavior.Strict).Object;
             this.reservations = new Mock<IRepository<Reservation>>(MockBehavior.Strict).Object;
+            this.halls = new Mock<IRepository<Hall>>(MockBehavior.Strict).Object;
             this.controller = new ReservationsController(
-                this.reservationsService, this.emailService, this.tokenGenerator,this.reservations
+                this.reservationsService,
+                this.emailService,
+                this.tokenGenerator,
+                this.reservations,
+                this.halls
             );
         }
 

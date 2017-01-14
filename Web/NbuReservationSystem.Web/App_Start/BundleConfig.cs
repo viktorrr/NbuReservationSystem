@@ -30,7 +30,11 @@
                 )
             );
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(FormatJsBundlePath("bootstrap.js")));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                    FormatJsBundlePath("bootstrap.js"),
+                    FormatJsBundlePath("bootstrap-select.min.js")
+                )
+            );
         }
 
         private static void RegisterStyles(BundleCollection bundles)
@@ -39,6 +43,7 @@
                 new StyleBundle("~/Content/css").Include(
                    FormatCssBundlePath("bootstrap.css"),
                    FormatCssBundlePath("bootstrap-theme.css"),
+                   FormatCssBundlePath("bootstrap-select.min.css"),
                    FormatCssBundlePath("Site.css")
                 )
             );

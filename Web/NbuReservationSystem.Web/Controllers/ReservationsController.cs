@@ -1,6 +1,7 @@
 ﻿namespace NbuReservationSystem.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Net;
@@ -23,8 +24,10 @@
         private readonly IReservationsService reservationsService;
         private readonly IEmailService emailService;
         private readonly ITokenGenerator tokenGenerator;
-        private readonly IRepository<Reservation> reservations;
+        private readonly IRepository<Reservation> reservationsRepository;
+        private readonly IRepository<Hall> hallsRepository;
 
+        // TODO: this shouldn't be here!
         static ReservationsController()
         {
             ModelExpression = reservation => new ReservationsAdministrationViewModel
@@ -46,12 +49,14 @@
             IReservationsService reservationsService,
             IEmailService emailService,
             ITokenGenerator tokenGenerator,
-            IRepository<Reservation> reservations)
+            IRepository<Reservation> reservationsRepository,
+            IRepository<Hall> hallsRepository)
         {
             this.reservationsService = reservationsService;
             this.emailService = emailService;
             this.tokenGenerator = tokenGenerator;
-            this.reservations = reservations;
+            this.reservationsRepository = reservationsRepository;
+            this.hallsRepository = hallsRepository;
         }
 
         [HttpGet]
@@ -78,7 +83,7 @@
             // TODO: this should NOT live here !!!
 
             // R.I.P. server-side performance
-            var reservations = this.reservations.AllWithDeleted().Select(ModelExpression).ToList();
+            var reservations = this.reservationsRepository.AllWithDeleted().Select(ModelExpression).ToList();
 
             // R.I.P. client-side performance
             return this.View(reservations);
@@ -115,7 +120,8 @@
         [HttpGet]
         public ActionResult New()
         {
-            return this.View();
+            var model = new ReservationViewModel { HallNames = this.GetHalls() };
+            return this.View(model);
         }
 
         [HttpPost]
@@ -196,8 +202,15 @@
                 this.ViewBag.RequestSucceeded = reservations == -1;
             }
 
+            model.HallNames = this.GetHalls();
+
             this.emailService.SendNewReservationEmail(model, this.tokenGenerator.Generate());
             return this.View(model);
+        }
+
+        private IList<string> GetHalls()
+        {
+            return this.hallsRepository.All().Select(x => x.Name).ToList();
         }
     }
 }

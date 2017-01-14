@@ -195,4 +195,7 @@
   <data name="RequestSucceeded" xml:space="preserve">
     <value>Заявката е обработена успешно.</value>
   </data>
+  <data name="Hall" xml:space="preserve">
+    <value>Зала</value>
+  </data>
 </root>

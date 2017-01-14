@@ -24,18 +24,21 @@
         // data
         private readonly IRepository<Reservation> reservations;
         private readonly IRepository<Organizer> organizers;
+        private readonly IRepository<Hall> hallsRepository;
 
         public ReservationsService(
             ICalendarService calendarService,
             ITokenGenerator stringGenerator,
             IRepository<Reservation> reservations,
-            IRepository<Organizer> organizers)
+            IRepository<Organizer> organizers,
+            IRepository<Hall> hallsRepository)
         {
             this.calendarService = calendarService;
             this.stringGenerator = stringGenerator;
 
             this.reservations = reservations;
             this.organizers = organizers;
+            this.hallsRepository = hallsRepository;
         }
 
         public int AddReservations(ReservationViewModel model, string ip)
@@ -43,7 +46,8 @@
             lock (Locker)
             {
                 var reservationDates = this.calendarService.CalculateDates(model).ToList();
-                var datesAreFree = this.CheckIfAllDatesFree(reservationDates, model.StartHour, model.EndHour);
+                var hall = this.hallsRepository.AllBy(x => x.Name == model.HallName).First();
+                var datesAreFree = this.CheckIfAllDatesFree(reservationDates, model.StartHour, model.EndHour, hall.Id);
 
                 if (!datesAreFree)
                 {
@@ -55,7 +59,7 @@
 
                 foreach (var reservationDate in reservationDates)
                 {
-                    var reservation = CreateReservation(model, organiser, reservationDate, token);
+                    var reservation = CreateReservation(model, organiser, reservationDate, token, hall);
                     this.reservations.Add(reservation);
                 }
 
@@ -84,7 +88,7 @@
             return new DayViewModel { Day = date, Reservations = selectedReservations };
         }
 
-        private static Reservation CreateReservation(ReservationViewModel model, Organizer organizer, DateTime date, string token)
+        private static Reservation CreateReservation(ReservationViewModel model, Organizer organizer, DateTime date, string token, Hall hall)
         {
             return new Reservation
             {
@@ -96,7 +100,8 @@
                 Description = model.Description,
                 Organizer = organizer,
                 IsEquipementRequired = model.IsEquipmentRequired,
-                Token = token
+                Token = token,
+                Hall = hall
             };
         }
 
@@ -149,11 +154,11 @@
             return organizer;
         }
 
-        private bool CheckIfAllDatesFree(List<DateTime> dates, TimeSpan startHour, TimeSpan endHour)
+        private bool CheckIfAllDatesFree(List<DateTime> dates, TimeSpan startHour, TimeSpan endHour, int hallId)
         {
             // not sure if this is tbe best performance-wise solution, but..
             return !this.reservations.All().Any(
-                r => r.Date == dates.FirstOrDefault(
+                r => r.HallId == hallId && r.Date == dates.FirstOrDefault(
                     d => (d == r.Date) && startHour <= r.EndHour && endHour >= r.StartHour)
             );
         }

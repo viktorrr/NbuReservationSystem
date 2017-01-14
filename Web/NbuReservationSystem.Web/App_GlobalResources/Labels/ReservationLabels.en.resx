@@ -195,4 +195,7 @@
   <data name="RequestFailed" xml:space="preserve">
     <value>An error occurred while the request was processed. Please make sure the hall is free.</value>
   </data>
+  <data name="Hall" xml:space="preserve">
+    <value>Hall</value>
+  </data>
 </root>

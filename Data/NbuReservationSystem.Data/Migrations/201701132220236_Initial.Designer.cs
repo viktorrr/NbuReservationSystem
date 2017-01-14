@@ -7,13 +7,13 @@ namespace NbuReservationSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedHalls : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedHalls));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201701122114081_AddedHalls"; }
+            get { return "201701132220236_Initial"; }
         }
         
         string IMigrationMetadata.Source
