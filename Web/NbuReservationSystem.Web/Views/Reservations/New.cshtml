@@ -316,7 +316,8 @@
 
                         @if (!string.IsNullOrEmpty(Model.HallName))
                         {
-                            @:$('#HallName').val("@Model.HallName");
+                            @:$('#HallName').val('@Model.HallName');
+                            @:$('.selectpicker').selectpicker('val', '@Model.HallName');
                         }
                     });
             </script>

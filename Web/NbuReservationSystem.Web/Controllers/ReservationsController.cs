@@ -99,9 +99,14 @@
         }
 
         [HttpGet]
-        public ActionResult New()
+        public ActionResult New(string hall)
         {
             var model = new ReservationViewModel { HallNames = this.GetHalls() };
+            if (!string.IsNullOrEmpty(hall) && this.hallsRepository.AllBy(x => x.Name == hall).Any())
+            {
+                model.HallName = hall;
+            }
+
             return this.View(model);
         }
 
