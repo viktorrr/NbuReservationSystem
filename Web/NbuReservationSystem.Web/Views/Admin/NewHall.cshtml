@@ -13,7 +13,7 @@
 
             @Html.ValidationSummary(true)
 
-            @using (Html.BeginForm("NewHall", "Halls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("NewHall", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
