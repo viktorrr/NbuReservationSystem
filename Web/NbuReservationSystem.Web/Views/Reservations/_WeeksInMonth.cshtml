@@ -13,7 +13,7 @@
                             <div class="panel-body">
                                 <p class="text-right day-number">
                                     @Ajax.ActionLink(day.Day.Day.ToString(), "DayTab", "Reservations",
-                                        new { id = day.Day.DayTabUrl() },
+                                        new { year = day.Day.Year, month = day.Day.Month, day = day.Day.Day, hallName = day.Hall },
                                         new AjaxOptions
                                         {
                                             InsertionMode = InsertionMode.Replace,

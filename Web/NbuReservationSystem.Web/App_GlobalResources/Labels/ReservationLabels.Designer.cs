@@ -286,6 +286,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля изберете зала....
+        /// </summary>
+        public static string SelectHall {
+            get {
+                return ResourceManager.GetString("SelectHall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to резервация.
         /// </summary>
         public static string SingleReservation {

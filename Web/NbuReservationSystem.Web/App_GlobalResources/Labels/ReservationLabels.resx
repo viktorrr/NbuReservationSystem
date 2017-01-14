@@ -198,4 +198,7 @@
   <data name="Hall" xml:space="preserve">
     <value>Зала</value>
   </data>
+  <data name="SelectHall" xml:space="preserve">
+    <value>Моля изберете зала...</value>
+  </data>
 </root>

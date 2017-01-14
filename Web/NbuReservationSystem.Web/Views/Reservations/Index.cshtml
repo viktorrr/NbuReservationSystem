@@ -1,38 +1,48 @@
-﻿@model NbuReservationSystem.Web.Models.Responses.Reservations.MonthlyReservationsViewModel
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+@model IList<string>
 
 @{
     ViewBag.Title = "Reservations";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("_Calendar", Model)
+<h2>Reservations</h2>
+
+<div id="reservations-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@ReservationLabels.SelectHall</h4>
+            </div>
+            <div class="modal-body">
+                <select class="selectpicker show-tick " id="halls-dropdown" name="HallName">
+                    @foreach (var hall in Model)
+                    {
+                        <option>@hall</option>
+                    }
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button id="selected-hall-button" type="button" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts {
     <script type="text/javascript">
-        function OnAjaxRequestSuccess() {
-            // calculate the browser's width
-            var browserWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-            var bootstrapSmallGrid = 768;
-
-            // and scroll down only if we're in mobile mode
-            if (browserWidth <= bootstrapSmallGrid) {
-                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-            }
-
-            // resize the calendar
-            var container = $('#calendar-container').removeClass('col-md-28').addClass('col-md-21');
-
-            $('#close-tab').click(function () {
-                // clear the tab..
-                $('#info-tab').empty();
-                // ..and return the previous dimensions
-                container.removeClass('col-md-21').addClass('col-md-28');
+        $(function () {
+            $('#selected-hall-button').click(function() {
+                var hall = $("#halls-dropdown option:selected").text();
+                var urlTemplate =
+                    "@Url.Action("ByHall", "Reservations", new { hallName = "__HALL__" }, Request.Url.Scheme)";
+                var url = urlTemplate.replace("__HALL__", hall);
+                window.location.href = url;
             });
-        }
 
-        function OnAjaxRequestFailure(request, error) {
-            // TODO: notify the user!
-            console.log("DayTab request failed:" + error);
-        }
+            $('#reservations-modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
     </script>
 }

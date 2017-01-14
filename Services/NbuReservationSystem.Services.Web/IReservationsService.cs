@@ -7,9 +7,9 @@
 
     public interface IReservationsService
     {
-        MonthlyReservationsViewModel GetReservations(int year, int month);
+        MonthlyReservationsViewModel GetReservations(int year, int month, int hallId);
 
-        DayViewModel GetReservations(DateTime date);
+        DayViewModel GetReservations(DateTime date, int hallId);
 
         int AddReservations(ReservationViewModel reservationViewModel, string ip);
     }

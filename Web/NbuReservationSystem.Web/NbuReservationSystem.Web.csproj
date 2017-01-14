@@ -896,7 +896,7 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\ByHall.cshtml" />
     <Content Include="Views\Reservations\_CalendarHeader.cshtml" />
     <Content Include="Views\Reservations\_DayTab.cshtml" />
     <Content Include="Views\Reservations\New.cshtml" />
@@ -906,6 +906,7 @@
     <Content Include="Views\Reservations\Administration.cshtml" />
     <Content Include="Views\Halls\New.cshtml" />
     <Content Include="Views\Halls\NewHallSuccess.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />

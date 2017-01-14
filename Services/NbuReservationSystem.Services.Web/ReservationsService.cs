@@ -69,23 +69,24 @@
             }
         }
 
-        public MonthlyReservationsViewModel GetReservations(int year, int month)
+        public MonthlyReservationsViewModel GetReservations(int year, int month, int hallId)
         {
             var now = new DateTime(year, month, 1).ToUniversalTime().AddHours(2);
+            var hall = this.GetHallName(hallId);
 
             var startDay = this.calendarService.GetFirstDayOfMonthView(now.Year, now.Month);
             var endDay = this.calendarService.GetLastDayOfMonthView(now.Year, now.Month);
 
-            var reservationsByDay = this.GetReservations(startDay, endDay);
-            var weeks = CreateWeeklyReservations(reservationsByDay, month, startDay);
+            var reservationsByDay = this.GetReservations(startDay, endDay, hallId);
+            var weeks = CreateWeeklyReservations(reservationsByDay, month, startDay, hall);
 
-            return new MonthlyReservationsViewModel(weeks, year, month);
+            return new MonthlyReservationsViewModel(weeks, year, month, hall);
         }
 
-        public DayViewModel GetReservations(DateTime date)
+        public DayViewModel GetReservations(DateTime date, int hallId)
         {
-            var selectedReservations = this.reservations.AllBy(x => x.Date == date).ToList();
-            return new DayViewModel { Day = date, Reservations = selectedReservations };
+            var selectedReservations = this.reservations.AllBy(x => x.Date == date && x.HallId == hallId).ToList();
+            return new DayViewModel { Day = date, Reservations = selectedReservations, Hall = this.GetHallName(hallId) };
         }
 
         private static Reservation CreateReservation(ReservationViewModel model, Organizer organizer, DateTime date, string token, Hall hall)
@@ -106,7 +107,10 @@
         }
 
         private static List<WeekViewModel> CreateWeeklyReservations(
-            IReadOnlyDictionary<DateTime, IEnumerable<Reservation>> reservationsByDay, int month, DateTime currentDay)
+            IReadOnlyDictionary<DateTime, IEnumerable<Reservation>> reservationsByDay,
+            int month,
+            DateTime currentDay,
+            string hall)
         {
             var weeks = new List<WeekViewModel>(5);
             for (int i = 0; i < 5; i++)
@@ -118,20 +122,21 @@
                     var reservations = new List<Reservation>();
                     if (reservationsByDay.ContainsKey(currentDay))
                     {
-                        reservations = reservationsByDay[currentDay].ToList();
+                        reservations = reservationsByDay[currentDay].OrderBy(x => x.StartHour).ToList();
                     }
 
                     var dayModel = new DayViewModel
                     {
                         Reservations = reservations,
-                        Day = currentDay
+                        Day = currentDay,
+                        Hall = hall
                     };
 
                     currentDay = currentDay.AddDays(1);
                     days.Add(dayModel);
                 }
 
-                var week = new WeekViewModel { Days = days, Month = month };
+                var week = new WeekViewModel { Days = days, Month = month, Hall = hall };
                 weeks.Add(week);
             }
 
@@ -163,13 +168,18 @@
             );
         }
 
-        private Dictionary<DateTime, IEnumerable<Reservation>> GetReservations(DateTime from, DateTime to)
+        private Dictionary<DateTime, IEnumerable<Reservation>> GetReservations(DateTime from, DateTime to, int hallId)
         {
             return this.reservations.All()
-                .Where(x => x.Date >= from && x.Date <= to)
+                .Where(x => x.Date >= from && x.Date <= to && x.HallId == hallId)
                 .OrderBy(x => x.Date)
                 .GroupBy(x => x.Date, (day, currentReservations) => new { day, currentReservations })
                 .ToDictionary(x => x.day, x => x.currentReservations);
+        }
+
+        private string GetHallName(int hallId)
+        {
+            return this.hallsRepository.GetById(hallId).Name;
         }
     }
 }

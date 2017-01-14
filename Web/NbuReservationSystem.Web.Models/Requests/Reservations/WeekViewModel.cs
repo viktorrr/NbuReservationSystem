@@ -9,5 +9,7 @@
         public IEnumerable<DayViewModel> Days { get; set; }
 
         public int Month { get; set; }
+
+        public string Hall { get; set; }
     }
 }

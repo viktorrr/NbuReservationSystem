@@ -14,13 +14,15 @@
         [Fact]
         public void TestCalendatById()
         {
-            const string Url = "/Reservations/DayTab/2016-12-01";
+            const string Url = "/Reservations/DayTab?year=2017&month=1&day=18&hallName=library";
 
-            var date = DateTime.Parse("2016-12-01");
-
+            var routeParams = new { year = 2017, month = 1, day = 18, hallName = "library" };
             var routeCollection = new RouteCollection();
+
             RouteConfig.RegisterRoutes(routeCollection);
-            routeCollection.ShouldMap(Url).To<ReservationsController>(c => c.DayTab(date));
+            routeCollection.ShouldMap(Url).To<ReservationsController>(c =>
+                c.DayTab(routeParams.year, routeParams.month, routeParams.day, routeParams.hallName)
+            );
         }
     }
 }

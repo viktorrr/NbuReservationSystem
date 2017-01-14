@@ -300,6 +300,11 @@
                 $('#halls-dropdown li').on('click', function () {
                     $('#HallName').val($(this).text());
                 });
+
+                @if (!string.IsNullOrEmpty(Model.HallName))
+                {
+                    @:$('#HallName').val("@Model.HallName");
+                }
             });
     </script>
 }

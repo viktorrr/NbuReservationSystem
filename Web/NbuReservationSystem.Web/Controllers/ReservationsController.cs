@@ -60,37 +60,40 @@
         }
 
         [HttpGet]
-        public ActionResult Index(int? year, int? month)
+        public ActionResult Index()
         {
-            var isInputValid = year.HasValue && month.HasValue;
+            var halls = this.GetHalls();
+            return this.View(halls);
+        }
 
-            if (month >= 13 || month <= 0)
+        [HttpGet]
+        public ViewResult ByHall(int? year, int? month, string hallName)
+        {
+            if (string.IsNullOrEmpty(hallName))
             {
-                // TODO: log this!
-                isInputValid = false;
+                return this.View("Index");
             }
 
-            var now = isInputValid ? new DateTime(year.Value, month.Value, 1) : DateTime.UtcNow;
-            var reservations = this.reservationsService.GetReservations(now.Year, now.Month);
+            var hall = this.hallsRepository.GetBy(x => x.Name == hallName);
+            if (hall == null)
+            {
+                return this.View("Index");
+            }
+
+            var isDateValid = year.HasValue && month.HasValue;
+            if (month >= 13 || month <= 0)
+            {
+                isDateValid = false;
+            }
+
+            var now = isDateValid ? new DateTime(year.Value, month.Value, 1) : DateTime.UtcNow.AddHours(2);
+            var reservations = this.reservationsService.GetReservations(now.Year, now.Month, hall.Id);
 
             return this.View(reservations);
         }
 
         [HttpGet]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public ActionResult Administration()
-        {
-            // TODO: this should NOT live here !!!
-
-            // R.I.P. server-side performance
-            var reservations = this.reservationsRepository.AllWithDeleted().Select(ModelExpression).ToList();
-
-            // R.I.P. client-side performance
-            return this.View(reservations);
-        }
-
-        [HttpGet]
-        public ActionResult Calendar(int year, int month)
+        public ActionResult Calendar(int year, int month, string hallName)
         {
             if (!this.Request.IsAjaxRequest())
             {
@@ -98,14 +101,16 @@
                 return this.Content("Nope.");
             }
 
+            var hall = this.hallsRepository.GetBy(x => x.Name == hallName);
+
             var now = new DateTime(year, month, 1);
-            var reservations = this.reservationsService.GetReservations(now.Year, now.Month);
+            var reservations = this.reservationsService.GetReservations(now.Year, now.Month, hall.Id);
 
             return this.PartialView("_Calendar", reservations);
         }
 
         [HttpGet]
-        public ActionResult DayTab(DateTime date)
+        public ActionResult DayTab(int year, int month, int day, string hallName)
         {
             if (!this.Request.IsAjaxRequest())
             {
@@ -113,7 +118,9 @@
                 return this.Content("Nope.");
             }
 
-            var reservations = this.reservationsService.GetReservations(date);
+            var date = new DateTime(year, month, day);
+            var hall = this.hallsRepository.GetBy(x => x.Name == hallName);
+            var reservations = this.reservationsService.GetReservations(date, hall.Id);
             return this.PartialView("_DayTab", reservations);
         }
 
@@ -132,6 +139,18 @@
 
             if (this.ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(model.HallName))
+                {
+                    // TODO: display warning?
+                    return this.View(model);
+                }
+
+                if (!this.CheckHallExistance(model.HallName))
+                {
+                    // TODO: display warning?
+                    return this.View(model);
+                }
+
                 var now = DateTime.UtcNow.AddHours(2);
                 var repetitionPolicy = model.RepetitionPolicy;
 
@@ -209,9 +228,28 @@
             return this.View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public ActionResult Administration()
+        {
+            // TODO: this should NOT live here !!!
+
+            // R.I.P. server-side performance
+            var reservations = this.reservationsRepository.AllWithDeleted().Select(ModelExpression).ToList();
+
+            // R.I.P. client-side performance
+            return this.View(reservations);
+        }
+
         private IList<string> GetHalls()
         {
             return this.hallsRepository.All().Select(x => x.Name).ToList();
         }
+
+        private bool CheckHallExistance(string hallName)
+        {
+            return this.hallsRepository.AllBy(x => x.Name == hallName).Any();
+        }
+
     }
 }

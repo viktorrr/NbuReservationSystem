@@ -1,8 +1,9 @@
-﻿@using NbuReservationSystem.Web.Extensions
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+@using NbuReservationSystem.Web.Extensions
 @model NbuReservationSystem.Web.Models.Responses.Reservations.MonthlyReservationsViewModel
 
 <div class="row">
-    <div class="col-md-28">
+    <div class="col-md-9">
         <h1>
             <a data-ajax="true"
                data-ajax-method="GET"
@@ -20,11 +21,14 @@
             @Html.FormatLocalizedMonth(Model)
         </h1>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-28">
-        @*TODO: halls dropdown!*@
-        <h2>Зала в библитеката</h2>
+    <div class="col-md-offset-4 col-md-5">
+        <h2>@Model.Hall</h2>
+    </div>
+    <div class="col-md-3 pull-right">
+        <h2>
+            <a class="btn btn-default pull-right" href="@Url.Action("New", "Reservations", null, Request.Url.Scheme)" role="button">
+                @ReservationLabels.NewReservation
+            </a>
+        </h2>
     </div>
 </div>

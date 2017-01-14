@@ -113,7 +113,7 @@
                 month--;
             }
 
-            return new { year, month };
+            return new { year, month, hallName = model.Hall };
         }
 
         public static object CreateNextMonthRoutValues(this HtmlHelper helper, MonthlyReservationsViewModel model)
@@ -131,7 +131,7 @@
                 month++;
             }
 
-            return new { year, month };
+            return new { year, month, hallName = model.Hall };
         }
 
         public static SelectList CreateDaysSelectList(this HtmlHelper helper, ReservationViewModel viewModel)
