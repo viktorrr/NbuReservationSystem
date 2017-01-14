@@ -20,8 +20,8 @@
 
             routes.MapRoute(
                 name: "MonthlyReservations",
-                url: "Reservations/ByMonth/{year}/{month}",
-                defaults: new { controller = "Reservations", action = "ByMonth" }
+                url: "Reservations/Calendar/{year}/{month}",
+                defaults: new { controller = "Reservations", action = "Calendar" }
             );
 
             routes.MapRoute(

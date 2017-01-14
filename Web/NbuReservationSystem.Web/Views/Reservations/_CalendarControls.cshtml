@@ -8,13 +8,13 @@
                data-ajax-method="GET"
                data-ajax-mode="replace"
                data-ajax-update="#calendar-wrapper"
-               href="@Url.Action("ByMonth", "Reservations", Html.CreatePreviousMonthRoutValues(Model))"
+               href="@Url.Action("Calendar", "Reservations", Html.CreatePreviousMonthRoutValues(Model))"
                class="no-link-underline"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
             <a data-ajax="true"
                data-ajax-method="GET"
                data-ajax-mode="replace"
                data-ajax-update="#calendar-wrapper"
-               href="@Url.Action("ByMonth", "Reservations", Html.CreateNextMonthRoutValues(Model))"
+               href="@Url.Action("Calendar", "Reservations", Html.CreateNextMonthRoutValues(Model))"
                class="no-link-underline"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 
             @Html.FormatLocalizedMonth(Model)

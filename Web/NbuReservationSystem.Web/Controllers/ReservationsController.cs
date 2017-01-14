@@ -90,7 +90,7 @@
         }
 
         [HttpGet]
-        public ActionResult ByMonth(int year, int month)
+        public ActionResult Calendar(int year, int month)
         {
             if (!this.Request.IsAjaxRequest())
             {
@@ -128,8 +128,7 @@
         [ValidateAntiForgeryToken]
         public ViewResult New(ReservationViewModel model)
         {
-            // TODO: validate that the hall is free for the given date
-            // TODO: redirect to /calendar with success message -> mail + content
+            model.HallNames = this.GetHalls();
 
             if (this.ModelState.IsValid)
             {
@@ -192,6 +191,10 @@
                     }
                 }
             }
+            else
+            {
+                return this.View(model);
+            }
 
             if (this.ModelState.IsValid)
             {
@@ -200,11 +203,9 @@
 
                 // TODO: this isn't the best solution..
                 this.ViewBag.RequestSucceeded = reservations == -1;
+                this.emailService.SendNewReservationEmail(model, this.tokenGenerator.Generate());
             }
 
-            model.HallNames = this.GetHalls();
-
-            this.emailService.SendNewReservationEmail(model, this.tokenGenerator.Generate());
             return this.View(model);
         }
 
