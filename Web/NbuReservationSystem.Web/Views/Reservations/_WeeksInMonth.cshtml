@@ -4,7 +4,6 @@
     var now = DateTime.UtcNow.AddHours(2).Day;
     var defaultPanelClasses = "panel panel-default panel-day ";
     var todayPanelClasses = defaultPanelClasses + "calendar-today";
-    var panelClasses = todayPanelClasses;
 }
 
 @foreach (var week in Model)
@@ -16,7 +15,7 @@
                 {
                     <div class="col-md-4 day-container">
                         @{
-                            panelClasses = day.Day.Day == now ? todayPanelClasses : defaultPanelClasses;
+                            var panelClasses = day.Day.Day == now ? todayPanelClasses : defaultPanelClasses;
                         }
                         <div class="@panelClasses">
                             <div class="panel-body">

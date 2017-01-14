@@ -72,21 +72,23 @@
         public MonthlyReservationsViewModel GetReservations(int year, int month, int hallId)
         {
             var now = new DateTime(year, month, 1).ToUniversalTime().AddHours(2);
-            var hall = this.GetHallName(hallId);
+            var hall = this.GetHall(hallId);
 
             var startDay = this.calendarService.GetFirstDayOfMonthView(now.Year, now.Month);
             var endDay = this.calendarService.GetLastDayOfMonthView(now.Year, now.Month);
 
             var reservationsByDay = this.GetReservations(startDay, endDay, hallId);
-            var weeks = CreateWeeklyReservations(reservationsByDay, month, startDay, hall);
+            var weeks = CreateWeeklyReservations(reservationsByDay, month, startDay, hall.Name);
 
-            return new MonthlyReservationsViewModel(weeks, year, month, hall);
+            return new MonthlyReservationsViewModel(weeks, year, month, hall.Name, hall.Color);
         }
 
         public DayViewModel GetReservations(DateTime date, int hallId)
         {
             var selectedReservations = this.reservations.AllBy(x => x.Date == date && x.HallId == hallId).ToList();
-            return new DayViewModel { Day = date, Reservations = selectedReservations, Hall = this.GetHallName(hallId) };
+            var hallName = this.GetHall(hallId).Name;
+
+            return new DayViewModel(selectedReservations, date, hallName);
         }
 
         private static Reservation CreateReservation(ReservationViewModel model, Organizer organizer, DateTime date, string token, Hall hall)
@@ -177,9 +179,9 @@
                 .ToDictionary(x => x.day, x => x.currentReservations);
         }
 
-        private string GetHallName(int hallId)
+        private Hall GetHall(int hallId)
         {
-            return this.hallsRepository.GetById(hallId).Name;
+            return this.hallsRepository.GetById(hallId);
         }
     }
 }

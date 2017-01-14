@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section css {
+    <style>
+        .reservation-title-container {
+            background-color: @Model.Color
+        }
+    </style>
+}
+
 @Html.Partial("_Calendar", Model)
 
 @section scripts {
