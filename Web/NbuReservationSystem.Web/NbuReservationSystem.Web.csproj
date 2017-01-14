@@ -278,9 +278,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HallsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -603,8 +602,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Areas\Administration\Views\web.config" />
-    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -903,15 +900,12 @@
     <Content Include="Views\Reservations\_WeeksInMonth.cshtml" />
     <Content Include="Views\Reservations\_CalendarControls.cshtml" />
     <Content Include="Views\Reservations\_Calendar.cshtml" />
-    <Content Include="Views\Reservations\Administration.cshtml" />
-    <Content Include="Views\Halls\New.cshtml" />
-    <Content Include="Views\Halls\NewHallSuccess.cshtml" />
+    <Content Include="Views\Admin\ReservationsAdministration.cshtml" />
+    <Content Include="Views\Admin\NewHall.cshtml" />
+    <Content Include="Views\Admin\NewHallSuccess.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

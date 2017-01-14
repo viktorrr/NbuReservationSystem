@@ -18,29 +18,5 @@
             this.hallsRepository = hallsRepository;
         }
 
-        [HttpGet]
-        public ViewResult New()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public ViewResult NewHall(HallViewModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View("New", model);
-            }
-
-            var hall = new Hall { Color = model.Color, Name = model.Name };
-            // TODO: process google shit
-
-            this.hallsRepository.Add(hall);
-            this.hallsRepository.Save();
-
-            var response = new NewHallSuccess { };
-
-            return this.View("NewHallSuccess", response);
-        }
     }
 }

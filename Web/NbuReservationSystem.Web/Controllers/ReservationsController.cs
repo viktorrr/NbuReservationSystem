@@ -3,59 +3,33 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Net;
     using System.Web.Mvc;
 
     using Models.Requests.Reservations;
 
-    using NbuReservationSystem.Common;
     using NbuReservationSystem.Data.Common;
     using NbuReservationSystem.Data.Models;
     using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.App_GlobalResources.Reservations;
     using NbuReservationSystem.Web.Models.Enums;
-    using NbuReservationSystem.Web.Models.Responses.Reservations;
 
     public class ReservationsController : Controller
     {
-        private static readonly Expression<Func<Reservation, ReservationsAdministrationViewModel>> ModelExpression;
-
         private readonly IReservationsService reservationsService;
         private readonly IEmailService emailService;
         private readonly ITokenGenerator tokenGenerator;
-        private readonly IRepository<Reservation> reservationsRepository;
         private readonly IRepository<Hall> hallsRepository;
-
-        // TODO: this shouldn't be here!
-        static ReservationsController()
-        {
-            ModelExpression = reservation => new ReservationsAdministrationViewModel
-            {
-                Title = reservation.Title,
-                Date = reservation.Date,
-                StartHour = reservation.StartHour,
-                EndHour = reservation.EndHour,
-                Assignor = reservation.Assignor,
-                Email = reservation.Organizer.Email,
-                Equipment = reservation.IsEquipementRequired,
-                IP = reservation.Organizer.IP,
-                PhoneNumber = reservation.Organizer.PhoneNumber,
-                Organizer = reservation.Organizer.Name
-            };
-        }
 
         public ReservationsController(
             IReservationsService reservationsService,
             IEmailService emailService,
             ITokenGenerator tokenGenerator,
-            IRepository<Reservation> reservationsRepository,
             IRepository<Hall> hallsRepository)
         {
             this.reservationsService = reservationsService;
             this.emailService = emailService;
             this.tokenGenerator = tokenGenerator;
-            this.reservationsRepository = reservationsRepository;
             this.hallsRepository = hallsRepository;
         }
 
@@ -228,19 +202,6 @@
             return this.View(model);
         }
 
-        [HttpGet]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public ActionResult Administration()
-        {
-            // TODO: this should NOT live here !!!
-
-            // R.I.P. server-side performance
-            var reservations = this.reservationsRepository.AllWithDeleted().Select(ModelExpression).ToList();
-
-            // R.I.P. client-side performance
-            return this.View(reservations);
-        }
-
         private IList<string> GetHalls()
         {
             return this.hallsRepository.All().Select(x => x.Name).ToList();
@@ -250,6 +211,5 @@
         {
             return this.hallsRepository.AllBy(x => x.Name == hallName).Any();
         }
-
     }
 }
