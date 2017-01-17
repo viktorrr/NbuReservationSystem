@@ -132,6 +132,9 @@
   <data name="LogOff" xml:space="preserve">
     <value>Log off</value>
   </data>
+  <data name="ModifyOrDeleteReservations" xml:space="preserve">
+    <value>Modify or delete reservations</value>
+  </data>
   <data name="NewHall" xml:space="preserve">
     <value>New hall</value>
   </data>

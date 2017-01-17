@@ -132,6 +132,9 @@
   <data name="LogOff" xml:space="preserve">
     <value>Изход</value>
   </data>
+  <data name="ModifyOrDeleteReservations" xml:space="preserve">
+    <value>Промени или изтрий резервации</value>
+  </data>
   <data name="NewHall" xml:space="preserve">
     <value>Нова зала</value>
   </data>

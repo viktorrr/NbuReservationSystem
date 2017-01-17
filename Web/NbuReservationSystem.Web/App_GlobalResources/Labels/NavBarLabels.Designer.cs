@@ -106,6 +106,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Промени или изтрий резервации.
+        /// </summary>
+        public static string ModifyOrDeleteReservations {
+            get {
+                return ResourceManager.GetString("ModifyOrDeleteReservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нова зала.
         /// </summary>
         public static string NewHall {
