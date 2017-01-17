@@ -900,7 +900,7 @@
     <Content Include="Views\Reservations\_WeeksInMonth.cshtml" />
     <Content Include="Views\Reservations\_CalendarControls.cshtml" />
     <Content Include="Views\Reservations\_Calendar.cshtml" />
-    <Content Include="Views\Admin\ReservationsAdministration.cshtml" />
+    <Content Include="Views\Admin\Reservations.cshtml" />
     <Content Include="Views\Admin\NewHall.cshtml" />
     <Content Include="Views\Admin\NewHallSuccess.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />

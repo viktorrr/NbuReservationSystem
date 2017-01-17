@@ -51,12 +51,13 @@
         }
 
         [HttpGet]
-        public ActionResult ReservationsAdministration()
+        public ActionResult Reservations()
         {
-            // TODO: this should NOT live here !!!
-
             // R.I.P. server-side performance
-            var reservations = this.reservationsRepository.AllWithDeleted().Select(ModelExpression).ToList();
+            var reservations = this.reservationsRepository
+                .AllWithDeleted()
+                .Select(ModelExpression)
+                .ToList();
 
             // R.I.P. client-side performance
             return this.View(reservations);
