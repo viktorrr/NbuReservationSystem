@@ -24,6 +24,8 @@
 
         public string Hall { get; set; }
 
+        public string Token { get; set; }
+
         public bool Equipment { get; set; }
 
         public int Id { get; set; }

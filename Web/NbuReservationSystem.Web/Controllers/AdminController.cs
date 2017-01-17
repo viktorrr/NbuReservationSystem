@@ -38,6 +38,7 @@
                 Organizer = reservation.Organizer.Name,
                 Id = reservation.Id,
                 Deleted = reservation.IsDeleted,
+                Token = reservation.Token,
                 Hall = reservation.Hall.Name
             };
         }

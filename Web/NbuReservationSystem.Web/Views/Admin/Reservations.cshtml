@@ -25,6 +25,7 @@
                         <th>@AdministrationLabels.Email</th>
                         <th>@AdministrationLabels.PhoneNumber</th>
                         <th>@AdministrationLabels.IsReservationDeleted</th>
+                        <th>@ReservationLabels.Token</th>
                         <th>IP</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -44,6 +45,7 @@
                             <td>@reservation.Email</td>
                             <td>@reservation.PhoneNumber</td>
                             <td>@(reservation.Deleted ? AdministrationLabels.Yes : AdministrationLabels.No)</td>
+                            <td>@reservation.Token</td>
                             <td>@reservation.IP</td>
                             <td>
                                 @if (!reservation.Deleted)
@@ -68,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Please wait</h4>
+                <h4 class="modal-title" id="myModalLabel">@AdministrationLabels.PleaseWait</h4>
             </div>
             <div class="modal-body">
                 <div class="progress">

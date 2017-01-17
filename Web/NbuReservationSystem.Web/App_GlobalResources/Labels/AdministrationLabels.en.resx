@@ -147,6 +147,9 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
   <data name="ReservationsAdministration" xml:space="preserve">
     <value>Manage reservations</value>
   </data>
