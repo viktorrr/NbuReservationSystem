@@ -61,6 +61,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Приложи промените за всички инстанции на това събитие?.
+        /// </summary>
+        public static string ApplyToWholeSeries {
+            get {
+                return ResourceManager.GetString("ApplyToWholeSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Възложител.
         /// </summary>
         public static string Assignor {
@@ -93,6 +102,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         public static string Date {
             get {
                 return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтрий резервацията/йте/?.
+        /// </summary>
+        public static string DeleteReservations {
+            get {
+                return ResourceManager.GetString("DeleteReservations", resourceCulture);
             }
         }
         
@@ -156,6 +174,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         public static string IsEquipmentRequired {
             get {
                 return ResourceManager.GetString("IsEquipmentRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The changes are saved..
+        /// </summary>
+        public static string ModifyRequestSuccess {
+            get {
+                return ResourceManager.GetString("ModifyRequestSuccess", resourceCulture);
             }
         }
         
@@ -318,6 +345,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Код.
+        /// </summary>
+        public static string Token {
+            get {
+                return ResourceManager.GetString("Token", resourceCulture);
             }
         }
     }

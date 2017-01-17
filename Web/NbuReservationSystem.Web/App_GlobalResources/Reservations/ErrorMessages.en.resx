@@ -126,6 +126,9 @@
   <data name="EndDateIsBeforeStartDate" xml:space="preserve">
     <value>End date should be after start date.</value>
   </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Invalide token.</value>
+  </data>
   <data name="NoSelectedRepetitionDays" xml:space="preserve">
     <value>No days to weekdays are selected.</value>
   </data>

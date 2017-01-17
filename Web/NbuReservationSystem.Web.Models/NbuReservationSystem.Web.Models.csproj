@@ -90,6 +90,7 @@
     <Compile Include="Requests\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="Requests\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Requests\Halls\HallViewModel.cs" />
+    <Compile Include="Requests\Reservations\ModfiyReservationViewModel.cs" />
     <Compile Include="Requests\Reservations\ReservationViewModel.cs" />
     <Compile Include="Requests\Reservations\OrganizerViewModel.cs" />
     <Compile Include="Responses\Halls\NewHallSuccessViewModel.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Responses\Reservations\MonthlyReservationsViewModel.cs" />
     <Compile Include="Requests\Reservations\RepetitionPolicy.cs" />
     <Compile Include="Requests\Reservations\WeekViewModel.cs" />
+    <Compile Include="Responses\Reservations\ReservationOutputModel.cs" />
     <Compile Include="Responses\Reservations\ReservationsAdministrationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -126,6 +126,9 @@
   <data name="EndDateIsBeforeStartDate" xml:space="preserve">
     <value>Крайната дата трябва да е след началната.</value>
   </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Невалиден код.</value>
+  </data>
   <data name="NoSelectedRepetitionDays" xml:space="preserve">
     <value>Не са избрани дни за повторение на събитието.</value>
   </data>

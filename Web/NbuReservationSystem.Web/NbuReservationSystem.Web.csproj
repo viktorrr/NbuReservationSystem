@@ -904,6 +904,7 @@
     <Content Include="Views\Admin\NewHall.cshtml" />
     <Content Include="Views\Admin\NewHallSuccess.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\Modify.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -1024,6 +1025,7 @@
     <EmbeddedResource Include="App_GlobalResources\Labels\ReservationLabels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ReservationLabels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

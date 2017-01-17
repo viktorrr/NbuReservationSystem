@@ -88,6 +88,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Reservations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невалиден код..
+        /// </summary>
+        public static string InvalidToken {
+            get {
+                return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не са избрани дни за повторение на събитието..
         /// </summary>
         public static string NoSelectedRepetitionDays {

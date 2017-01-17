@@ -11,6 +11,8 @@
 
         DayViewModel GetReservations(DateTime date, int hallId);
 
-        int AddReservations(ReservationViewModel reservationViewModel, string ip);
+        int AddReservations(ReservationViewModel reservationViewModel, string ip, string token);
+
+        void ModifyReservations(ModfiyReservationViewModel model, bool validateToken);
     }
 }

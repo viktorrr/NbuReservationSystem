@@ -11,14 +11,14 @@
         {
         }
 
-        public DayViewModel(IList<Reservation> reservations, DateTime day, string hall)
+        public DayViewModel(IList<ReservationOutputModel> reservations, DateTime day, string hall)
         {
             this.Reservations = reservations;
             this.Day = day;
             this.Hall = hall;
         }
 
-        public IList<Reservation> Reservations { get; set; }
+        public IList<ReservationOutputModel> Reservations { get; set; }
 
         public DateTime Day { get; set; }
 

@@ -204,4 +204,16 @@
   <data name="NoHalls" xml:space="preserve">
     <value>No halls are added. Please contact the administrator.</value>
   </data>
+  <data name="ApplyToWholeSeries" xml:space="preserve">
+    <value>Apply these changes to all instances of this event?</value>
+  </data>
+  <data name="DeleteReservations" xml:space="preserve">
+    <value>Delete reservation/s/?</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Token</value>
+  </data>
+  <data name="ModifyRequestSuccess" xml:space="preserve">
+    <value>Промените са запазени.</value>
+  </data>
 </root>

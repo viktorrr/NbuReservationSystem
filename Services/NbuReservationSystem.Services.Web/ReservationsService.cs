@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
 
     using NbuReservationSystem.Data.Common;
@@ -19,29 +20,26 @@
 
         // services
         private readonly ICalendarService calendarService;
-        private readonly ITokenGenerator stringGenerator;
 
         // data
-        private readonly IRepository<Reservation> reservations;
+        private readonly IRepository<Reservation> reservationsRepository;
         private readonly IRepository<Organizer> organizers;
         private readonly IRepository<Hall> hallsRepository;
 
         public ReservationsService(
             ICalendarService calendarService,
-            ITokenGenerator stringGenerator,
-            IRepository<Reservation> reservations,
+            IRepository<Reservation> reservationsRepository,
             IRepository<Organizer> organizers,
             IRepository<Hall> hallsRepository)
         {
             this.calendarService = calendarService;
-            this.stringGenerator = stringGenerator;
 
-            this.reservations = reservations;
+            this.reservationsRepository = reservationsRepository;
             this.organizers = organizers;
             this.hallsRepository = hallsRepository;
         }
 
-        public int AddReservations(ReservationViewModel model, string ip)
+        public int AddReservations(ReservationViewModel model, string ip, string token)
         {
             lock (Locker)
             {
@@ -55,18 +53,66 @@
                 }
 
                 var organiser = this.CreateOrganizer(model, ip);
-                var token = this.stringGenerator.Generate();
 
                 foreach (var reservationDate in reservationDates)
                 {
                     var reservation = CreateReservation(model, organiser, reservationDate, token, hall);
-                    this.reservations.Add(reservation);
+                    this.reservationsRepository.Add(reservation);
                 }
 
-                this.reservations.Save();
+                this.reservationsRepository.Save();
 
                 return reservationDates.Count;
             }
+        }
+
+        public void ModifyReservations(ModfiyReservationViewModel model, bool validateToken)
+        {
+            var reservation = this.reservationsRepository.AllBy(x => x.Id == model.Id)
+                .Include(x => x.Hall)
+                .Include(x => x.Organizer)
+                .First();
+
+            if (reservation.Token != model.Token && validateToken)
+            {
+                throw new InvalidOperationException();
+            }
+
+            if (model.Delete)
+            {
+                if (model.ApplyToWholeSeries)
+                {
+                    var reservations = this.GetReservationsByToken(model.Token);
+                    foreach (var dbReservation in reservations)
+                    {
+                        // R.I.P. server-side performance
+                        this.reservationsRepository.Delete(dbReservation);
+                    }
+                }
+                else
+                {
+                    this.reservationsRepository.Delete(reservation);
+                }
+
+                this.reservationsRepository.Save();
+                return;
+            }
+
+            if (model.ApplyToWholeSeries)
+            {
+                var reservations = this.GetReservationsByToken(model.Token);
+
+                foreach (var dbReservation in reservations)
+                {
+                    ModifyReservation(dbReservation, model);
+                }
+            }
+            else
+            {
+                ModifyReservation(reservation, model);
+            }
+
+            this.reservationsRepository.Save();
         }
 
         public MonthlyReservationsViewModel GetReservations(int year, int month, int hallId)
@@ -85,10 +131,31 @@
 
         public DayViewModel GetReservations(DateTime date, int hallId)
         {
-            var selectedReservations = this.reservations.AllBy(x => x.Date == date && x.HallId == hallId).ToList();
+            var selectedReservations = this.reservationsRepository
+                .AllBy(x => x.Date == date && x.HallId == hallId)
+                .Select(x => new ReservationOutputModel
+                {
+                    Id = x.Id,
+                    Day = x.Date,
+                    StartHour = x.StartHour,
+                    EndHour = x.EndHour,
+                    Description = x.Description,
+                    Title = x.Title,
+                })
+                .ToList();
             var hallName = this.GetHall(hallId).Name;
 
             return new DayViewModel(selectedReservations, date, hallName);
+        }
+
+        private static void ModifyReservation(Reservation reservation, ModfiyReservationViewModel model)
+        {
+            reservation.Title = model.Title;
+            reservation.Description = model.Description;
+            reservation.Assignor = model.Assignor;
+            reservation.Organizer.Email = model.Organizer.Email;
+            reservation.Organizer.PhoneNumber = model.Organizer.PhoneNumber;
+            reservation.Organizer.Name = model.Organizer.Name;
         }
 
         private static Reservation CreateReservation(ReservationViewModel model, Organizer organizer, DateTime date, string token, Hall hall)
@@ -121,10 +188,21 @@
 
                 for (int j = 0; j < 7; j++)
                 {
-                    var reservations = new List<Reservation>();
+                    var reservations = new List<ReservationOutputModel>();
                     if (reservationsByDay.ContainsKey(currentDay))
                     {
-                        reservations = reservationsByDay[currentDay].OrderBy(x => x.StartHour).ToList();
+                        reservations = reservationsByDay[currentDay]
+                            .OrderBy(x => x.StartHour)
+                            .Select(x => new ReservationOutputModel
+                            {
+                                Id = x.Id,
+                                Day = x.Date,
+                                StartHour = x.StartHour,
+                                EndHour = x.EndHour,
+                                Description = x.Description,
+                                Title = x.Title,
+                            })
+                            .ToList();
                     }
 
                     var dayModel = new DayViewModel
@@ -164,7 +242,7 @@
         private bool CheckIfAllDatesFree(List<DateTime> dates, TimeSpan startHour, TimeSpan endHour, int hallId)
         {
             // not sure if this is tbe best performance-wise solution, but..
-            return !this.reservations.All().Any(
+            return !this.reservationsRepository.All().Any(
                 r => r.HallId == hallId && r.Date == dates.FirstOrDefault(
                     d => (d == r.Date) && startHour <= r.EndHour && endHour >= r.StartHour)
             );
@@ -172,7 +250,7 @@
 
         private Dictionary<DateTime, IEnumerable<Reservation>> GetReservations(DateTime from, DateTime to, int hallId)
         {
-            return this.reservations.All()
+            return this.reservationsRepository.All()
                 .Where(x => x.Date >= from && x.Date <= to && x.HallId == hallId)
                 .OrderBy(x => x.Date)
                 .GroupBy(x => x.Date, (day, currentReservations) => new { day, currentReservations })
@@ -182,6 +260,15 @@
         private Hall GetHall(int hallId)
         {
             return this.hallsRepository.GetById(hallId);
+        }
+
+        private List<Reservation> GetReservationsByToken(string token)
+        {
+            return this.reservationsRepository
+                .AllBy(x => x.Token == token)
+                .Include(x => x.Hall)
+                .Include(x => x.Organizer)
+                .ToList();
         }
     }
 }

@@ -5,7 +5,6 @@
 <br />
 
 <h2>Детайли за резервацията</h2>
-
 <br />
 
 Заглавие: <b>{1}</b>
@@ -20,6 +19,8 @@
 
 Код за промяна/изтриване на резервацията/ите: <b>{5}</b>
 <br />
+<a href="{6}">Линк за промяна/изтриване на резервацията/ите</a>
+<br />
 
 <hr>
 
@@ -30,7 +31,6 @@ this message is generated automatically from New Bulgarian University's reservat
 <br />
 
 <h2>Reservation details</h2>
-
 <br />
 
 Title: <b>{1}</b>
@@ -44,3 +44,6 @@ End hour: <b>{4}</b>
 <br />
 
 Token for reservation modification/removal: <b>{5}</b>
+<br />
+<a href="{6}">Link for reservation modification/removal</a>
+<br />

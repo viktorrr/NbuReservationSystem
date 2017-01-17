@@ -204,4 +204,16 @@
   <data name="NoHalls" xml:space="preserve">
     <value>Няма добавени зали. Моля свържете се с администратора.</value>
   </data>
+  <data name="ApplyToWholeSeries" xml:space="preserve">
+    <value>Приложи промените за всички инстанции на това събитие?</value>
+  </data>
+  <data name="DeleteReservations" xml:space="preserve">
+    <value>Изтрий резервацията/йте/?</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="ModifyRequestSuccess" xml:space="preserve">
+    <value>The changes are saved.</value>
+  </data>
 </root>

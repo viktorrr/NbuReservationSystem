@@ -43,7 +43,7 @@
                             <p>@Html.FormatEventDuration(reservation.StartHour, reservation.EndHour)</p>
                         </div>
                         <div class="col-md-21">
-                            <p>@reservation.Title</p>
+                            <p>@Html.ActionLink(reservation.Title, "Modify", new { id = reservation.Id })</p>
                             <p>@reservation.Description</p>
                         </div>
                     </div>

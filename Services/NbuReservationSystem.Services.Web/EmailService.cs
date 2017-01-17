@@ -25,10 +25,10 @@
             ForgottenPasswordTemplate = File.ReadAllText(HostingEnvironment.MapPath("~/App_Data/ForgottenPassword.txt"));
         }
 
-        public void SendNewReservationEmail(ReservationViewModel model, string token)
+        public void SendNewReservationEmail(ReservationViewModel model, string token, string url)
         {
             var subject = $"Нова резервация / New reservation - {FormatDate(model.Date)}";
-            var body = FormatNewReservationEmail(model, token);
+            var body = FormatNewReservationEmail(model, token, url);
 
             Task.Run(() => Send(model.Organizer.Email, subject, body));
         }
@@ -78,7 +78,7 @@
             }
         }
 
-        private static string FormatNewReservationEmail(ReservationViewModel model, string token)
+        private static string FormatNewReservationEmail(ReservationViewModel model, string token, string url)
         {
             var date = FormatDate(model.Date);
 
@@ -89,7 +89,8 @@
                 date,
                 model.StartHour,
                 model.EndHour,
-                token
+                token,
+                url
             );
         }
 

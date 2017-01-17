@@ -1,0 +1,157 @@
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+@model NbuReservationSystem.Web.Models.Requests.Reservations.ModfiyReservationViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-28">
+
+            @{
+                if (this.ViewBag.RequestSucceeded != null)
+                {
+                    if (this.ViewBag.RequestSucceeded)
+                    {
+                        <p class="alert alert-success" role="alert">@ReservationLabels.ModifyRequestSuccess</p>
+                    }
+                }
+            }
+
+            @using (Html.BeginForm("Modify", "Reservations", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.ValidationSummary(true)
+
+
+                <h3>@ReservationLabels.ReservationDetails</h3>
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Title, ReservationLabels.Title, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Title)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Description, ReservationLabels.Description, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Description)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Hall, ReservationLabels.Hall, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Hall, new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Date, ReservationLabels.Date, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Date, new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.StartHour, ReservationLabels.BeginsOn, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.StartHour, new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.EndHour, ReservationLabels.EndsOn, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.EndHour, new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Assignor, ReservationLabels.Assignor, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Assignor, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Assignor)
+                    </div>
+                </div>
+
+                <div class="col-md-28">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(x => x.IsEquipmentRequired)
+                                @Html.LabelFor(x => x.IsEquipmentRequired, ReservationLabels.IsEquipmentRequired)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>@ReservationLabels.PointOfContact</h3>
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Organizer.Name, ReservationLabels.Name, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Organizer.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Organizer.Name)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Organizer.Email, ReservationLabels.Email, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Organizer.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Organizer.Email)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Organizer.PhoneNumber, ReservationLabels.PhoneNumber, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Organizer.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Organizer.PhoneNumber)
+                    </div>
+                </div>
+
+                <div class="col-md-28">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(x => x.ApplyToWholeSeries)
+                                @Html.LabelFor(x => x.ApplyToWholeSeries, ReservationLabels.ApplyToWholeSeries)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-28">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(x => x.Delete)
+                                @Html.LabelFor(x => x.Delete, ReservationLabels.DeleteReservations)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                @Html.HiddenFor(x => x.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Assignor, ReservationLabels.Token, new { @class = "control-label col-md-4" })
+                    <div class="col-md-24">
+                        @Html.TextBoxFor(x => x.Token, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Token)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" value="@ReservationLabels.Save" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -32,8 +32,8 @@
                 this.reservationsService,
                 this.emailService,
                 this.tokenGenerator,
-                this.reservations,
-                this.halls
+                this.halls,
+                this.reservations
             );
         }
 

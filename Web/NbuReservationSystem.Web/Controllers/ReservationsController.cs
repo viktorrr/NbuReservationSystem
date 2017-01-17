@@ -19,18 +19,22 @@
         private readonly IReservationsService reservationsService;
         private readonly IEmailService emailService;
         private readonly ITokenGenerator tokenGenerator;
+
         private readonly IRepository<Hall> hallsRepository;
+        private readonly IRepository<Reservation> reservationsRepository;
 
         public ReservationsController(
             IReservationsService reservationsService,
             IEmailService emailService,
             ITokenGenerator tokenGenerator,
-            IRepository<Hall> hallsRepository)
+            IRepository<Hall> hallsRepository,
+            IRepository<Reservation> reservationsRepository)
         {
             this.reservationsService = reservationsService;
             this.emailService = emailService;
             this.tokenGenerator = tokenGenerator;
             this.hallsRepository = hallsRepository;
+            this.reservationsRepository = reservationsRepository;
         }
 
         [HttpGet]
@@ -108,6 +112,58 @@
             }
 
             return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Modify(int id)
+        {
+            var reservation = this.reservationsRepository.GetById(id);
+            if (reservation == null)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            var model = new ModfiyReservationViewModel
+            {
+                Id = id,
+                Date = FormatDate(reservation.Date),
+                StartHour = FormatTime(reservation.StartHour),
+                EndHour = FormatTime(reservation.EndHour),
+                Assignor = reservation.Assignor,
+                Description = reservation.Assignor,
+                Title = reservation.Title,
+                Hall = reservation.Hall.Name,
+                Organizer = new OrganizerViewModel
+                {
+                    Email = reservation.Organizer.Email,
+                    PhoneNumber = reservation.Organizer.PhoneNumber,
+                    Name = reservation.Organizer.Name
+                }
+            };
+            this.ViewBag.Id = id;
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Modify(ModfiyReservationViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            try
+            {
+                this.reservationsService.ModifyReservations(model, true);
+                this.ViewBag.RequestSucceeded = true;
+
+                return this.View();
+            }
+            catch (InvalidOperationException)
+            {
+                this.ModelState.AddModelError(string.Empty, ErrorMessages.InvalidToken);
+                return this.View(model);
+            }
         }
 
         [HttpPost]
@@ -197,14 +253,48 @@
             if (this.ModelState.IsValid)
             {
                 var ip = this.HttpContext.Request.UserHostAddress;
-                var reservations = this.reservationsService.AddReservations(model, ip);
 
-                // TODO: this isn't the best solution..
-                this.ViewBag.RequestSucceeded = reservations == -1;
-                this.emailService.SendNewReservationEmail(model, this.tokenGenerator.Generate());
+                var token = this.tokenGenerator.Generate();
+                var reservationsCount = this.reservationsService.AddReservations(model, ip, token);
+
+                if (reservationsCount == -1)
+                {
+                    this.ViewBag.RequestSucceeded = false;
+                }
+                else
+                {
+                    var url = this.CreateReservationUrl(token);
+
+                    this.ViewBag.RequestSucceeded = true;
+                    this.emailService.SendNewReservationEmail(model, token, url);
+                }
             }
 
             return this.View(model);
+        }
+
+        private static string FormatDate(DateTime date)
+        {
+            return $"{date.Year}-{date.Month}-{date.Day}";
+        }
+
+        private static string FormatTime(TimeSpan time)
+        {
+            return $"{time.Hours}:{time.Minutes}";
+        }
+
+        private string CreateReservationUrl(string token)
+        {
+            var reservationId = this.reservationsRepository
+                .AllBy(x => x.Token == token)
+                .Select(x => x.Id)
+                .First();
+
+            var scheme = this.Request.Url.Scheme;
+            var authority = this.Request.Url.Authority;
+            var modifyUrl = this.Url.Action("Modify", new { id = reservationId });
+
+            return $"{scheme}://{authority}{modifyUrl}";
         }
 
         private IList<string> GetHalls()
