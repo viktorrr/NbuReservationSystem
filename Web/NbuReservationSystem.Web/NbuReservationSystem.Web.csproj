@@ -231,6 +231,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HallsLabels.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Labels\NavBarLabels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NavBarLabels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Labels\NavBarLabels.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NavBarLabels.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Reservations\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -946,6 +956,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\Labels\NavBarLabels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NavBarLabels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Labels\NavBarLabels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NavBarLabels.en.designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Reservations\Weekdays.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Weekdays.en.designer.cs</LastGenOutput>
