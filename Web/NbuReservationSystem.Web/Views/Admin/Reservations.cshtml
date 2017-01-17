@@ -24,9 +24,8 @@
                         <th>@AdministrationLabels.Organizer</th>
                         <th>@AdministrationLabels.Email</th>
                         <th>@AdministrationLabels.PhoneNumber</th>
+                        <th>@AdministrationLabels.IsReservationDeleted</th>
                         <th>IP</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
@@ -38,27 +37,23 @@
                             <td>@reservation.Date.Year-@reservation.Date.Month-@reservation.Date.Day</td>
                             <td>@reservation.StartHour</td>
                             <td>@reservation.EndHour</td>
-                            <td>Зала</td>
-                            <td>@(reservation.Equipment ? "Да" : "Не")</td>
+                            <td>@reservation.Hall</td>
+                            <td>@(reservation.Equipment ? AdministrationLabels.Yes : AdministrationLabels.No)</td>
                             <td>@reservation.Assignor</td>
                             <td>@reservation.Organizer</td>
                             <td>@reservation.Email</td>
                             <td>@reservation.PhoneNumber</td>
+                            <td>@(reservation.Deleted ? AdministrationLabels.Yes : AdministrationLabels.No)</td>
                             <td>@reservation.IP</td>
                             <td>
-                                <div class="text-center">
-                                    <span class="glyphicon glyphicon-eye-open"></span><span>&nbsp;</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-center">
-                                    <span class="glyphicon glyphicon-pencil"></span><span>&nbsp;</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-center">
-                                    <span class="glyphicon glyphicon-remove"></span><span>&nbsp;</span>
-                                </div>
+                                @if (!reservation.Deleted)
+                                {
+                                    <div class="text-center">
+                                        <a href="@Url.Action("Modify", "Reservations", new { id = reservation.Id })">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </div>
+                                }
                             </td>
                         </tr>
                     }

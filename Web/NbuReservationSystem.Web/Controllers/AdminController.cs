@@ -1,6 +1,7 @@
 ﻿namespace NbuReservationSystem.Web.Controllers
 {
     using System;
+    using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Web.Mvc;
@@ -34,7 +35,10 @@
                 Equipment = reservation.IsEquipementRequired,
                 IP = reservation.Organizer.IP,
                 PhoneNumber = reservation.Organizer.PhoneNumber,
-                Organizer = reservation.Organizer.Name
+                Organizer = reservation.Organizer.Name,
+                Id = reservation.Id,
+                Deleted = reservation.IsDeleted,
+                Hall = reservation.Hall.Name
             };
         }
 

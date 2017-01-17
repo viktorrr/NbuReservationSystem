@@ -22,6 +22,12 @@
 
         public string IP { get; set; }
 
+        public string Hall { get; set; }
+
         public bool Equipment { get; set; }
+
+        public int Id { get; set; }
+
+        public bool Deleted { get; set; }
     }
 }

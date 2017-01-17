@@ -115,6 +115,24 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изтрита?.
+        /// </summary>
+        public static string IsReservationDeleted {
+            get {
+                return ResourceManager.GetString("IsReservationDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Организатор.
         /// </summary>
         public static string Organizer {
@@ -156,6 +174,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Да.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
