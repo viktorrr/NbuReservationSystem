@@ -12,6 +12,7 @@
     using NbuReservationSystem.Common;
     using NbuReservationSystem.Data.Common;
     using NbuReservationSystem.Data.Models;
+    using NbuReservationSystem.Services.Web;
     using NbuReservationSystem.Web.Models.Requests.Halls;
     using NbuReservationSystem.Web.Models.Responses.Halls;
     using NbuReservationSystem.Web.Models.Responses.Reservations;
@@ -23,6 +24,8 @@
 
         private readonly IRepository<Reservation> reservationsRepository;
         private readonly IRepository<Hall> hallsRepository;
+
+        private readonly ITokenGenerator tokenGenerator;
 
         // TODO: this shouldn't be here!
         static AdminController()
@@ -46,10 +49,14 @@
             };
         }
 
-        public AdminController(IRepository<Reservation> reservationsRepository, IRepository<Hall> hallsRepository)
+        public AdminController(
+            IRepository<Reservation> reservationsRepository,
+            IRepository<Hall> hallsRepository,
+            ITokenGenerator tokenGenerator)
         {
             this.reservationsRepository = reservationsRepository;
             this.hallsRepository = hallsRepository;
+            this.tokenGenerator = tokenGenerator;
         }
 
         [HttpGet]
@@ -238,7 +245,8 @@
                             Assignor = "__system",
                             Description = "<none>",
                             Organizer = organizer,
-                            Hall = hall
+                            Hall = hall,
+                            Token = this.tokenGenerator.Generate()
                         };
 
                         this.reservationsRepository.Add(reservation);
