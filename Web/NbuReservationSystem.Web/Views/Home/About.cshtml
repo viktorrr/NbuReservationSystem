@@ -1,4 +1,5 @@
-﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Home
+@using NbuReservationSystem.Web.App_GlobalResources.Labels
 @{
     ViewBag.Title = NavBarLabels.About;
 }
@@ -7,31 +8,31 @@
     <div class="About-container">
         <div class="col-md-14">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#about-us" data-toggle="tab">@Resources.AboutContent.TitleAboutUs</a></li>
-                <li><a href="#about-project" data-toggle="tab">@Resources.AboutContent.TitleAboutProject</a></li>
+                <li class="active"><a href="#about-us" data-toggle="tab">@AboutContent.TitleAboutUs</a></li>
+                <li><a href="#about-project" data-toggle="tab">@AboutContent.TitleAboutProject</a></li>
             </ul>
             <div id="about-txt" class="tab-content text-justify">
                 <div class="tab-pane active" id="about-us">
-                    <p>@Resources.AboutContent.AboutUs</p>
+                    <p>@AboutContent.AboutUs</p>
                     <ul>
-                        <li>@Resources.AboutContent.AboutUsVenetsiya</li>
-                        <li>@Resources.AboutContent.AboutUsViktor</li>
-                        <li>@Resources.AboutContent.AboutUsTsvetan</li>
-                        <li>@Resources.AboutContent.AboutusBottom</li>
-                        <li>@Resources.AboutContent.AboutUsKiril</li>
-                        <li>@Resources.AboutContent.AboutUsNikolay</li>
+                        <li>@AboutContent.AboutUsVenetsiya</li>
+                        <li>@AboutContent.AboutUsViktor</li>
+                        <li>@AboutContent.AboutUsTsvetan</li>
+                        <li>@AboutContent.AboutusBottom</li>
+                        <li>@AboutContent.AboutUsKiril</li>
+                        <li>@AboutContent.AboutUsNikolay</li>
                     </ul>
                 </div>
                 <div class="tab-pane" id="about-project">
-                    <p>@Resources.AboutContent.AboutProject</p>
-                    <p>@Resources.AboutContent.AboutProject1 </p>
-                    <p>@Resources.AboutContent.AboutProject2 </p>
-                    <p>@Resources.AboutContent.AboutProject3 </p>
+                    <p>@AboutContent.AboutProject</p>
+                    <p>@AboutContent.AboutProject1 </p>
+                    <p>@AboutContent.AboutProject2 </p>
+                    <p>@AboutContent.AboutProject3 </p>
                 </div>
             </div>
             <p>
                 @* TODO fix link, Localization *@
-                @Resources.AboutContent.AdminTxt @Html.ActionLink(Resources.AboutContent.AdminLink, "Index", "Admin")@(".")
+                @AboutContent.AdminTxt @Html.ActionLink(AboutContent.AdminLink, "Index", "Admin")@(".")
             </p>
         </div>
         <div class="col-md-14 hidden-sm">

@@ -929,7 +929,6 @@
     <Content Include="Views\Admin\NewHallSuccess.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\Modify.cshtml" />
-    <Content Include="Views\Reservations\Administration.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>

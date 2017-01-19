@@ -1,9 +1,6 @@
 ﻿namespace NbuReservationSystem.Web.Controllers
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Text.RegularExpressions;
@@ -13,7 +10,6 @@
     using AngleSharp.Parser.Html;
 
     using NbuReservationSystem.Common;
-    using NbuReservationSystem.Data;
     using NbuReservationSystem.Data.Common;
     using NbuReservationSystem.Data.Models;
     using NbuReservationSystem.Web.Models.Requests.Halls;

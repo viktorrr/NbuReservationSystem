@@ -130,7 +130,7 @@
                 StartHour = FormatTime(reservation.StartHour),
                 EndHour = FormatTime(reservation.EndHour),
                 Assignor = reservation.Assignor,
-                Description = reservation.Assignor,
+                Description = reservation.Description,
                 Title = reservation.Title,
                 Hall = reservation.Hall.Name,
                 Organizer = new OrganizerViewModel
