@@ -1,4 +1,9 @@
-﻿<div class="container">
+﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+@{
+    ViewBag.Title = NavBarLabels.About;
+}
+
+<div class="container">
     <div class="About-container">
         <div class="col-md-14">
             <ul class="nav nav-tabs">
@@ -26,7 +31,7 @@
             </div>
             <p>
                 @* TODO fix link, Localization *@
-                @Resources.AboutContent.AdminTxt @Html.ActionLink(Resources.AboutContent.AdminLink, "Index", "Admin")
+                @Resources.AboutContent.AdminTxt @Html.ActionLink(Resources.AboutContent.AdminLink, "Index", "Admin")@(".")
             </p>
         </div>
         <div class="col-md-14 hidden-sm">
