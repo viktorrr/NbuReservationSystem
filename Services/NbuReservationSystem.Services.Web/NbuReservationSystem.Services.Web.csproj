@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="CalendarService.cs" />
     <Compile Include="EmailService.cs" />
-    <Compile Include="HttpCacheService.cs" />
     <Compile Include="ICacheService.cs" />
     <Compile Include="ICalendarService.cs" />
     <Compile Include="IEmailService.cs" />

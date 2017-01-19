@@ -49,9 +49,6 @@
             builder.Register(x => new ApplicationDbContext())
                 .As<DbContext>()
                 .InstancePerRequest();
-            builder.Register(x => new HttpCacheService())
-                .As<ICacheService>()
-                .InstancePerRequest();
 
             var webServicesAssembly = Assembly.GetAssembly(typeof(ICalendarService));
             builder.RegisterAssemblyTypes(webServicesAssembly).AsImplementedInterfaces().InstancePerRequest();
