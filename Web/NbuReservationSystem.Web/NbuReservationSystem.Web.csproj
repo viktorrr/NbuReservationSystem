@@ -185,6 +185,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Home\AboutContent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutContent.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Home\AboutContent.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutContent.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Labels\AccountLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -606,6 +616,7 @@
     <Content Include="Content\DataTables\media\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\about.jpg" />
     <Content Include="Content\Images\laptop-tablet-phone-pc1.png" />
     <Content Include="Content\Images\slider1.png" />
     <Content Include="Content\Images\slider2.png" />
@@ -918,6 +929,12 @@
     <Content Include="Views\Admin\NewHallSuccess.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\Modify.cshtml" />
+    <Content Include="Views\Reservations\Administration.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -1005,6 +1022,14 @@
     <EmbeddedResource Include="App_GlobalResources\Labels\AdministrationLabels.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdministrationLabels.en.designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Home\AboutContent.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AboutContent.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Home\AboutContent.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AboutContent.en.designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Labels\AccountLabels.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

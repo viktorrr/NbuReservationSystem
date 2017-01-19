@@ -117,34 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
+  <data name="AboutProject" xml:space="preserve">
+    <value>Проектът е разработен в рамките на Задание, предоставено от екипа на Нов Български университет по името „Система за резервиране на залите в библиотеката на НБУ“.</value>
+  </data>
+  <data name="AboutProject1" xml:space="preserve">
+    <value>Целта на проекта е да позволи автоматизацията на процеса по резервиране на времеви интервали в залите в НБУ.</value>
+  </data>
+  <data name="AboutProject2" xml:space="preserve">
+    <value>Преди стартиране на проекта, инструмента, който е ползван е частично автоматизиран, изисква високо ниво на ръчен труд при управление и администриране и също така се основава на външни ИТ решения за НБУ.</value>
+  </data>
+  <data name="AboutProject3" xml:space="preserve">
+    <value>С помощта на CARL ние се надяваме да допринесем за резолирането на тези проблеми.</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>Ние сме екип, който цели да изпълнява реални проекти, да развива и оптимизира.
+
+Екипът се състои от:</value>
+  </data>
+  <data name="AboutusBottom" xml:space="preserve">
+    <value>Нашата скромна дружинка представя нашият мастър на заявките – CARL.</value>
+  </data>
+  <data name="AboutUsKiril" xml:space="preserve">
+    <value>Кирил Бадаланов – Господин „Според спецификацията…“ или Бизнес Анализатор</value>
+  </data>
+  <data name="AboutUsNikolay" xml:space="preserve">
+    <value>Николай Ангелов – Господин „Постоянен качествен контрол“ или QA</value>
+  </data>
+  <data name="AboutUsTsvetan" xml:space="preserve">
+    <value>Цветан Стоянов – Господин „Аз съм много амбициозен“ или Junior Dev</value>
+  </data>
+  <data name="AboutUsVenetsiya" xml:space="preserve">
+    <value>Венеция Нецова – Госпожица „Нека да направим екселски файл“ или Project Manager</value>
+  </data>
+  <data name="AboutUsViktor" xml:space="preserve">
+    <value>Виктор Василев – Господин „Знам си всичко аз“ или по-старши Junior Dev</value>
+  </data>
+  <data name="TitleAboutProject" xml:space="preserve">
+    <value>За проекта</value>
+  </data>
+  <data name="TitleAboutUs" xml:space="preserve">
     <value>За нас</value>
   </data>
-  <data name="AdminPanel" xml:space="preserve">
-    <value>Админ панел</value>
+  <data name="AdminTxt" xml:space="preserve">
+    <value>Сайтът може да се администрира от</value>
   </data>
-  <data name="AllRightsReserved" xml:space="preserve">
-    <value>Всички права запазени</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Смяна на паролата</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="LogOff" xml:space="preserve">
-    <value>Изход</value>
-  </data>
-  <data name="ModifyOrDeleteReservations" xml:space="preserve">
-    <value>Промени или изтрий резервации</value>
-  </data>
-  <data name="NewHall" xml:space="preserve">
-    <value>Нова зала</value>
-  </data>
-  <data name="Reservations" xml:space="preserve">
-    <value>Резервации</value>
-  </data>
-  <data name="ReservationsAdministration" xml:space="preserve">
-    <value>Администриране на резервации</value>
+  <data name="AdminLink" xml:space="preserve">
+    <value>тук</value>
   </data>
 </root>

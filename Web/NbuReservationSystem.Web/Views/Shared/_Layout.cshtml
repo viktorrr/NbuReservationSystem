@@ -1,6 +1,6 @@
-﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
-<!DOCTYPE html>
-<html>
+﻿﻿@using NbuReservationSystem.Web.App_GlobalResources.Labels
+﻿<!DOCTYPE html>
+<html lang="bg">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,12 +28,12 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(NavBarLabels.Home, "Index", "Home", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink(NavBarLabels.Reservations, "Index", "Reservations", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink(NavBarLabels.About, "About", "Home", new { area = string.Empty }, null)</li>
                 </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
         </div>
     </nav>
-
 
     @RenderBody()
 

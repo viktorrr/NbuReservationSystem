@@ -117,34 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>За нас</value>
+  <data name="AboutProject" xml:space="preserve">
+    <value>The project is developed according to Assignment provided by the New Bulgarian University under the name of “Reservation system for NBU Library Halls”.</value>
   </data>
-  <data name="AdminPanel" xml:space="preserve">
-    <value>Админ панел</value>
+  <data name="AboutProject1" xml:space="preserve">
+    <value>The aim of the project is to enable the automation of the process of reserving time slots in NBU Library halls.</value>
   </data>
-  <data name="AllRightsReserved" xml:space="preserve">
-    <value>Всички права запазени</value>
+  <data name="AboutProject2" xml:space="preserve">
+    <value>At present, the tools are semi-automated, their management and administration require a lot of human intervention and utilize external solutions.</value>
   </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Смяна на паролата</value>
+  <data name="AboutProject3" xml:space="preserve">
+    <value>With CARL’s support, we aspire to resolve those issues.</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Начало</value>
+  <data name="AboutUs" xml:space="preserve">
+    <value>We are a team that aims to do real stuff, to elaborate and to optimize.
+
+The team consists of:</value>
   </data>
-  <data name="LogOff" xml:space="preserve">
-    <value>Изход</value>
+  <data name="AboutusBottom" xml:space="preserve">
+    <value>Our humble group presents to your attention The Master of reservations</value>
   </data>
-  <data name="ModifyOrDeleteReservations" xml:space="preserve">
-    <value>Промени или изтрий резервации</value>
+  <data name="AboutUsKiril" xml:space="preserve">
+    <value>Kiril Badalanov – Mr. According-To-Specification or the Business Analyist</value>
   </data>
-  <data name="NewHall" xml:space="preserve">
-    <value>Нова зала</value>
+  <data name="AboutUsNikolay" xml:space="preserve">
+    <value>Nikolay Angelov – Mr. Quality-Control-All-The-Time or the QA</value>
   </data>
-  <data name="Reservations" xml:space="preserve">
-    <value>Резервации</value>
+  <data name="AboutUsTsvetan" xml:space="preserve">
+    <value>Tsvetan Stoyanov – Mr. I-Am-Super-Ambitious or the Junior Dev</value>
   </data>
-  <data name="ReservationsAdministration" xml:space="preserve">
-    <value>Администриране на резервации</value>
+  <data name="AboutUsVenetsiya" xml:space="preserve">
+    <value>Venetsiya Netsova – Miss Let’s-Make-An-Excel-File or the PM</value>
+  </data>
+  <data name="AboutUsViktor" xml:space="preserve">
+    <value>Viktor Vasilev – Mr. Know-It-All or more senior Junior Dev</value>
+  </data>
+  <data name="AdminTxt" xml:space="preserve">
+    <value>The site can be administered from</value>
+  </data>
+  <data name="TitleAboutProject" xml:space="preserve">
+    <value>About project</value>
+  </data>
+  <data name="TitleAboutUs" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="AdminLink" xml:space="preserve">
+    <value>here</value>
   </data>
 </root>

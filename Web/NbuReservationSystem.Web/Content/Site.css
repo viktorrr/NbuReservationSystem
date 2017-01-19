@@ -260,3 +260,15 @@ input[type="checkbox"].input-validation-error {
 .calendar-today {
     border-bottom: 5px solid black;
 }
+
+#about-img {
+     border-radius: 25px;
+}
+
+#about-txt {
+    margin-top: 50px;
+}
+
+.About-container {
+    margin-top: 100px;
+}
