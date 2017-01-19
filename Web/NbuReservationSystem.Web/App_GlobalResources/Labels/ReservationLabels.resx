@@ -208,12 +208,12 @@
     <value>Приложи промените за всички инстанции на това събитие?</value>
   </data>
   <data name="DeleteReservations" xml:space="preserve">
-    <value>Изтрий резервацията/йте/?</value>
+    <value>Изтрий резервацията/ите/?</value>
   </data>
   <data name="Token" xml:space="preserve">
     <value>Код</value>
   </data>
   <data name="ModifyRequestSuccess" xml:space="preserve">
-    <value>The changes are saved.</value>
+    <value>Промените са запазени.</value>
   </data>
 </root>

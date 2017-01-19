@@ -106,7 +106,7 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Изтрий резервацията/йте/?.
+        ///   Looks up a localized string similar to Изтрий резервацията/ите/?.
         /// </summary>
         public static string DeleteReservations {
             get {
@@ -178,7 +178,7 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The changes are saved..
+        ///   Looks up a localized string similar to Промените са запазени..
         /// </summary>
         public static string ModifyRequestSuccess {
             get {
