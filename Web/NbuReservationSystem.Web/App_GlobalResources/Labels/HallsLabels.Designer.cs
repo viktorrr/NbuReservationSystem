@@ -70,6 +70,15 @@ namespace NbuReservationSystem.Web.App_GlobalResources.Labels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Google календар.
+        /// </summary>
+        public static string GoogleCalendar {
+            get {
+                return ResourceManager.GetString("GoogleCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Залата е добавена успешно!.
         /// </summary>
         public static string HallAdded {

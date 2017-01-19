@@ -111,7 +111,7 @@
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        private async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (this.ModelState.IsValid)
             {

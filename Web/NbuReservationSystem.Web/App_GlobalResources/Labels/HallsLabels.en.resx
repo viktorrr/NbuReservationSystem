@@ -120,6 +120,9 @@
   <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>
+  <data name="GoogleCalendar" xml:space="preserve">
+    <value>Google calendar</value>
+  </data>
   <data name="HallAdded" xml:space="preserve">
     <value>The hall was added successfully!</value>
   </data>

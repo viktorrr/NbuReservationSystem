@@ -120,6 +120,9 @@
   <data name="Color" xml:space="preserve">
     <value>Цвят</value>
   </data>
+  <data name="GoogleCalendar" xml:space="preserve">
+    <value>Google календар</value>
+  </data>
   <data name="HallAdded" xml:space="preserve">
     <value>Залата е добавена успешно!</value>
   </data>
